@@ -1,10 +1,11 @@
 @import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -22,14 +23,18 @@
         @apply  dark:bg-gray-950 flex flex-col items-center font-sans   ;
     }
 
+    
+}
+
+
+@layer components {
     .btn{
-        @apply bg-red-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-red-700 transition duration-200 transition-transform hover:scale-105;
+        @apply bg-red-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-red-700 hover:scale-105 transform transition-transform duration-300;
     }
 
-    /*navigation styles*/
+    /*navigation styles*/   
 
     .navbar{
-        
         @apply bg-red-500  w-100 h-auto sm:h-screen;
     }
     .nav-link{

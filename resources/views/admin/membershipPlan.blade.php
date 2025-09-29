@@ -4,7 +4,8 @@
             <h1>Membership Plans</h1>
         </div>
         <div>
-            <a href="#" class="btn">Create New Membership Tier</a>
+            <a href="{{route ("admin.createMembership")}}" class="bg-red-600 text-white py-2 px-4 rounded-lg shadow-md 
+               hover:bg-red-700 hover:scale-105 transform transition-transform duration-300">Create New Membership Tier</a>
         </div>
     </div>
 </x-navigation>
