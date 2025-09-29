@@ -14,7 +14,25 @@
 }
 
 @layer base {
-    body {
-        @apply bg-[#F5F5F5] dark:bg-gray-950 flex flex-col items-center font-sans   ;
+
+    html{
+        @apply bg-[#F5F5F5];
+    }
+    .login-page{
+        @apply  dark:bg-gray-950 flex flex-col items-center font-sans   ;
+    }
+
+    .btn{
+        @apply bg-red-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-red-700 transition duration-200 transition-transform hover:scale-105;
+    }
+
+    /*navigation styles*/
+
+    .navbar{
+        
+        @apply bg-red-500  w-100 h-auto sm:h-screen;
+    }
+    .nav-link{
+        @apply flex flex-col text-2xl text-white border-t-2 border-red-400 hover:border-red-600 p-4;
     }
 }
