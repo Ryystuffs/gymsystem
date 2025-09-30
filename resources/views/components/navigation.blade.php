@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="flex">
-        <div class="navbar">
+        <div class="bg-red-500  w-100 h-auto sm:h-screen">
             <h2 class="text-white font-semibold text-center mt-5 mb-10 text-4xl p-1 ">Gym System</h2>
             <nav>
                 <a href="{{ route('admin.dashboard') }}" class="nav-link">Dashboard</a>
