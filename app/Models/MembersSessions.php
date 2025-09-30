@@ -13,6 +13,11 @@ class MembersSessions extends Model
         'check_out',
         'is_in',
     ];
+
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
     /** @use HasFactory<\Database\Factories\MembersSessionsFactory> */
     use HasFactory;
 }
