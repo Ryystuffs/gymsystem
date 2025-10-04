@@ -12,7 +12,6 @@
 
             @foreach($membershipPlans as $membershipPlan)
                 <x-membershipPlanCard :membershipPlan="$membershipPlan">
-                    
                 </x-membershipPlanCard>
             @endforeach
     </div>
