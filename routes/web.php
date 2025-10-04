@@ -6,16 +6,16 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('/admin', function () {
+Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 })->name('admin.dashboard');
 
 
 
-Route::get('/admin/membership/membershipPlan', function (){
-    return view ('admin.membership.membershipPlan');
-})->name('admin.membership.membershipPlan');
+Route::get('/admin/membershipPlan', function (){
+    return view ('admin.membershipPlan');
+})->name('admin.membershipPlan');
 
-Route::get('/admin/membership/createMembership', function (){
-    return view ('admin.membership.createMembership');
-})->name('admin.membership.createMembership');
+Route::get('/admin/createMembership', function (){
+    return view ('admin.createMembership');
+})->name('admin.createMembership');

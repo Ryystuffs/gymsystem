@@ -12,7 +12,7 @@
             <h2 class="text-white font-semibold text-center mt-5 mb-10 text-4xl p-1 ">Gym System</h2>
             <nav>
                 <a href="{{ route('admin.dashboard') }}" class="nav-link">Dashboard</a>
-                <a href="{{ route('admin.membership.membershipPlan') }}" class="nav-link">Membership Plans</a>
+                <a href="{{ route('admin.membershipPlan') }}" class="nav-link">Membership Plans</a>
                 <a href="#" class="nav-link">Sessions</a>
                 <a href="#" class="nav-link">Walk-in</a>
                 <a href="#" class="nav-link">Members</a>
