@@ -1,21 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\MembershipController;
 
 Route::get('/', function () {
     return view('login');
 });
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->name('admin.dashboard');
 
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    Route::prefix('membership')->name('membership.')->group(function () {
+        Route::get('/membershipPlan', [MembershipController::class, 'index'])->name('membershipPlan');
+        Route::get('/createMembership', [MembershipController::class, 'create'])->name('createMembership');
+    });
+});
 
-Route::get('/admin/membershipPlan', function (){
-    return view ('admin.membershipPlan');
-})->name('admin.membershipPlan');
-
-Route::get('/admin/createMembership', function (){
-    return view ('admin.createMembership');
-})->name('admin.createMembership');
