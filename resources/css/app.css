@@ -32,7 +32,7 @@
         @apply bg-red-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-red-700 hover:scale-105 transform transition-transform duration-300;
     }
     .btn-secondary{
-        @apply bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 hover:scale-105 transform transition-transform duration-300;
+        @apply text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-4 py-2 text-center hover:scale-105 transform transition-transform duration-300;
     }
     .btn-delete{
         @apply bg-red-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-red-700 hover:scale-105 transform transition-transform duration-300;

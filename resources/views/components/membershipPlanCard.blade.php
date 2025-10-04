@@ -6,9 +6,9 @@
         <p class="text-gray-600">Description: {{ $membershipPlan->description }}</p>
     </div>
 
-    <div>
-        <a href="#" class="btn-secondary">Edit</a>
-        <a href="#" class="btn-delete">Delete</a>
+    <div class="flex flex-col align-center w-15 h-15 space-y-1">
+        <a href="#" class="btn-secondary"><img src="{{ asset('/assets/edit.png') }}" alt="Edit"></a>
+        <a href="#" class="btn-delete"><img src="{{ asset('/assets/delete.png') }}" alt="Delete"></a>
     </div>
 
     {{ $slot }}
