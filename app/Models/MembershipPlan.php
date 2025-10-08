@@ -9,4 +9,6 @@ class MembershipPlan extends Model
 {
     /** @use HasFactory<\Database\Factories\MembershipPlanFactory> */
     use HasFactory;
+    protected $primaryKey = 'MembershipPlanID';
+    protected $fillable = ['name', 'price', 'duration', 'description'];
 }
