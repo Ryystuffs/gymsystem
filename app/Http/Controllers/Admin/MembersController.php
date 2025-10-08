@@ -13,7 +13,7 @@ class MembersController extends Controller
      */
     public function index()
     {
-        $userMemberships = UserMemberships::with(['user', 'membershipPlan'])->paginate(10);
+        $userMemberships = UserMemberships::with(['user', 'membershipPlan'])->orderBy('is_active', 'desc')->paginate(10);
         return view('admin.members.members', ['userMemberships' => $userMemberships]);
     }
 
