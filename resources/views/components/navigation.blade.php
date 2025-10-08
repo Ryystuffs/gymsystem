@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="flex">
-        <div class="bg-red-500  w-100 h-auto sm:h-screen">
+        <div class="bg-red-500  w-90 h-screen fixed top-0 left-0sm:h-screen">
             <div class="p-5 text-center">
                 <a href="{{ route('admin.dashboard') }}" class="text-4xl text-white">Gym System</a>
             </div>
@@ -27,7 +27,7 @@
             </nav>
         </div>
 
-        <main class="content w-full">
+        <main class="content ml-90 p-5 w-full">
             {{ $slot }}
         </main>
     </div>
