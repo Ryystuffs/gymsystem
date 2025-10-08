@@ -1,15 +1,23 @@
-<div class="flex justify justify-between bg-white rounded-lg shadow-md p-5 mb-5 w-11/12 mx-auto">
-    <div >
-        <a href="{{ route('admin.membership.showMembership', $membershipPlan->MembershipPlanID) }}"><h2 class="text-2xl font-semibold mb-3">{{ $membershipPlan->name }}</h2></a>
-        <p class="text-gray-600 mb-2">Price: Php{{ $membershipPlan->price }}</p>
-        <p class="text-gray-600 mb-2">Duration: {{ $membershipPlan->duration }} months</p>
-        <p class="text-gray-600">Description: {{ $membershipPlan->description }}</p>
+<div class="relative grid grid-cols-4 bg-white rounded-lg shadow-md p-5 mb-5 max-w-1xl mx-auto">
+    <!-- Title -->
+    <div>
+        <a href="{{ route('admin.membership.showMembership', $membershipPlan->MembershipPlanID) }}">
+            <h2 class="text-2xl font-semibold hover:text-blue-600 transition">
+                {{ $membershipPlan->name }}
+            </h2>
+        </a>
     </div>
 
-    <div class="flex flex-col align-center w-15 h-15 space-y-1">
-        <a href="#" class="btn-secondary"><img src="{{ asset('/assets/edit.png') }}" alt="Edit"></a>
-        <a href="#" class="btn-delete"><img src="{{ asset('/assets/delete.png') }}" alt="Delete"></a>
+    <!-- Edit/Delete buttons -->
+    <div class="absolute top-3 right-4 flex space-x-2">
+        <a href="#" class="w-12 h-12 btn-secondary">
+            <img src="{{ asset('/assets/edit.png') }}" alt="Edit" class="w-full h-full object-contain" />
+        </a>
+        <a href="#" class="w-12 h-12 btn-delete">
+            <img src="{{ asset('/assets/delete.png') }}" alt="Delete" class="w-full h-full object-contain" />
+        </a>
     </div>
 
+    <!-- Slot for extra content -->
     {{ $slot }}
 </div>
