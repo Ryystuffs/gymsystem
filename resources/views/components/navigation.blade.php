@@ -17,7 +17,7 @@
                 <a href="{{ route('admin.membership.membershipPlan') }}" class="nav-link">Membership Plans</a>
                 <a href="#" class="nav-link">Sessions</a>
                 <a href="#" class="nav-link">Walk-in</a>
-                <a href="#" class="nav-link">Members</a>
+                <a href="{{ route('admin.members.index') }}" class="nav-link">Members</a>
                 <a href="#" class="nav-link">Payment Records</a>
                 <a href="#" class="nav-link">QR Code Scanner</a>
                 <a href="#" class="nav-link">Create an Account</a>

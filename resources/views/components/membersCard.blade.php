@@ -1,13 +1,13 @@
-
-
 <div class="relative grid grid-cols-4 bg-white rounded-lg shadow-md p-5 mb-5 max-w-1xl mx-auto">
     <!-- Title -->
     <div>
-        <a href="{{ route('admin.membership.showMembership', $membershipPlan->id) }}">
-            <h2 class="text-2xl font-semibold hover:text-blue-600 transition">
-                {{ $membershipPlan->name }}
-            </h2>
-        </a>
+            <h2 class="text-2xl font-semibold hover:text-blue-600 transition">{{ $userMembership->user->name }}</h2>
+            <p>
+                {{ $userMembership->membershipPlan ? $userMembership->membershipPlan->name : 'N/A' }}
+            </p>
+            <p>Membership Start: {{ $userMembership->created_at}}</p>
+            <p>Membership End: {{ $userMembership->expired_at }}</p>
+            <p>@if($userMembership->is_active) Status: Active @else Status: Inactive @endif</p>
     </div>
 
     <!-- Edit/Delete buttons -->

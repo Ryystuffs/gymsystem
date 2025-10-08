@@ -14,10 +14,10 @@ class MembershipController extends Controller
         return view('admin.membership.membershipPlan', ['membershipPlans' => $membershipPlans]);
     }
 
-    public function show($MembershipPlanID)
+    public function show($id)
     {
-        $membershipPlan = MembershipPlan::findOrFail($MembershipPlanID);
-        return view('admin.membership.showMembership', ['membershipPlan' => $membershipPlan]);
+        $membershipPlans = MembershipPlan::findOrFail($id);
+        return view('admin.membership.showMembership', ['membershipPlans' => $membershipPlans]);
     }
     public function create()
     {

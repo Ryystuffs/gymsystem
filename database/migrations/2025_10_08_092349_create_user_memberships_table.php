@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('membership_plans', function (Blueprint $table) {
+        Schema::create('user_memberships', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->integer('price');
-            $table->integer('duration');
+            $table->date('expired_at');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('membership_plan_id')->constrained('membership_plans')->onDelete('cascade');
+            $table->boolean('is_active')->default(true);
+            
+
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('membership_plans');
+        Schema::dropIfExists('user_memberships');
     }
 };

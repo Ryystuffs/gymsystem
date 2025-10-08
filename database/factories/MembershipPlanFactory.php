@@ -18,6 +18,7 @@ class MembershipPlanFactory extends Factory
     {
         return [
             //
+            
         ];
     }
 }
