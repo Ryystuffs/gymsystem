@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MembershipController;
 use App\Http\Controllers\Admin\MembersController;
+use App\Http\Controllers\Admin\PaymentsController;
 
 Route::get('/', function () {
     return view('login');
@@ -21,6 +22,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/membershipPlan', [MembershipController::class, 'index'])->name('membershipPlan');
         Route::get('/createMembership', [MembershipController::class, 'create'])->name('createMembership');
         Route::get('/showMembership/{id}', [MembershipController::class, 'show'])->name('showMembership');
+    });
+
+    Route::prefix('payments')->name('payments.')->group(function () {
+        Route::get('/paymentRecords', [PaymentsController::class, 'index'])->name('paymentRecords');
     });
 
     

@@ -1,0 +1,35 @@
+<x-navigation>
+    <h1>Payment Records</h1>
+    <p>Welcome to the payment records page!</p>
+
+    <table class="min-w-full bg-white border border-gray-300 mt-4 min-h-screen mb-3 rounded-lg overflow-hidden"> 
+        <thead class="bg-blue-400 text-2xl text-white h-16 ">
+            <tr class="text-center ">
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Payment Method</th>
+                <th>Type</th>
+                <th>Created At</th>
+                <th>Membership Plan ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($payments as $payment)
+            <tr class="text-center border-t border-gray-300">
+                <td>{{ $payment->user->name }}</td>
+                <td>{{ $payment->amount }}</td>
+                <td>{{ $payment->payment_method }}</td>
+                <td>{{ $payment->type }}</td>
+                <td>{{ $payment->created_at }}</td>
+                <td>{{$payment->membership_plans_id}}</td>
+                @endforeach
+            </tr>
+        </tbody>
+    </table>
+        <div>
+            {{ $payments->links() }}
+        </div>
+
+    
+
+</x-navigation>

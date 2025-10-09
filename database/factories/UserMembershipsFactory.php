@@ -18,12 +18,13 @@ class UserMembershipsFactory extends Factory
      */
     public function definition(): array
     {
+        $membershipPlan = MembershipPlan::inRandomOrder()->first();
         return [
             //
             'user_id' => User::inRandomOrder()->first()->id,
-            'membership_plan_id' => MembershipPlan::inRandomOrder()->first()->id,
-            'expired_at' => $this->faker->dateTimeBetween('+1 month', '+1 year'),
+            'membership_plan_id' => $membershipPlan->id,
             'created_at' => now(),
+            'expired_at' => now()->addDays($membershipPlan->duration),
             'is_active' => $this->faker->boolean(80), // 80%
         ];
     }
