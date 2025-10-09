@@ -9,7 +9,7 @@
             <span class="font-semibold">Price:</span> Php {{ number_format($membershipPlans->price, 2) }}
         </p>
         <p class="text-lg text-gray-700 mb-2">
-            <span class="font-semibold">Duration:</span> {{ $membershipPlans->duration }} months
+            <span class="font-semibold">Duration:</span> {{ $membershipPlans->duration }} days
         </p>
         <p class="text-lg text-gray-700">
             <span class="font-semibold">Description:</span> {{ $membershipPlans->description }}
