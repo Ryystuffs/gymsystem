@@ -17,16 +17,26 @@ class WalkinSessionFactory extends Factory
      */
     public function definition(): array
     {
-        $checkIn = now();
-        $checkOut = (clone $checkIn)->addHours(fake()->numberBetween(1, 5));
-        return [
-            //
-            'name' => fake()->name(),
-            'check_in' => $checkIn,
-            'check_out' => $checkOut,
-            'amount_paid' => 80,
-            'created_at' => $checkIn,
-            'payment_id' => Payments::factory(),
-        ];
+    $checkIn = now();
+    $checkOut = (clone $checkIn)->addHours(fake()->numberBetween(1, 5));
+    
+    // Create a payment record first
+    $payment = Payments::factory()->create([
+        'user_id' => null,
+        'amount' => 80,
+        'membership_plans_id' => null,
+        'created_at' => $checkIn,
+        'payment_method' => fake()->randomElement(['Gcash', 'Cash']),
+        'type' => 'Walk-in'
+    ]);
+
+    return [
+        'name' => fake()->name(),
+        'check_in' => $checkIn,
+        'check_out' => $checkOut,
+        'amount_paid' => 80,
+        'created_at' => $checkIn,
+        'payment_id' => $payment->id
+    ];
     }
 }
