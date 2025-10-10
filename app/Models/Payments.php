@@ -21,7 +21,7 @@ class Payments extends Model
     }
     public function walkinSession(){
 
-        return $this->hasMany(WalkinSession::class);
+        return $this->hasOne(WalkinSession::class, 'payment_id');
     }
 
 }

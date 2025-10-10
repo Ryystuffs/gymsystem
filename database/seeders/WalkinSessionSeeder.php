@@ -13,6 +13,6 @@ class WalkinSessionSeeder extends Seeder
      */
     public function run(): void
     {
-        WalkinSession::factory()->count(50)->create();
+        WalkinSession::factory()->count(20)->create();
     }
 }

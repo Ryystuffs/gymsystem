@@ -17,21 +17,6 @@ class PaymentsFactory extends Factory
      */
     public function definition(): array
     {
-
-        // Randomly decide if this is a walk-in or membership payment
-        $isWalkin = fake()->boolean();
-
-        if ($isWalkin) {
-            $walkinSession = WalkinSession::inRandomOrder()->first();
-            return [
-                'user_id' => null,  // Walk-ins don't need user_id
-                'amount' => $walkinSession ? $walkinSession->amount_paid : 80,
-                'membership_plans_id' => null,  // Walk-ins don't have membership plans
-                'created_at' => now(),
-                'payment_method' => $this->faker->randomElement(['Gcash', 'Cash']),
-                'type' => 'Walk-in'
-            ];
-        } else {
             $user = User::inRandomOrder()->first();
             $usermemberships = $user->userMemberships()->latest()->first();
             return [
@@ -42,9 +27,8 @@ class PaymentsFactory extends Factory
                 'membership_plans_id' => $usermemberships ? $usermemberships->membership_plan_id : null,
                 'created_at' => $usermemberships ? $usermemberships->created_at : now(),
                 'payment_method' => $this->faker->randomElement(['Gcash', 'Cash']),
-                'type' => 'Membership'
+                'type' => $usermemberships ? 'Membership' : 'Walk-In',
             ];
-        }
 
     }   
 }
