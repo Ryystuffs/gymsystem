@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\WalkinSession;
 class Payments extends Model
 {
     /** @use HasFactory<\Database\Factories\PaymentsFactory> */
@@ -19,4 +19,9 @@ class Payments extends Model
     {
         return $this->belongsTo(MembershipPlan::class,);
     }
+    public function walkinSession(){
+
+        return $this->hasMany(WalkinSession::class);
+    }
+
 }

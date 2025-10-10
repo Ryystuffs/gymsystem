@@ -20,6 +20,8 @@ class PaymentsFactory extends Factory
 
         $user = User::inRandomOrder()->first();
         $usermemberships = $user->userMemberships()->latest()->first();
+
+        
         return [
             //
             'user_id' => $user->id,
@@ -30,4 +32,5 @@ class PaymentsFactory extends Factory
             'type' => $usermemberships ? 'Membership' : 'Walk-in',
         ];
     }
+    
 }

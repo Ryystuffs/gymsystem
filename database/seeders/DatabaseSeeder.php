@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\WalkinSession;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder
             MembershipPlanSeeder::class,
             UserMembershipsSeeder::class,
             PaymentsSeeder::class,
+            WalkinSessionSeeder::class,
         ]);
     }
 
