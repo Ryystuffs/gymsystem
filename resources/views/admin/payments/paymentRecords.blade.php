@@ -15,15 +15,15 @@
         </thead>
         <tbody>
             @foreach($payments as $payment)
-            <tr class="text-center border-t border-gray-300">
-                <td class="font-bold">{{ $payment->user->name }}</td>
-                <td class="text-red-600">{{ $payment->amount }}</td>
-                <td>{{ $payment->payment_method }}</td>
-                <td>{{ $payment->type }}</td>
-                <td>{{ $payment->created_at }}</td>
-                <td>{{$payment->membership_plans_id}}</td>
-                @endforeach
-            </tr>
+                <tr class="text-center border-t border-gray-300">
+                    <td class="font-bold">{{ $payment->user?->name ?? $payment->walkinSession?->name ?? 'N/A'}}</td>
+                    <td class="text-red-600">{{ $payment->amount }}</td>
+                    <td>{{ $payment->payment_method }}</td>
+                    <td>{{ $payment->type }}</td>
+                    <td>{{ $payment->created_at }}</td>
+                    <td>{{$payment->membership_plans_id ? $payment->membership_plans_id : 'Not a Membership'}}</td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
         <div>

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\MembershipPlan;
+use App\Models\MemberSessions;
 
 class UserMemberships extends Model
 {
@@ -20,5 +21,10 @@ class UserMemberships extends Model
     public function membershipPlan()
     {
         return $this->belongsTo(MembershipPlan::class);
+    }
+
+    public function memberSessions()
+    {
+        return $this->hasMany(MemberSessions::class);
     }
 }
