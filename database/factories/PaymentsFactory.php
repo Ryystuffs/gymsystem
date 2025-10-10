@@ -26,7 +26,7 @@ class PaymentsFactory extends Factory
             'amount' => $usermemberships && $usermemberships->membershipPlan ? $usermemberships->membershipPlan->price : 0,
             'membership_plans_id' => $usermemberships ? $usermemberships->membership_plan_id : null,
             'created_at' => $usermemberships ? $usermemberships->created_at : now(),
-            'payment_method' => $this->faker->randomElement(['gcash', 'cash']),
+            'payment_method' => $this->faker->randomElement(['Gcash', 'Cash']),
             'type' => $usermemberships ? 'Membership' : 'Walk-in',
         ];
     }
