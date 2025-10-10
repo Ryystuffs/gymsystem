@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->nullable();
-            $table->foreignId('membership_plans_id')->constrained('membership_plans')->onDelete('cascade')->nullable();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('membership_plans_id')->constrained('membership_plans')->onDelete('cascade');
             $table->integer('amount');
             $table->string('payment_method');
             $table->enum('type', ['Membership', 'Walk-in']);

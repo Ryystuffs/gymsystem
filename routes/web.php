@@ -5,8 +5,6 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MembershipController;
 use App\Http\Controllers\Admin\MembersController;
 use App\Http\Controllers\Admin\PaymentsController;
-use Phiki\Phast\Root;
-use App\Http\Controllers\Admin\WalkinSessionsController;
 
 Route::get('/', function () {
     return view('login');
@@ -28,10 +26,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::prefix('payments')->name('payments.')->group(function () {
         Route::get('/paymentRecords', [PaymentsController::class, 'index'])->name('paymentRecords');
-    });
-
-    Route::prefix('walkinSessions')->name('walkinSessions.')->group(function (){
-       Route::get('/walkinSessions', [WalkinSessionsController::class, 'index'])->name('walkinSessions');
     });
 
     
