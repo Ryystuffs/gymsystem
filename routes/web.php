@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MembershipController;
 use App\Http\Controllers\Admin\MembersController;
 use App\Http\Controllers\Admin\PaymentsController;
+use App\Http\Controllers\Admin\WalkinSessionController;
+use App\Models\WalkinSession;
 
 Route::get('/', function () {
     return view('login');
@@ -28,6 +30,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/paymentRecords', [PaymentsController::class, 'index'])->name('paymentRecords');
     });
 
-    
+    Route::prefix('walkin')->name('walkin.')->group(function (){
+        Route::get('/walkinSession', [WalkinSessionController::class, 'index'])->name('index');
+    });
 });
 
