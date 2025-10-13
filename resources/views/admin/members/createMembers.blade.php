@@ -142,7 +142,7 @@
                 </script>
 
                 @if ($errors->any())
-                    <ul>
+                    <ul class="mt-4 text-red-600">
                         @foreach($errors->all() as $error)
                             <li>
                                 {{ $error }}
