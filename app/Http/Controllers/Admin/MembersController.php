@@ -23,7 +23,7 @@ class MembersController extends Controller
      */
     public function create()
     {
-        $userMemberships = UserMemberships::all();
+        $userMemberships = UserMemberships::with('user')->get();
         $membershipPlans = MembershipPlan::all();
         return view('admin.members.createMembers', ['userMemberships' => $userMemberships, 'membershipPlans' => $membershipPlans]);
     }

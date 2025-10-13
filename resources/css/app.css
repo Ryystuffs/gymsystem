@@ -22,12 +22,14 @@
     .login-page{
         @apply  dark:bg-gray-950 flex flex-col items-center font-sans   ;
     }
+    
 
     
 }
 
 
 @layer components {
+    
     .btn{
         @apply bg-red-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-red-700 hover:scale-105 transform transition-transform duration-300;
     }

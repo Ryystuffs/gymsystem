@@ -13,10 +13,14 @@
             <form method="" action="">
                 @csrf
 
-                <div class="mb-4">
-                    <label for="fname" class="block text-sm font-medium text-gray-700">Full Name</label>
-                    <input type="text" id="fname" name="fname" placeholder="Enter Full Name" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 shadow-sm" required>
+                <div class="mb-4"> 
+                    <label for="fname" class="block text-sm font-medium text-gray-700">Full Name</label> 
+                    <input type="text" id="fname" name="fname" placeholder="Enter Full Name" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 shadow-sm" required> 
                 </div>
+
+                <ul id="namelist" class="absolute z-10 w-full bg-white border border-gray-300 rounded-md 
+                mt-1 max-h-40 overflow-y-auto hidden">
+                </ul>
 
                 <div class="mb-4">
                     <label for="membershipPlan" class="block text-sm font-medium text-gray-700">Choose a Membership Plan</label>
@@ -73,6 +77,53 @@
                             }
                         });
                     });
+
+
+                const users = @json($userMemberships->map(fn($membership)=>[
+                    'name' => $membership->user->name,
+                ])
+                );
+
+                const input = document.getElementById('fname');
+                const nameList = document.getElementById('namelist');
+
+                input.addEventListener('input', function () {
+                    const query = this.value.toLowerCase();
+                    nameList.innerHTML = ''; // clear old results
+
+                    if (query.length === 0) {
+                        nameList.classList.add('hidden');
+                        return;
+                    }
+
+                    // Filter names that match
+                    const filtered = users.filter(user => user.name.toLowerCase().includes(query));
+
+                    if (filtered.length === 0) {
+                        nameList.classList.add('hidden');
+                        return;
+                    }
+
+                    filtered.forEach(user => {
+                        const li = document.createElement('li');
+                        li.textContent = user.name;
+                        li.className = 'px-4 py-2 hover:bg-indigo-100 cursor-pointer';
+                        li.addEventListener('click', () => {
+                            input.value = user.name;
+                            nameList.classList.add('hidden');
+                        });
+                        nameList.appendChild(li);
+                    });
+
+                    nameList.classList.remove('hidden');
+                });
+
+                // Hide dropdown when clicking outside
+                document.addEventListener('click', function (e) {
+                    if (!e.target.closest('#fname') && !e.target.closest('#namelist')) {
+                        nameList.classList.add('hidden');
+                    }
+                });
                 </script>
 
             </form>
