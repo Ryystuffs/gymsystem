@@ -1,6 +1,5 @@
 <x-navigation>
-    <h1>Payment Records</h1>
-    <p>Welcome to the payment records page!</p>
+    <h1 class="text-3xl text-center font-bold text-gray-800">Payment Records</h1>
 
     <table class="min-w-full bg-white border border-gray-300 mt-4 min-h-screen mb-3 rounded-lg overflow-hidden"> 
         <thead class="bg-blue-400 text-2xl text-white h-16 ">
