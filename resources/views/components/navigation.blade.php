@@ -60,7 +60,7 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 px-4 py-6 md:ml-4 w-full">
+        <main class="flex-1 px-4 py-6 md:ml-4">
             {{ $slot }}
         </main>
     </div>
