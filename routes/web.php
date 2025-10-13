@@ -16,8 +16,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::prefix('members')->name('members.')->group(function () {
         Route::get('/members', [MembersController::class, 'index'])->name('index');
+        Route::post('/', [MembersController::class, 'store'])->name('store');
         Route::get('/createMembers', [MembersController::class, 'create'])->name('createMembers');
     });
+    
 
     Route::prefix('membership')->name('membership.')->group(function () {
         Route::get('/membershipPlan', [MembershipController::class, 'index'])->name('membershipPlan');

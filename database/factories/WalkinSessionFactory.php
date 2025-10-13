@@ -24,7 +24,7 @@ class WalkinSessionFactory extends Factory
     $payment = Payments::factory()->create([
         'user_id' => null,
         'amount' => 80,
-        'membership_plans_id' => null,
+        'membership_plan_id' => null,
         'created_at' => $checkIn,
         'payment_method' => fake()->randomElement(['Gcash', 'Cash']),
         'type' => 'Walk-in'

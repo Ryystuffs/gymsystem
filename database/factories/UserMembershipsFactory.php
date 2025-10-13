@@ -19,13 +19,15 @@ class UserMembershipsFactory extends Factory
     public function definition(): array
     {
         $membershipPlan = MembershipPlan::inRandomOrder()->first();
+
+        $valid = now()->addDays($membershipPlan->duration);
         return [
             //
             'user_id' => User::inRandomOrder()->first()->id,
             'membership_plan_id' => $membershipPlan->id,
             'created_at' => now(),
-            'expired_at' => now()->addDays($membershipPlan->duration),
-            'is_active' => $this->faker->boolean(80), // 80%
+            'expired_at' => $valid,
+            'is_active' => now()->lt($valid) ,
         ];
     }
 }
