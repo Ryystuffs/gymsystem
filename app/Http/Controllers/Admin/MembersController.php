@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\UserMemberships;
 use App\Http\Controllers\Controller;
+use App\Models\MembershipPlan;
 use Illuminate\Http\Request;
 
 class MembersController extends Controller
@@ -23,7 +24,8 @@ class MembersController extends Controller
     public function create()
     {
         $userMemberships = UserMemberships::all();
-        return view('admin.members.createMembers', ['userMemberships' => $userMemberships]);
+        $membershipPlans = MembershipPlan::all();
+        return view('admin.members.createMembers', ['userMemberships' => $userMemberships, 'membershipPlans' => $membershipPlans]);
     }
 
     /**
