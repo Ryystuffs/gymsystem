@@ -22,7 +22,8 @@ class MembersController extends Controller
      */
     public function create()
     {
-        return view('admin.members.createMembers');
+        $userMemberships = UserMemberships::all();
+        return view('admin.members.createMembers', ['userMemberships' => $userMemberships]);
     }
 
     /**
