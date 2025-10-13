@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\MembershipController;
 use App\Http\Controllers\Admin\MembersController;
 use App\Http\Controllers\Admin\PaymentsController;
 use App\Http\Controllers\Admin\WalkinSessionController;
-use App\Models\WalkinSession;
 
 Route::get('/', function () {
     return view('login');
