@@ -7,9 +7,17 @@ use App\Http\Controllers\Controller;
 use App\Models\MembershipPlan;
 use Illuminate\Http\Request;
 use App\Models\Payments;
-
+use App\Services\MembershipService;
+use App\Http\Requests\StoreUserMembershipRequest;
 class MembersController extends Controller
 {
+
+    protected $membershipService;
+
+    public function __construct(MembershipService $membershipService)
+    {
+        $this->membershipService = $membershipService;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -18,6 +26,8 @@ class MembersController extends Controller
         $userMemberships = UserMemberships::with(['user', 'membershipPlan'])->orderBy('created_at', 'desc')->paginate(10);
         return view('admin.members.members', ['userMemberships' => $userMemberships]);
     }
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -32,31 +42,9 @@ class MembersController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserMembershipRequest $request)
     {
-        $validated = $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'membership_plan_id' => 'required|exists:membership_plans,id',
-            'expired_at' => 'required|date',
-            'amount' => 'required|numeric',
-            'payment_method' => 'required|string',
-        ]);
-        Payments::create([
-        'user_id' => $validated['user_id'],
-        'membership_plans_id' => $validated['membership_plan_id'],
-        'amount' => $validated['amount'],
-        'payment_method' => $validated['payment_method'],
-        'type' => 'Membership',
-        'created_at' => now(),
-        ]);
-        UserMemberships::create([
-        'user_id' => $validated['user_id'],
-        'membership_plan_id' => $validated['membership_plan_id'],
-        'expired_at' => $validated['expired_at'],
-        'is_active' => true,
-        'created_at' => now(),
-    ]);
-
+        $this->membershipService->createUserMemberships($request->validated());
         return redirect()->route('admin.members.index');
     }
 

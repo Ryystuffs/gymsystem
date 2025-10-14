@@ -1,5 +1,5 @@
 <x-navigation>
-    <h1 class="title-text text-center">Payment Records</h1>
+    <h1 class="title-text text-center">Member Sessions</h1>
 
     
         <table class="min-w-full bg-white border border-gray-300 mt-4 mb-3 rounded-lg overflow-hidden"> 
@@ -10,6 +10,7 @@
                         <th>check Out</th>
                 </tr>
             </thead>
+            
             <tbody>
                 @foreach($memberSessions as $memberSession)
                     <tr class="text-center border-t border-gray-300">

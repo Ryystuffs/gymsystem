@@ -1,0 +1,37 @@
+<?php
+    namespace App\Services;
+
+
+    use App\Models\Payments;
+    use App\Models\UserMemberships;
+    use Illuminate\Support\Facades\DB;
+
+    class MembershipService {
+
+        public function createUserMemberships (array $validated)
+        {
+
+            return DB::transaction(function () use ($validated) {
+
+                Payments::create([
+                    'user_id' => $validated['user_id'],
+                    'membership_plans_id' => $validated['membership_plan_id'],
+                    'amount' => $validated['amount'],
+                    'payment_method' => $validated['payment_method'],
+                    'type' => 'Membership',
+                    'created_at' => now(),
+                    ]);
+
+                return UserMemberships::create([
+                    'user_id' => $validated['user_id'],
+                    'membership_plan_id' => $validated['membership_plan_id'],
+                    'expired_at' => $validated['expired_at'],
+                    'is_active' => true,
+                    'created_at' => now(),
+                ]);
+            });
+        }
+    }
+
+
+?>
