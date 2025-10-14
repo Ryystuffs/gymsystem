@@ -17,7 +17,7 @@
                     <label for="fname" class="block text-sm font-medium text-gray-700">Full Name</label> 
                     <input type="text" id="fname" name="fname" placeholder="Enter Full Name" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 shadow-sm" required> 
                 </div>
-                <input type="hidden" id="user_id" name="user_id">   
+                <input type="text" id="user_id" name="user_id">   
 
                 <ul id="namelist" class="absolute z-10 w-full bg-white border border-gray-300 rounded-md 
                 mt-1 max-h-40 overflow-y-auto hidden">

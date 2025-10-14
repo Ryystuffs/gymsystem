@@ -25,4 +25,8 @@
                 @endforeach
             </tbody>
         </table>
+
+        <div class="mt-5">
+        {{ $memberSessions->links() }}
+    </div>
 </x-navigation>

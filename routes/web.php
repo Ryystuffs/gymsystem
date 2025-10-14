@@ -19,6 +19,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/members', [MembersController::class, 'index'])->name('index');
         Route::post('/', [MembersController::class, 'store'])->name('store');
         Route::get('/createMembers', [MembersController::class, 'create'])->name('createMembers');
+        Route::delete('/{userMemberships}', [MembersController::class, 'destroy'])->name('destroy');
     });
     
 

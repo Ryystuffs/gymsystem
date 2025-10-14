@@ -31,6 +31,14 @@
                 ]);
             });
         }
+
+        public function deleteUserMembership(UserMemberships $userMemberships){
+            return DB::transaction(function () use ($userMemberships){
+                $userMemberships->delete();
+            });
+        }
+
+        
     }
 
 

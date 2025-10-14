@@ -75,8 +75,9 @@ class MembersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(UserMemberships $userMemberships)
     {
-        //
+        $this->membershipService->deleteUserMembership($userMemberships);
+        return redirect()->route('admin.members.index');
     }
 }
