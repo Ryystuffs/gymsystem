@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('membership_plan_id')->constrained('membership_plans')->onDelete('cascade');
             $table->boolean('is_active')->default(true);
             
-
+            
         });
     }
 

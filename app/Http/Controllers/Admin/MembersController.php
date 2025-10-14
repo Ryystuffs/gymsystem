@@ -45,7 +45,7 @@ class MembersController extends Controller
     public function store(StoreUserMembershipRequest $request)
     {
         $this->membershipService->createUserMemberships($request->validated());
-        return redirect()->route('admin.members.index');
+        return redirect()->route('admin.members.index')->with('success','New user memberships added!');
     }
 
     /**
@@ -78,6 +78,6 @@ class MembersController extends Controller
     public function destroy(UserMemberships $userMemberships)
     {
         $this->membershipService->deleteUserMembership($userMemberships);
-        return redirect()->route('admin.members.index');
+        return redirect()->route('admin.members.index')->with('deleted','User membership deleted!');
     }
 }
