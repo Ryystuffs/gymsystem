@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::table('payments', function (Blueprint $table) {
             //
             $table->foreignId('membership_plans_id')->nullable()->change();
+     
         });
     }
 
