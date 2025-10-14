@@ -1,9 +1,9 @@
 <x-navigation>
     <div class="p-1">
         <div class="flex justify-between p-5 ">
-            <h1 class="text-3xl font-bold text-gray-800">Add New Member</h1>
+            <h1 class="title-text">Add New Member</h1>
             <a href="{{ route('admin.members.index') }}"
-               class="inline-block text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+               class="back-button">
                 Back to Members List
             </a>
         </div>
