@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\MemberSessions;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,5 +14,6 @@ class MemberSessionsSeeder extends Seeder
     public function run(): void
     {
         //
+        MemberSessions::factory()->count(30)->create();
     }
 }

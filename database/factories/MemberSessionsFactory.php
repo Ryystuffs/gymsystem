@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\UserMemberships;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,14 @@ class MemberSessionsFactory extends Factory
      */
     public function definition(): array
     {
+
+        
         return [
             //
+
+            'user_membership_id' => UserMemberships::inRandomOrder()->first()->id,
+            'check_in' => now(),
+            'check_out' => now()->addHours(rand(2,5)),
         ];
     }
 }
