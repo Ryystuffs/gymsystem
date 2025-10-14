@@ -6,17 +6,31 @@
     <title>Gym System</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
-    <div class="login-page">
-        <h1 class="text-red-600 text-center text-[min(10vw,3rem)] my-10 font-bold mx-auto dark:text-[#8E1616]">Gym Management System</h1>
-        <p class="text-[min(1rem,4vw)] text-center dark:text-white">Log in to track progress, manage memberships, and stay on top of your fitness journey."</p>
-        <div class="flex flex-col h-150 bg-[#fff8f0] dark:bg-gray-900 text-center p-5 rounded-lg shadow-lg my-5 w-auto">
-            <p class="text-red-600 dark:text-[#8E1616] text-[min(1.5rem,10vw)] font-semibold">Login</p>
-            <div class="bg-[#FFFFFF] dark:bg-gray-800 h-100 w-65 sm:w-150 md:w-180 mx-auto mt-5 rounded-lg shadow-md"></div>
-        </div>
+<body class="flex items-center justify-center relative min-h-screen bg-cover bg-center bg-no-repeat bg-fixed bg-[url('/storage/app/public/images/gymBG.jpg')]">
+    <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
+        <h1 class="text-3xl font-bold text-center text-black-700 mb-4">WELCOME TO GYM SYSTEM!</h1>
+        <form action="{{ route('admin.dashboard') }}" {{-- method="POST" --}} class="space-y-6">
+            @csrf
+            <h2 class="text-2xl font-semibold text-center text-gray-800">Login</h2>
 
-        <a href="{{ route('admin.dashboard') }}" class="btn">Submit</a>
+            <div>
+                <label for="uname" class="block text-gray-700 font-medium mb-1">Username</label>
+                <input type="text" name="uname" id="uname" placeholder="Enter Username" class="login-input" required>
+            </div>
+
+            <div>
+                <label for="password" class="block text-gray-700 font-medium mb-1">Password</label>
+                <input type="password" name="password" id="password" placeholder="Enter Password" class="login-input" required>
+            </div>
+
+            <button type="submit" class="w-full bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-md transition duration-300"> 
+                Login
+            </button>
+
+            <div class="text-center">
+                <a href="#" class="text-sm text-gray-600 hover:underline">Forgot Password?</a>
+            </div>
+        </form>
     </div>
-
 </body>
 </html>
