@@ -4,10 +4,10 @@
             <h1 class="text-3xl font-bold text-gray-800">Membership Plan Details</h1>
             <a href="{{ route('admin.membership.membershipPlan') }}"
                class="back-button">
-                Back to Members List
+                Back to Membership Plan
             </a>
         </div>
-
+<!-- -->
         <div class="max-w-3xl mx-auto mt-10 p-6 bg-white shadow-md rounded-lg">
             <p class="text-lg text-gray-700 mb-2">
                 <span class="font-semibold">Name:</span> {{ $membershipPlans->name }}
