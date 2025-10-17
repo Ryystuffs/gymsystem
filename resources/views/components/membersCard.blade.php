@@ -2,8 +2,9 @@
     <!-- Title -->
     <div>
         <h2 class="text-3xl font-semibold hover:text-blue-600 transition">{{ $userMembership->user->name }}</h2>
+
         <p class="text-red-600 text-2xl">
-            {{ $userMembership->membershipPlan ? $userMembership->membershipPlan->name : 'N/A' }}
+            {{  $userMembership->membershipPlan ? $userMembership->membershipPlan->name : 'N/A' }}
         </p>
         <p>Membership Start: {{ $userMembership->created_at}}</p>
         <p>Membership End: {{ $userMembership->expired_at }}</p>
@@ -26,6 +27,7 @@
                 <img src="{{ asset('/assets/delete.png') }}" alt="Delete" class="w-full h-full object-contain" />
             </button>
         </form>
+
 
         <script>
             document.querySelectorAll('.delete-button').forEach(button => {

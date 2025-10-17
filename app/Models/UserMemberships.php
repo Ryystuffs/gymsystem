@@ -20,7 +20,7 @@ class UserMemberships extends Model
     }
     public function membershipPlan()
     {
-        return $this->belongsTo(MembershipPlan::class);
+        return $this->belongsTo(MembershipPlan::class)->withTrashed();
     }
 
     public function memberSessions(){

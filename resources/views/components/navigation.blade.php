@@ -44,7 +44,7 @@
             </div>
             <nav class="px-4 py-6 space-y-2">
                 <a href="{{ route('admin.dashboard') }}" @click="sidebarOpen = false" class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">Dashboard</a>
-                <a href="{{ route('admin.membership.membershipPlan') }}" @click="sidebarOpen = false" class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">Membership Plans</a>
+                <a href="{{ route('admin.membership.index') }}" @click="sidebarOpen = false" class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">Membership Plans</a>
                 <a href="{{route('admin.sessions.index')}}" @click="sidebarOpen = false" class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">Sessions</a>
                 <a href="{{ route('admin.walkin.index') }}" @click="sidebarOpen = false" class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">Walk-in</a>
                 <a href="{{ route('admin.members.index') }}" @click="sidebarOpen = false" class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">Members</a>
