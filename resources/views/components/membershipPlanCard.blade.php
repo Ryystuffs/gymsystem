@@ -15,9 +15,15 @@
         <a href="#" class="w-12 h-12 btn-secondary">
             <img src="{{ asset('/assets/edit.png') }}" alt="Edit" class="w-full h-full object-contain" />
         </a>
-        <a href="#" class="w-12 h-12 btn-delete">
-            <img src="{{ asset('/assets/delete.png') }}" alt="Delete" class="w-full h-full object-contain" />
-        </a>
+
+        <form action="{{ route('admin.membership.destroy', $membershipPlan->id )}}" method="POST">
+        @csrf
+
+        @method('DELETE')
+            <button type="submit" class="w-12 h-12 btn-delete">
+                <img src="{{ asset('/assets/delete.png') }}" alt="Delete" class="w-full h-full object-contain" />
+            </button>
+        </form>
     </div>
 
     <!-- Slot for extra content -->

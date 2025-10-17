@@ -6,14 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\MemberSessions;
 
-class MemberSessionsController extends Controller
+class SessionsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
         $memberSessions = MemberSessions::orderBy('check_in','desc')->paginate(10);
         return view('admin.sessions.memberSessions', [ 'memberSessions' => $memberSessions ]);
     }

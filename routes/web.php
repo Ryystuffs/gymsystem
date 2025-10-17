@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\MembershipController;
 use App\Http\Controllers\Admin\MembersController;
 use App\Http\Controllers\Admin\PaymentsController;
 use App\Http\Controllers\Admin\WalkinSessionController;
-use App\Http\Controllers\Admin\MemberSessionsController;
+use App\Http\Controllers\Admin\SessionsController;
 
 Route::get('/', function () {
     return view('login');
@@ -18,15 +18,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::prefix('members')->name('members.')->group(function () {
         Route::get('/members', [MembersController::class, 'index'])->name('index');
         Route::post('/', [MembersController::class, 'store'])->name('store');
-        Route::get('/createMembers', [MembersController::class, 'create'])->name('createMembers');
+        Route::get('/createMembers', [MembersController::class, 'create'])->name('create');
         Route::delete('/{userMemberships}', [MembersController::class, 'destroy'])->name('destroy');
     });
     
 
     Route::prefix('membership')->name('membership.')->group(function () {
-        Route::get('/membershipPlan', [MembershipController::class, 'index'])->name('membershipPlan');
-        Route::get('/createMembership', [MembershipController::class, 'create'])->name('createMembership');
+        Route::get('/membershipPlan', [MembershipController::class, 'index'])->name('index');
+        Route::get('/createMembership', [MembershipController::class, 'create'])->name('create');
         Route::get('/showMembership/{id}', [MembershipController::class, 'show'])->name('showMembership');
+        Route::delete('{membershipPlan}', [MembershipController::class, 'destroy'])->name('destroy');
     });
 
     Route::prefix('payments')->name('payments.')->group(function () {
@@ -38,7 +39,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
     Route::prefix('sessions')->name('sessions.')->group(function(){
-        Route::get('/memberSessions', [MemberSessionsController::class, 'index'])->name('index');
+        Route::get('/memberSessions', [SessionsController::class, 'index'])->name('index');
     });
 });
 

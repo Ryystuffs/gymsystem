@@ -1,6 +1,5 @@
 <x-navigation>
     <h1 class="title-text text-center">Member Sessions</h1>
-
     
         <table class="min-w-full bg-white border border-gray-300 mt-4 mb-3 rounded-lg overflow-hidden"> 
             <thead class="bg-blue-400 text-2xl text-white h-16 ">

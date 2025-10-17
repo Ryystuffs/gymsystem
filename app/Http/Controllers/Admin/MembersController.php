@@ -77,7 +77,12 @@ class MembersController extends Controller
      */
     public function destroy(UserMemberships $userMemberships)
     {
+        $userName = $userMemberships->user->name; // get user name before deleting
         $this->membershipService->deleteUserMembership($userMemberships);
-        return redirect()->route('admin.members.index')->with('deleted','User membership deleted!');
+
+        return redirect()
+            ->route('admin.members.index')
+            ->with('deleted', "$userName membership successfully deleted!");
     }
+
 }
