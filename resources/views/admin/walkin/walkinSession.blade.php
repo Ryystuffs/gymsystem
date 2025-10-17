@@ -1,7 +1,6 @@
 <x-navigation>
 
-    <h1>WalkinSession</h1>
-    <p>Welcome to the WalkinSession!</p>
+    <x-intronav name="Walk-In" button="Add a new Visitor"></x-intronav>
 
     <table class="min-w-full bg-white border border-gray-300 mt-4 min-h-screen mb-3 rounded-lg overflow-hidden"> 
         <thead class="bg-blue-400 text-2xl text-white h-16 ">
