@@ -2,7 +2,7 @@
     <div class="p-1">
         <div class="flex justify-between p-5 ">
             <h1 class="text-3xl font-bold text-gray-800">Membership Plan Details</h1>
-            <a href="{{ route('admin.membership.membershipPlan') }}"
+            <a href="{{ route('admin.membership.index') }}"
                class="back-button">
                 Back to Membership Plan
             </a>

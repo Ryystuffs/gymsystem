@@ -48,7 +48,7 @@
                 <a href="{{route('admin.sessions.index')}}" @click="sidebarOpen = false" class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">Sessions</a>
                 <a href="{{ route('admin.walkin.index') }}" @click="sidebarOpen = false" class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">Walk-in</a>
                 <a href="{{ route('admin.members.index') }}" @click="sidebarOpen = false" class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">Members</a>
-                <a href="{{ route('admin.payments.paymentRecords') }}" @click="sidebarOpen = false" class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">Payment Records</a>
+                <a href="{{ route('admin.payments.index') }}" @click="sidebarOpen = false" class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">Payment Records</a>
                 <a href="#" @click="sidebarOpen = false" class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">QR Code Scanner</a>
                 <a href="#" @click="sidebarOpen = false" class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">Create an Account</a>
                 <a href="#" @click="sidebarOpen = false" class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">Accounts</a>

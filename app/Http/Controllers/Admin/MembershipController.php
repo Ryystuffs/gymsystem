@@ -27,7 +27,9 @@ class MembershipController extends Controller
         return view('admin.membership.showMembership', ['membershipPlans' => $membershipPlans]);
     }
     public function create()
-    {
+    {   
+
+
         return view('admin.membership.createMembership');
     }
 
