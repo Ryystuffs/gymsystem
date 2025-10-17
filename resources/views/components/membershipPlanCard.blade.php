@@ -3,7 +3,7 @@
 <div class="relative grid grid-cols-4 bg-white rounded-lg shadow-md p-5 mb-5 max-w-1xl mx-auto">
     <!-- Title -->
     <div>
-        <a href="{{ route('admin.membership.showMembership', $membershipPlan->id) }}">
+        <a href="{{ route('admin.membership.show', $membershipPlan->id) }}">
             <h2 class="text-2xl font-semibold hover:text-blue-600 transition">
                 {{ $membershipPlan->name }}
             </h2>

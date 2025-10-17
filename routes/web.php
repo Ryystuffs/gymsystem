@@ -26,12 +26,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::prefix('membership')->name('membership.')->group(function () {
         Route::get('/membershipPlan', [MembershipController::class, 'index'])->name('index');
         Route::get('/createMembership', [MembershipController::class, 'create'])->name('create');
-        Route::get('/showMembership/{id}', [MembershipController::class, 'show'])->name('showMembership');
+        Route::get('/showMembership/{id}', [MembershipController::class, 'show'])->name('show');
         Route::delete('{membershipPlan}', [MembershipController::class, 'destroy'])->name('destroy');
     });
 
     Route::prefix('payments')->name('payments.')->group(function () {
-        Route::get('/paymentRecords', [PaymentsController::class, 'index'])->name('paymentRecords');
+        Route::get('/paymentRecords', [PaymentsController::class, 'index'])->name('index');
     });
 
     Route::prefix('walkin')->name('walkin.')->group(function (){
