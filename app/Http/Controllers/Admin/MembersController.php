@@ -45,7 +45,7 @@ class MembersController extends Controller
     public function store(StoreUserMembershipRequest $request)
     {
         $this->membershipService->createUserMemberships($request->validated());
-        return redirect()->route('admin.members.index')->with('success','New user memberships added!');
+        return redirect()->route('admin.members.index')->with('success','New member has been created successfully.');
     }
 
     /**

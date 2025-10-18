@@ -47,4 +47,20 @@
     <div class="mt-5">
         {{ $userMemberships->links() }}
     </div>
+
+    @if (session('success'))
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                title: 'Success!',
+                text: "{{ session('success') }}",
+                icon: 'success',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#4CAF50'
+            });
+        });
+    </script>
+@endif
+
 </x-navigation>
