@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\MembersController;
 use App\Http\Controllers\Admin\PaymentsController;
 use App\Http\Controllers\Admin\WalkinSessionController;
 use App\Http\Controllers\Admin\SessionsController;
+use App\Http\Controllers\Admin\reateAnAccountController;
 
 Route::get('/', function () {
     return view('login');
@@ -41,5 +42,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::prefix('sessions')->name('sessions.')->group(function(){
         Route::get('/memberSessions', [SessionsController::class, 'index'])->name('index');
     });
-});
 
+    /*Route::prefix('createAnAccount')->name('createAnAccount.')->group(function (){
+        Route::get('/createAnAccount', [CreateAnAccountController::class, 'createAccount'])->name('createAccount');
+    });*/
+
+});
