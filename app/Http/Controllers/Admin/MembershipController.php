@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\MembershipPlan;
 use App\Services\PlanService;
+use Illuminate\Contracts\Cache\Store;
+use App\Http\Requests\StoreMembershipPlanRequest;
 
 class MembershipController extends Controller
 {
@@ -31,6 +33,13 @@ class MembershipController extends Controller
 
 
         return view('admin.membership.createMembership');
+    }
+
+    public function store (StoreMembershipPlanRequest $request){
+        $data = $request->validated();
+        $this->membershipPlan->createMembershipPlan($data);
+
+        return redirect()->route('admin.membership.index')->with('success', 'MembershipPlan Created');
     }
 
     public function destroy(MembershipPlan $membershipPlan){

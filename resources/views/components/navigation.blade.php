@@ -50,8 +50,8 @@
                 <a href="{{ route('admin.members.index') }}" @click="sidebarOpen = false" class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">Members</a>
                 <a href="{{ route('admin.payments.index') }}" @click="sidebarOpen = false" class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">Payment Records</a>
                 <a href="#" @click="sidebarOpen = false" class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">QR Code Scanner</a>
-                <a href="#" @click="sidebarOpen = false" class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">Create an Account</a>
-                <a href="#" @click="sidebarOpen = false" class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">Accounts</a>
+                <a href="{{ route('admin.createAnAccount.create') }}" @click="sidebarOpen = false" class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">Create an Account</a>
+                <a href="{{ route('admin.createAnAccount.index') }}" @click="sidebarOpen = false" class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">Accounts</a>
 
                 <div class="pt-4 border-t border-gray-200">
                     <a href="#" @click="sidebarOpen = false" class="block px-4 py-2 text-red-600 hover:bg-red-100 rounded transition font-medium">Logout</a>

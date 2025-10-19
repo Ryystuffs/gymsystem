@@ -9,7 +9,7 @@
                 <th>Payment Method</th>
                 <th>Type</th>
                 <th>Created At</th>
-                <th>Membership Plan ID</th>
+                <th>Membership Plan</th>
             </tr>
         </thead>
         <tbody>
@@ -25,7 +25,7 @@
                     <td>{{ $payment->type ?? 'N/A' }}</td>
                     <td>{{ $payment->created_at }}</td>
                     <td>
-                        {{ $payment->membership_plans_id ?? 'N/A' }}
+                        {{ $payment->membershipPlan->name ?? 'Not a Member' }}
                     </td>
                 </tr>
             @endforeach
@@ -34,7 +34,4 @@
         <div>
             {{ $payments->links() }}
         </div>
-
-    
-
 </x-navigation>

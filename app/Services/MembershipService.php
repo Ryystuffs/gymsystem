@@ -15,7 +15,7 @@
 
                 Payments::create([
                     'user_id' => $validated['user_id'],
-                    'membership_plans_id' => $validated['membership_plan_id'],
+                    'membership_plan_id' => $validated['membership_plan_id'],
                     'amount' => $validated['amount'],
                     'payment_method' => $validated['payment_method'],
                     'type' => 'Membership',

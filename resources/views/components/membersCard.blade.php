@@ -12,6 +12,7 @@
         @else Status: Inactive @endif</p>
     </div>
 
+    
     <!-- Edit/Delete buttons -->
     <div class="absolute top-3 right-4 flex space-x-2">
         <form action="">
