@@ -2,13 +2,21 @@
     namespace App\Services;
 
     use App\Models\MembershipPlan;
-    use Illuminate\Support\Facades\DB;
+use Faker\Provider\ar_EG\Payment;
+use App\Models\Payments;
+use Illuminate\Support\Facades\DB;
 
     class PlanService {
         public function deleteMembershipPlan (MembershipPlan $membershipPlan){
             return DB::transaction (function  () use ($membershipPlan) {
                 return $membershipPlan->delete();
                 
+            });
+        }
+        
+        public function createMembershipPlan(array $data){
+            return DB::transaction (function () use ($data) {
+                return MembershipPlan::create($data);
             });
         }
     }

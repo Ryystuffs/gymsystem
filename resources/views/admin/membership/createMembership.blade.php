@@ -8,12 +8,11 @@
 
         <div class="bg-white p-8 rounded-lg shadow-md">
 
-            <form method="POST" action="{{ route('admin.members.store') }}">
+            <form method="POST" action="{{ route('admin.membership.store') }}">
                 @csrf
-
                 <div class="mb-4">
                     <label for="PlanName" class="block text-sm font-medium text-gray-700">Plan Name</label>
-                    <input type="text" id="PlanName" name="PlanName" placeholder="Enter Plan Name" class="input-design" required>
+                    <input type="text" id="PlanName" name="name" placeholder="Enter Plan Name" class="input-design" required>
                 </div>
 
                 <div class="mb-4">
@@ -23,7 +22,7 @@
 
                 <div class="mb-4">
                     <label for="expired_at" class="block text-sm font-medium text-gray-700">Duration</label>
-                    <input type="number" id="duration" name="expired_at" placeholder="Duration in Days" class="input-design" value="" required>
+                    <input type="number" id="duration" name="duration" placeholder="Duration in Days" class="input-design" value="" required>
                 </div>
 
                 <div class="mb-6">
