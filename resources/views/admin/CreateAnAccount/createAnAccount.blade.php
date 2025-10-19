@@ -3,7 +3,7 @@
 
         <div class="bg-white p-8 rounded-lg shadow-md">
 
-            <form method="POST" action="{{ route('admin.members.store') }}">
+            <form method="POST" action="{{ route('admin.createAnAccount.create') }}">
                 @csrf
 
                 <div class="mb-4">

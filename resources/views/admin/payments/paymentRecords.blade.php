@@ -34,7 +34,4 @@
         <div>
             {{ $payments->links() }}
         </div>
-
-    
-
 </x-navigation>
