@@ -15,7 +15,7 @@
                 <div class="mb-4">
                     <label for="fname" class="block text-sm font-medium text-gray-700">Full Name</label>
                     <input type="text" id="fname" name="fname" placeholder="Enter Full Name" class="input-design" required>
-                </div
+                </div>
 
                 <input type="hidden" id="user_id" name="user_id">
 
