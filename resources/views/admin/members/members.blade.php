@@ -48,7 +48,7 @@
         </div>
 
         @foreach($userMemberships as $userMembership)
-            <x-membersCard :userMembership="$userMembership">
+            <x-membersCard :userMembership="$userMembership" :membershipPlans="$membershipPlans">
             </x-membersCard>
         @endforeach
     </div>
@@ -56,5 +56,15 @@
     <div class="mt-5">
         {{ $userMemberships->links() }}
     </div>
+
+    @push('scripts')
+        <script>
+            
+
+            
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        
+    @endpush
 
 </x-navigation>

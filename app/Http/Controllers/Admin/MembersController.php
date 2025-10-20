@@ -24,7 +24,8 @@ class MembersController extends Controller
     public function index()
     {
         $userMemberships = UserMemberships::with(['user', 'membershipPlan'])->orderBy('created_at', 'desc')->paginate(10);
-        return view('admin.members.members', ['userMemberships' => $userMemberships]);
+        $membershipPlans = MembershipPlan::all();
+        return view('admin.members.members', ['userMemberships' => $userMemberships, 'membershipPlans' => $membershipPlans]);
     }
 
     
