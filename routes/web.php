@@ -22,6 +22,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/', [MembersController::class, 'store'])->name('store');
         Route::get('/createMembers', [MembersController::class, 'create'])->name('create');
         Route::delete('/{userMemberships}', [MembersController::class, 'destroy'])->name('destroy');
+        Route::put('/{userMemberships}', [MembersController::class, 'update'])->name('update');
     });
     
 
