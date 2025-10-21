@@ -36,7 +36,7 @@
         </div>
     @endif
 
-    <div>
+    <div >
         <div class="flex justify-between p-5 ">
             <div>
                 <h1 class="title-text">Members</h1>
@@ -47,10 +47,12 @@
             </a>
         </div>
 
-        @foreach($userMemberships as $userMembership)
-            <x-membersCard :userMembership="$userMembership" :membershipPlans="$membershipPlans">
-            </x-membersCard>
-        @endforeach
+        <div class="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4">
+            @foreach($userMemberships as $userMembership)
+                <x-membersCard :userMembership="$userMembership" :membershipPlans="$membershipPlans">
+                </x-membersCard>
+            @endforeach
+        </div>
     </div>
 
     <div class="mt-5">

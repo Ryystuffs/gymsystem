@@ -1,12 +1,12 @@
-<div class="relative grid grid-cols-4 bg-white rounded-lg shadow-md p-5 mb-5 max-w-1xl mx-auto">
+<div class="flex flex-col justify-between relative bg-white rounded-lg shadow-md p-5 mb-5 min-w-full mx-auto">
     <!-- Title -->
-    <div>
+    <div class="flex flex-col">
         <h2 class="text-3xl font-semibold hover:text-blue-600 transition">{{ $userMembership->user->name }}</h2>
 
-        <p class="text-red-600 text-2xl">
+        <p class="text-red-600 text-2xl ">
             {{  $userMembership->membershipPlan ? $userMembership->membershipPlan->name : 'N/A' }}
         </p>
-        <p>Membership Start: {{ $userMembership->created_at}}</p>
+        <p>Membership Start: {{ $userMembership->created_at->format('M d, Y') }}</p>
         <p>Membership End: {{ $userMembership->expired_at }}</p>
         <p>@if($userMembership->is_active) Status: Active
         @else Status: Inactive @endif</p>
@@ -14,8 +14,7 @@
 
 
     <!-- Edit/Delete buttons -->
-    <div class="absolute top-3 right-4 flex space-x-2">
-        
+    <div class="flex justify-end space-x-2">        
         <!-- Edit Button -->
         <button type="button" class="w-12 h-12 btn-secondary edit-button"
             data-member="{{ $userMembership->user->name }}"

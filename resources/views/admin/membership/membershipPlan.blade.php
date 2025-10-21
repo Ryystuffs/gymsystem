@@ -42,9 +42,11 @@
             </div>
         </div>
 
-        @foreach($membershipPlans as $membershipPlan)
-            <x-membershipPlanCard :membershipPlan="$membershipPlan">
-            </x-membershipPlanCard>
-        @endforeach
+        <div class="grid grid-cols-[repeat(auto-fit,minmax(500px,1fr))] gap-4">
+            @foreach($membershipPlans as $membershipPlan)
+                <x-membershipPlanCard :membershipPlan="$membershipPlan">
+                </x-membershipPlanCard>
+            @endforeach
+        </div>
     </div>
 </x-navigation>
