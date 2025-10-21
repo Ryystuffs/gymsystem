@@ -46,57 +46,57 @@
 
                 <a href="{{ route('admin.dashboard') }}" @click="sidebarOpen = false"
                     class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">
-                    <img src="{{ asset('storage/images/dashboard.png') }}" alt="Dashboard Icon"
+                    <img src="{{ asset('resources/images/dashboard.png') }}" alt="Dashboard Icon"
                         class="w-5 h-5 inline mr-5">Dashboard</a>
 
                 <a href="{{ route('admin.membership.index') }}" @click="sidebarOpen = false"
                     class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">
-                    <img src="{{ asset('storage/images/membership.png') }}" alt="Dashboard Icon"
+                    <img src="{{ asset('resources/images/membership.png') }}" alt="Dashboard Icon"
                         class="w-5 h-5 inline mr-5">Membership Plans</a>
 
                 <a href="{{ route('admin.members.index') }}" @click="sidebarOpen = false"
                     class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">
-                    <img src="{{ asset('storage/images/member.png') }}" alt="Dashboard Icon"
+                    <img src="{{ asset('resources/images/member.png') }}" alt="Dashboard Icon"
                         class="w-5 h-5 inline mr-5">Members</a>
                 
                 <a href="{{ route('admin.payments.index') }}" @click="sidebarOpen = false"
                     class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">
-                    <img src="{{ asset('storage/images/payment.png') }}" alt="Dashboard Icon"
+                    <img src="{{ asset('resources/images/payment.png') }}" alt="Dashboard Icon"
                         class="w-5 h-5 inline mr-5">Payment Records</a>
 
                 <div class="pt-4 border-t border-gray-200"></div>
 
                 <a href="#" @click="sidebarOpen = false"
                     class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">
-                    <img src="{{ asset('storage/images/scanner.png') }}" alt="Dashboard Icon"
+                    <img src="{{ asset('resources/images/scanner.png') }}" alt="Dashboard Icon"
                         class="w-5 h-5 inline mr-5">QR Code Scanner</a>
 
                 <a href="{{route('admin.sessions.index')}}" @click="sidebarOpen = false"
                     class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">
-                    <img src="{{ asset('storage/images/session.png') }}" alt="Dashboard Icon"
+                    <img src="{{ asset('resources/images/session.png') }}" alt="Dashboard Icon"
                         class="w-5 h-5 inline mr-5">Sessions</a>
 
                 <a href="{{ route('admin.walkin.index') }}" @click="sidebarOpen = false"
                     class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">
-                    <img src="{{ asset('storage/images/walkin.png') }}" alt="Dashboard Icon"
+                    <img src="{{ asset('resources/images/walkin.png') }}" alt="Dashboard Icon"
                         class="w-5 h-5 inline mr-5">Walk-in Guest</a>
 
                 <div class="pt-4 border-t border-gray-200"></div>
 
                 <a href="{{ route('admin.createAnAccount.create') }}" @click="sidebarOpen = false"
                     class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">
-                    <img src="{{ asset('storage/images/createAccount.png') }}" alt="Dashboard Icon"
+                    <img src="{{ asset('resources/images/createAccount.png') }}" alt="Dashboard Icon"
                         class="w-5 h-5 inline mr-5">Add Account</a>
 
                 <a href="{{ route('admin.createAnAccount.index') }}" @click="sidebarOpen = false"
                     class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">
-                    <img src="{{ asset('storage/images/account.png') }}" alt="Dashboard Icon"
+                    <img src="{{ asset('resources/images/account.png') }}" alt="Dashboard Icon"
                         class="w-5 h-5 inline mr-5">Accounts</a>
 
                 <div class="pt-4 border-t border-gray-200">
                     <a href="#" @click="sidebarOpen = false"
                         class="block px-4 py-2 text-red-600 hover:bg-red-100 rounded transition font-medium">
-                        <img src="{{ asset('storage/images/logout.png') }}" alt="Dashboard Icon"
+                        <img src="{{ asset('resources/images/logout.png') }}" alt="Dashboard Icon"
                             class="w-5 h-5 inline mr-5">Logout</a>
                 </div>
             </nav>
