@@ -22,9 +22,9 @@ class MemberSessionsFactory extends Factory
         return [
             //
 
-            'user_membership_id' => UserMemberships::inRandomOrder()->first()->id,
-            'check_in' => now(),
-            'check_out' => now()->addHours(rand(2,5)),
+                'user_membership_id' => UserMemberships::inRandomOrder()->first()->id,
+                'check_in' => now(),
+                'check_out' => now()->addHours(rand(2,5)),
         ];
     }
 }

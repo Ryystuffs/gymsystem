@@ -22,13 +22,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/', [MembersController::class, 'store'])->name('store');
         Route::get('/createMembers', [MembersController::class, 'create'])->name('create');
         Route::delete('/{userMemberships}', [MembersController::class, 'destroy'])->name('destroy');
+        Route::put('/{userMemberships}', [MembersController::class, 'update'])->name('update');
     });
     
 
     Route::prefix('membership')->name('membership.')->group(function () {
         Route::get('/membershipPlan', [MembershipController::class, 'index'])->name('index');
         Route::get('/createMembership', [MembershipController::class, 'create'])->name('create');
-        Route::get('/showMembership/{id}', [MembershipController::class, 'show'])->name('show');
         Route::post('/membershipPlan', [MembershipController::class, 'store'])->name('store');
         Route::delete('{membershipPlan}', [MembershipController::class, 'destroy'])->name('destroy');
     });
