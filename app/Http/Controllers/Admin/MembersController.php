@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Models\Payments;
 use App\Services\MembershipService;
 use App\Http\Requests\StoreUserMembershipRequest;
+use App\Http\Requests\UpdateUserMembershipRequest;
+
 class MembersController extends Controller
 {
 
@@ -68,9 +70,11 @@ class MembersController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateUserMembershipRequest $request, UserMemberships $userMemberships)
     {
         //
+        $this->membershipService->updateUserMemberships($userMemberships, $request->validated());
+        return redirect()->route('admin.members.index')->with('success', 'Member membership has been updated successfully.');
     }
 
     /**

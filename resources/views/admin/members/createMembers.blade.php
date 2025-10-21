@@ -11,7 +11,6 @@
 
             <form method="POST" action="{{ route('admin.members.store') }}">
                 @csrf
-
                 <div class="mb-4">
                     <label for="fname" class="block text-sm font-medium text-gray-700">Full Name</label>
                     <input type="text" id="fname" name="fname" placeholder="Enter Full Name" class="input-design" required>

@@ -19,7 +19,7 @@
             @csrf
 
             @method('DELETE')
-                <button type="submit" class="w-12 h-12 btn-delete">
+                <button type="submit" class="w-12 h-12 btn-delete cursor-pointer">
                     <img src="{{ asset('/assets/delete.png') }}" alt="Delete" class="w-full h-full object-contain" />
                 </button>
             </form>
