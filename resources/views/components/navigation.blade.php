@@ -106,6 +106,9 @@
         <main class="flex-1 px-4 py-6 md:ml-4">
             {{ $slot }}
         </main>
+
+
+        @stack('scripts')
     </div>
 </body>
 

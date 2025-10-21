@@ -21,7 +21,7 @@
                     'type' => 'Membership',
                     'created_at' => now(),
                     ]);
-
+                    
                 return UserMemberships::create([
                     'user_id' => $validated['user_id'],
                     'membership_plan_id' => $validated['membership_plan_id'],

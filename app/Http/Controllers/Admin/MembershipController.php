@@ -13,7 +13,7 @@ class MembershipController extends Controller
 
     protected $membershipPlan;
 
-    public function __construct( PlanService $membershipPlanService)
+    public function __construct(PlanService $membershipPlanService)
     {   
         $this->membershipPlan = $membershipPlanService;
     }
@@ -23,15 +23,8 @@ class MembershipController extends Controller
         return view('admin.membership.membershipPlan', ['membershipPlans' => $membershipPlans]);
     }
 
-    public function show($id)
-    {
-        $membershipPlans = MembershipPlan::findOrFail($id);
-        return view('admin.membership.showMembership', ['membershipPlans' => $membershipPlans]);
-    }
     public function create()
     {   
-
-
         return view('admin.membership.createMembership');
     }
 
