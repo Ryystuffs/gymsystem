@@ -52,7 +52,7 @@
 }
 
 .title-text{
-    @apply text-3xl font-bold text-gray-800
+    @apply text-3xl font-bold text-[#333333];
 }
 
 .login-input{
