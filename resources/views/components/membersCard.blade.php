@@ -29,9 +29,9 @@
         <form method="POST" action="{{ route('admin.members.update', $userMembership->id) }}" class="edit-form hidden" id="edit-form-{{ $userMembership->id }}">
             @csrf
             @method('PUT')  
-            <input type="hidden" name="name">
-            <input type="hidden" name="membership_plan_id">
-            <input type="hidden" name="expired_at">
+                <input type="hidden" name="name">
+                <input type="hidden" name="membership_plan_id">
+                <input type="hidden" name="expired_at">
         </form>
 
         <!-- Delete Button -->
@@ -105,14 +105,11 @@
                             const form = document.getElementById(`edit-form-${id}`);
                             form.querySelector('input[name="membership_plan_id"]').value = result.value.plan;
                             form.querySelector('input[name="expired_at"]').value = result.value.expired;
-
                             form.submit();
                         }
                     });
-
                     
                 });
-
             });
         document.querySelectorAll('.btn-delete').forEach(button => {
                 button.addEventListener('click', function () {

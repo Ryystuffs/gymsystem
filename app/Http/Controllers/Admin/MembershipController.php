@@ -37,7 +37,6 @@ class MembershipController extends Controller
 
     public function destroy(MembershipPlan $membershipPlan){
         $this->membershipPlan->deleteMembershipPlan($membershipPlan);
-
         return redirect()->route('admin.membership.index')->with('deleted', 'MembershipPlan Deleted');
     }
 }

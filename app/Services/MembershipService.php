@@ -38,6 +38,13 @@
             });
         }
 
+        public function updateUserMemberships(UserMemberships $userMemberships, array $data){
+            return DB::transaction(function () use ($userMemberships, $data){
+                $userMemberships->update($data);
+                return $userMemberships;
+            });
+        }
+
         
     }
 
