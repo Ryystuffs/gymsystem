@@ -68,7 +68,9 @@
                 `, 
                         showCancelButton: true,
                         confirmButtonText: 'Edit',
+                        confirmButtonColor: '#4CAF50',
                         cancelButtonText: 'Cancel',
+                        cancelButtonColor: '#6c757d',
                         focusConfirm: false,
                         preConfirm: () => {
                             const plan = document.getElementById('swal-plan').value;

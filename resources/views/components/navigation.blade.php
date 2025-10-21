@@ -10,7 +10,6 @@
     <!-- Alpine.js for toggling sidebar -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-
 <body class="bg-gray-100 font-sans text-gray-800" x-data="{ sidebarOpen: false }">
     <!-- Responsive Design -->
     <header class="bg-white shadow md:hidden fixed top-0 left-0 right-0 z-20">
