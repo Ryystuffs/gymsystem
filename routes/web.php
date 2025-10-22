@@ -40,6 +40,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::prefix('walkin')->name('walkin.')->group(function (){
         Route::get('/walkinSession', [WalkinSessionController::class, 'index'])->name('index');
+        Route::get('/createWalkin', [WalkinSessionController::class, 'create'])->name('create');
     });
 
     Route::prefix('sessions')->name('sessions.')->group(function(){

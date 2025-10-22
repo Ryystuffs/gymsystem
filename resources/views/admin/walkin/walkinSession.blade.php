@@ -1,9 +1,12 @@
 <x-navigation>
+    <div class="flex justify-between p-5 ">
+        <h1 class="title-text">WalkinSession</h1>
+        <a href="{{ route('admin.walkin.create') }}" class="back-button">
+            Add Walk-In Guest
+        </a>
+    </div>
 
-    <h1>WalkinSession</h1>
-    <p>Welcome to the WalkinSession!</p>
-
-    <table class="min-w-full bg-white border border-gray-300 mt-4 min-h-screen mb-3 rounded-lg overflow-hidden"> 
+    <table class="min-w-full bg-white border border-gray-300 mt-4 min-h-screen mb-3 rounded-lg overflow-hidden">
         <thead class="bg-blue-400 text-2xl text-white h-16 ">
             <tr class="text-center ">
                 <th>Payment ID</th>
@@ -32,8 +35,8 @@
         </tbody>
     </table>
 
-        <div>
-            {{ $walkinSessions->links() }}
-        </div>
+    <div>
+        {{ $walkinSessions->links() }}
+    </div>
 
 </x-navigation>
