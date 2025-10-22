@@ -14,6 +14,7 @@
                 <th>Amount</th>
                 <th>Check-in Time</th>
                 <th>Check-out Time</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -30,6 +31,14 @@
                     </td>
                     <td>{{ $walkinSession->check_in }}</td>
                     <td>{{ $walkinSession->check_out }}</td>
+                    <td>
+                        <form action="`{{ route('admin.walkin.edit', $walkinSession->id) }}" method="POST">
+                            @csrf
+                            @method('GET')
+                            
+                            <button type="submit" class="text-blue-600 hover:underline">Edit</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

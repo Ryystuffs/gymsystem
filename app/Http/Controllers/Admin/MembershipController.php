@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\MembershipPlan;
 use App\Services\PlanService;
-use Illuminate\Contracts\Cache\Store;
 use App\Http\Requests\StoreMembershipPlanRequest;
 use App\Http\Requests\UpdateMembershipPlanRequest;
 
@@ -16,7 +15,7 @@ class MembershipController extends Controller
 
     public function __construct(PlanService $membershipPlanService)
     {   
-        $this->membershipPlan = $membershipPlanService;
+        $this->membershipPlan = $membershipPlanService; 
     }
     public function index()
     {

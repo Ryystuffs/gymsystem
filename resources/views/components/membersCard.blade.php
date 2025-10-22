@@ -72,7 +72,7 @@
                         @endforeach
                     </select>
                     <select id="swal-payment" class="swal2-input">
-                        <option value="" disabled selected>Select Payment Method</option>
+                        <option value="" disabled Selected >Select Payment Method</option>
                         @foreach($payments->unique('payment_method') as $payment)
                             <option value="{{ $payment->payment_method }}">{{ $payment->payment_method }}</option>
                         @endforeach
