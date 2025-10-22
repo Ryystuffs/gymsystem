@@ -49,7 +49,7 @@
 
         <div class="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4">
             @foreach($userMemberships as $userMembership)
-                <x-membersCard :userMembership="$userMembership" :membershipPlans="$membershipPlans">
+                <x-membersCard :userMembership="$userMembership" :membershipPlans="$membershipPlans " :payments="$payments">
                 </x-membersCard>
             @endforeach
         </div>
@@ -60,11 +60,6 @@
     </div>
 
     @push('scripts')
-        <script>
-            
-
-            
-        </script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         
     @endpush

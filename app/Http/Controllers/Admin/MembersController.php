@@ -27,7 +27,8 @@ class MembersController extends Controller
     {
         $userMemberships = UserMemberships::with(['user', 'membershipPlan'])->orderBy('created_at', 'desc')->paginate(10);
         $membershipPlans = MembershipPlan::all();
-        return view('admin.members.members', ['userMemberships' => $userMemberships, 'membershipPlans' => $membershipPlans]);
+        $payments = Payments::with('user')->get();
+        return view('admin.members.members', ['userMemberships' => $userMemberships, 'membershipPlans' => $membershipPlans , 'payments' => $payments]);
     }
 
     

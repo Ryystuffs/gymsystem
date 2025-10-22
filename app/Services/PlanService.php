@@ -19,6 +19,13 @@ use Illuminate\Support\Facades\DB;
                 return MembershipPlan::create($data);
             });
         }
+
+        public function updateMembershipPlan(MembershipPlan $membershipPlan, array $data){
+            return DB::transaction (function () use ($membershipPlan, $data) {
+                $membershipPlan->update($data);
+                return $membershipPlan;
+            });
+        }
     }
 ?>
 

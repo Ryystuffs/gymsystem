@@ -30,7 +30,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/membershipPlan', [MembershipController::class, 'index'])->name('index');
         Route::get('/createMembership', [MembershipController::class, 'create'])->name('create');
         Route::post('/membershipPlan', [MembershipController::class, 'store'])->name('store');
-        Route::delete('{membershipPlan}', [MembershipController::class, 'destroy'])->name('destroy');
+        Route::delete('/{membershipPlan}', [MembershipController::class, 'destroy'])->name('destroy');
+        Route::put('/{membershipPlan}', [MembershipController::class, 'update'])->name('update');
     });
 
     Route::prefix('payments')->name('payments.')->group(function () {

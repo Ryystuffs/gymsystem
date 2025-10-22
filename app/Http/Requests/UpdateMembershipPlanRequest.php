@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateUserMembershipRequest extends FormRequest
+class UpdateMembershipPlanRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,12 +22,11 @@ class UpdateUserMembershipRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // there is a name in the form but i dont want to update it
-            'membership_plan_id' => 'sometimes|required|exists:membership_plans,id',
-            'expired_at' => 'sometimes|required|date',
-            'amount' => 'sometimes|required|numeric|min:0',
-            'payment_method' => 'sometimes|required|string|max:255',
-            'user_id' => 'sometimes|required|exists:users,id',
+            //
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'duration' => 'required|integer|min:1',
+            'description' => 'nullable|string',
         ];
     }
 }

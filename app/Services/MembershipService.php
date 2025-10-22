@@ -4,7 +4,8 @@
 
     use App\Models\Payments;
     use App\Models\UserMemberships;
-    use Illuminate\Support\Facades\DB;
+use Faker\Provider\ar_EG\Payment;
+use Illuminate\Support\Facades\DB;
 
     class MembershipService {
 
@@ -40,13 +41,21 @@
 
         public function updateUserMemberships(UserMemberships $userMemberships, array $data){
             return DB::transaction(function () use ($userMemberships, $data){
-                $userMemberships->update($data);
+                
+                Payments::create([
+                    'user_id' => $data['user_id'],
+                    'membership_plan_id' => $data['membership_plan_id'],
+                    'amount' => $data['amount'],
+                    'payment_method' => $data['payment_method'],
+                    'type' => 'Membership',
+                    'created_at' => now(),
+                    ]);
+                $userMemberships->update($data);    
                 return $userMemberships;
             });
         }
 
         
     }
-
 
 ?>

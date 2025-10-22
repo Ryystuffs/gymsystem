@@ -7,6 +7,7 @@ use App\Models\MembershipPlan;
 use App\Services\PlanService;
 use Illuminate\Contracts\Cache\Store;
 use App\Http\Requests\StoreMembershipPlanRequest;
+use App\Http\Requests\UpdateMembershipPlanRequest;
 
 class MembershipController extends Controller
 {
@@ -38,6 +39,12 @@ class MembershipController extends Controller
     public function destroy(MembershipPlan $membershipPlan){
         $this->membershipPlan->deleteMembershipPlan($membershipPlan);
         return redirect()->route('admin.membership.index')->with('deleted', 'MembershipPlan Deleted');
+    }
+
+    public function update(MembershipPlan $membershipPlan, UpdateMembershipPlanRequest $request){
+        $data = $request->validated();
+        $this->membershipPlan->updateMembershipPlan($membershipPlan, $data);
+        return redirect()->route('admin.membership.index')->with('success', 'MembershipPlan Updated');
     }
 }
 

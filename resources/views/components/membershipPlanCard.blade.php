@@ -11,10 +11,25 @@
 
         <!-- Edit/Delete buttons -->
         <div class="top-3 right-4 flex space-x-2">
-            <a href="#" class="w-12 h-12 btn-secondary">
+                <button type="button" class="w-12 h-12 btn-secondary edit-button"
+                    data-id="{{ $membershipPlan->id }}"
+                    data-name="{{ $membershipPlan->name }}"
+                    data-price="{{ $membershipPlan->price }}"
+                    data-duration="{{ $membershipPlan->duration }}"
+                    data-description="{{ $membershipPlan->description }}">
                 <img src="{{ asset('/assets/edit.png') }}" alt="Edit" class="w-full h-full object-contain" />
-            </a>
+            </button>
 
+
+                <!-- Hidden form for update -->
+            <form method="POST" action="{{ route('admin.membership.update', $membershipPlan->id) }}" class="edit-form hidden" id="edit-form-{{ $membershipPlan->id }}">
+                @csrf
+                @method('PUT')
+                    <input type="hidden" name="name">
+                    <input type="hidden" name="price">
+                    <input type="hidden" name="duration">
+                    <input type="hidden" name="description">
+            </form>
             <form action="{{ route('admin.membership.destroy', $membershipPlan->id )}}" method="POST">
             @csrf
 
@@ -37,6 +52,53 @@
             <span class="font-semibold">Description:</span> {{ $membershipPlan->description }}
         </p>
     </div>
+
+
+    <script>
+        document.querySelectorAll('.edit-button').forEach(button => {
+            button.addEventListener('click', function () {
+                const id = this.dataset.id;
+                const currentName = this.dataset.name;
+                const currentPrice = this.dataset.price;
+                const currentDuration = this.dataset.duration;
+                const currentDescription = this.dataset.description;
+
+                Swal.fire({
+                    title: `Edit Membership Plan`,
+                    html: `
+                        <input id="swal-name" class="swal2-input" placeholder="Name" value="${currentName}">
+                        <input id="swal-price" type="number" class="swal2-input" placeholder="Price" value="${currentPrice}">
+                        <input id="swal-duration" type="number" class="swal2-input" placeholder="Duration (days)" value="${currentDuration}">
+                        <textarea id="swal-description" class="swal2-textarea" placeholder="Description">${currentDescription}</textarea>
+                    `,
+                    focusConfirm: false,
+                    preConfirm: () => {
+                        return {
+                            name: document.getElementById('swal-name').value,
+                            price: document.getElementById('swal-price').value,
+                            duration: document.getElementById('swal-duration').value,
+                            description: document.getElementById('swal-description').value,
+                        };
+                    },
+                    showCancelButton: true,
+                    confirmButtonText: 'Edit',
+                    confirmButtonColor: '#4CAF50',
+                    cancelButtonText: 'Cancel',
+                    cancelButtonColor: '#6c757d',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const form = document.getElementById(`edit-form-${id}`);
+                        form.querySelector('input[name="name"]').value = result.value.name;
+                        form.querySelector('input[name="price"]').value = result.value.price;
+                        form.querySelector('input[name="duration"]').value = result.value.duration;
+                        form.querySelector('input[name="description"]').value = result.value.description;
+                        form.submit();
+                    }
+                });
+            });
+        });
+
+    </script>
     <!-- Slot for extra content -->
     {{ $slot }}
 </div>
