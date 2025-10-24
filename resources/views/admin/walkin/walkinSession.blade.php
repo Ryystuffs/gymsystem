@@ -32,11 +32,10 @@
                     <td>{{ $walkinSession->check_in }}</td>
                     <td>{{ $walkinSession->check_out }}</td>
                     <td>
-                        <form action="`{{ route('admin.walkin.edit', $walkinSession->id) }}" method="POST">
+                        <form action="#" method="POST">
                             @csrf
                             @method('GET')
-                            
-                            <button type="submit" class="text-blue-600 hover:underline">Edit</button>
+                            <button type="submit" class="w-12 h-12 btn-secondary edit-button"><img src="{{ asset('/assets/edit.png') }}" alt="Edit" class="w-full h-full object-contain" /></button>
                         </form>
                     </td>
                 </tr>

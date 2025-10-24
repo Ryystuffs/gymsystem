@@ -72,7 +72,7 @@
                         @endforeach
                     </select>
                     <select id="swal-payment" class="swal2-input">
-                        <option value="" disabled Selected >Select Payment Method</option>
+                        <option value="" disabled Selected>Select Payment Method</option>
                         @foreach($payments->unique('payment_method') as $payment)
                             <option value="{{ $payment->payment_method }}">{{ $payment->payment_method }}</option>
                         @endforeach
@@ -89,17 +89,18 @@
                             const plan = document.getElementById('swal-plan').value;
                             const expired = document.getElementById('swal-expired').value;
 
-                            if (!plan || !expired) {
+                            if (!plan || !expired || !document.getElementById('swal-payment').value) {
                                 Swal.showValidationMessage('All fields are required.');
                                 return false;
                             }
-
+                            
                             return { plan, expired};
                         },
                         didOpen: () => {
                             //changing the swal-expired according to the selected plan
                         const swalPlan = document.getElementById('swal-plan');
                         const swalExpired = document.getElementById('swal-expired');
+                        
                         swalPlan.addEventListener('change', function() {
                             const selectedPlanId = this.value;
                             const selectedPlan = membershipPlans.find(plan => plan.id == selectedPlanId);
@@ -110,7 +111,7 @@
                                 const month = String(currentDate.getMonth() + 1).padStart(2, '0');
                                 const day = String(currentDate.getDate()).padStart(2, '0');
                                 swalExpired.value = `${year}-${month}-${day}`;
-
+                                
                                 //update the amount field
                                 const swalAmount = document.getElementById('swal-amount');
                                 swalAmount.value = selectedPlan.price ?? '';
@@ -150,7 +151,7 @@
                         if (result.isConfirmed) {
                             form.submit();
                         }
-                    });
+                    }); 
                 });
             });
 
