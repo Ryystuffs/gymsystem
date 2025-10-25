@@ -36,6 +36,30 @@
         </div>
     @endif
 
+    @if ($errors->any())
+                    <div id="validation-errors" class="hidden">
+                        @foreach ($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                        @endforeach
+                    </div>
+                @endif
+
+    <script>
+        const errorContainer = document.getElementById('validation-errors');
+            if (errorContainer) {
+                const messages = Array.from(errorContainer.querySelectorAll('p')).map(p => p.textContent);
+                if (messages.length > 0) {
+                    Swal.fire({
+                        title: 'Validation Error',
+                        html: messages.join('<br>'),
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#e3342f'
+                    });
+                }
+        }
+    </script>
+
     <div >
         <div class="flex justify-between p-5 ">
             <div>
@@ -49,7 +73,7 @@
 
         <div class="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4">
             @foreach($userMemberships as $userMembership)
-                <x-membersCard :userMembership="$userMembership" :membershipPlans="$membershipPlans">
+                <x-membersCard :userMembership="$userMembership" :membershipPlans="$membershipPlans " :payments="$payments">
                 </x-membersCard>
             @endforeach
         </div>
@@ -60,11 +84,6 @@
     </div>
 
     @push('scripts')
-        <script>
-            
-
-            
-        </script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         
     @endpush

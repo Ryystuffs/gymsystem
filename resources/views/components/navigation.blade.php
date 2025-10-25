@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="somerandomtoken">
     <title>Admin Dashboard</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -65,7 +66,7 @@
 
                 <div class="pt-4 border-t border-gray-200"></div>
 
-                <a href="#" @click="sidebarOpen = false"
+                <a href="{{ route('admin.scan.scanner') }}" @click="sidebarOpen = false"
                     class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">
                     <img src="{{ asset('images/scanner.png') }}" alt="Dashboard Icon"
                         class="w-5 h-5 inline mr-5">QR Code Scanner</a>

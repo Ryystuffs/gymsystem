@@ -1,9 +1,12 @@
 <x-navigation>
+    <div class="flex justify-between p-5 ">
+        <h1 class="title-text">WalkinSession</h1>
+        <a href="{{ route('admin.walkin.create') }}" class="back-button">
+            Add Walk-In Guest
+        </a>
+    </div>
 
-    <h1>WalkinSession</h1>
-    <p>Welcome to the WalkinSession!</p>
-
-    <table class="min-w-full bg-white border border-gray-300 mt-4 min-h-screen mb-3 rounded-lg overflow-hidden"> 
+    <table class="min-w-full bg-white border border-gray-300 mt-4 min-h-screen mb-3 rounded-lg overflow-hidden">
         <thead class="bg-blue-400 text-2xl text-white h-16 ">
             <tr class="text-center ">
                 <th>Payment ID</th>
@@ -11,6 +14,7 @@
                 <th>Amount</th>
                 <th>Check-in Time</th>
                 <th>Check-out Time</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -27,13 +31,20 @@
                     </td>
                     <td>{{ $walkinSession->check_in }}</td>
                     <td>{{ $walkinSession->check_out }}</td>
+                    <td>
+                        <form action="#" method="POST">
+                            @csrf
+                            @method('GET')
+                            <button type="submit" class="w-12 h-12 btn-secondary edit-button"><img src="{{ asset('/assets/edit.png') }}" alt="Edit" class="w-full h-full object-contain" /></button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 
-        <div>
-            {{ $walkinSessions->links() }}
-        </div>
+    <div>
+        {{ $walkinSessions->links() }}
+    </div>
 
 </x-navigation>

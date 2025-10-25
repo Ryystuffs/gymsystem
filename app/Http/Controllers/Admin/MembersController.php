@@ -10,6 +10,7 @@ use App\Models\Payments;
 use App\Services\MembershipService;
 use App\Http\Requests\StoreUserMembershipRequest;
 use App\Http\Requests\UpdateUserMembershipRequest;
+use App\Models\User;
 
 class MembersController extends Controller
 {
@@ -27,7 +28,8 @@ class MembersController extends Controller
     {
         $userMemberships = UserMemberships::with(['user', 'membershipPlan'])->orderBy('created_at', 'desc')->paginate(10);
         $membershipPlans = MembershipPlan::all();
-        return view('admin.members.members', ['userMemberships' => $userMemberships, 'membershipPlans' => $membershipPlans]);
+        $payments = Payments::with('user')->get();
+        return view('admin.members.members', ['userMemberships' => $userMemberships, 'membershipPlans' => $membershipPlans , 'payments' => $payments]);
     }
 
     
@@ -39,7 +41,8 @@ class MembersController extends Controller
     {
         $userMemberships = UserMemberships::with('user')->get();
         $membershipPlans = MembershipPlan::all();
-        return view('admin.members.createMembers', ['userMemberships' => $userMemberships, 'membershipPlans' => $membershipPlans]);
+        $users = User::all();
+        return view('admin.members.createMembers', ['userMemberships' => $userMemberships, 'membershipPlans' => $membershipPlans, 'users' => $users]);
     }
 
     /**

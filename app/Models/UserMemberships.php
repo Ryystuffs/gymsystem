@@ -26,4 +26,5 @@ class UserMemberships extends Model
     public function memberSessions(){
         return $this->hasMany(MemberSessions::class);
     }
+
 }
