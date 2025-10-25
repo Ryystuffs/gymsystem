@@ -6,7 +6,7 @@
         </a>
     </div>
 
-    <table class="min-w-full bg-white border border-gray-300 mt-4 min-h-screen mb-3 rounded-lg overflow-hidden">
+    <table class="min-w-full bg-white border border-gray-300 mt-4 mb-3 rounded-lg overflow-hidden">
         <thead class="bg-blue-400 text-2xl text-white h-16 ">
             <tr class="text-center ">
                 <th>Payment ID</th>
@@ -32,11 +32,22 @@
                     <td>{{ $walkinSession->check_in }}</td>
                     <td>{{ $walkinSession->check_out }}</td>
                     <td>
-                        <form action="#" method="POST">
-                            @csrf
-                            @method('GET')
-                            <button type="submit" class="w-12 h-12 btn-secondary edit-button"><img src="{{ asset('/assets/edit.png') }}" alt="Edit" class="w-full h-full object-contain" /></button>
-                        </form>
+                        <div class="flex gap-2 p-5 ">
+                            <form action="#" method="POST">
+                                @csrf
+                                @method('GET')
+                                <button type="submit" class="ml-6 w-12 h-12 btn-secondary edit-button"><img
+                                        src="{{ asset('/assets/edit.png') }}" alt="Edit"
+                                        class="w-full h-full object-contain" /></button>
+                            </form>
+                            <form action="#" method="POST">
+                                @csrf
+                                @method('GET')
+                                <button type="submit" class="w-12 h-12 btn-delete bg-[#4CAF50]"><img
+                                        src="{{ asset('images/checkOut.png') }}" alt="Edit"
+                                        class="w-full h-full object-contain" /></button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             @endforeach

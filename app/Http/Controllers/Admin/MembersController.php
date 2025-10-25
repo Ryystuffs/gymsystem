@@ -90,5 +90,6 @@ class MembersController extends Controller
             ->route('admin.members.index')
             ->with('deleted', "$userName membership successfully deleted!");
     }
+    
 
 }
