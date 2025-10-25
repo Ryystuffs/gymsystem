@@ -14,6 +14,9 @@ class createAccountController extends Controller
         return view('admin.createAnAccount.accounts', [ 'users' => $users ]);
     }
     public function create(){
-        return view('admin.createAnAccount.createAnAccount')->with('success','New Account has been created successfully.');
+        return view('admin.createAnAccount.createAnAccount');
+    }
+    public function store(){
+        
     }
 }
