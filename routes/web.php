@@ -57,10 +57,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
     Route::prefix('scan')->name('scan.')->group(function (){
-        Route::get('/qrScanner', [QrScanController::class, 'scanner'])->name('scanner');
-        Route::post('/{user}', [QrScanController::class, 'handle'])->name('qrScan');
+        Route::get('/scanner', [QrScanController::class, 'scanner'])->name('scanner');
+        Route::get('/{user}', [QrScanController::class, 'handle'])->name('qrScan');
     });
-
     
-
 });
