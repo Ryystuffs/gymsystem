@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\URL;
                 'created_at' => now(),
             ]);
 
-            $qrData = URL::signedRoute('admin.sessions.qrScan', ['user' => $user->id]);
+            $qrData = URL::signedRoute('admin.scan.qrScan', ['user' => $user->id]);
             $qrImage = QrCode::size(200)->format('png')->generate($qrData);
             $path = 'qrcodes/user_' . $user->id . '.png';
             Storage::disk('public')->put($path, $qrImage);

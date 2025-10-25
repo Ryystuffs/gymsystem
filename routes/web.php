@@ -47,7 +47,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::prefix('sessions')->name('sessions.')->group(function(){
         Route::get('/memberSessions', [SessionsController::class, 'index'])->name('index');
-        Route::get('/{user}', [QrScanController::class, 'handle'])->name('qrScan');
     });
 
     Route::prefix('createAnAccount')->name('createAnAccount.')->group(function (){
@@ -55,6 +54,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/accounts', [createAccountController::class, 'index'])->name('index');
         Route::post('/accounts', [createAccountController::class, 'store'])->name('store');
         
+    });
+
+    Route::prefix('scan')->name('scan.')->group(function (){
+        Route::get('/qrScanner', [QrScanController::class, 'scanner'])->name('scanner');
+        Route::post('/{user}', [QrScanController::class, 'handle'])->name('qrScan');
     });
 
     
