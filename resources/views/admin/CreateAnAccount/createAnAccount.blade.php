@@ -5,18 +5,18 @@
         </div>
         <div class="bg-white p-8 rounded-lg shadow-md">
 
-            <form method="POST" action="{{ route('admin.createAnAccount.create') }}">
+            <form method="POST" action="{{ route('admin.createAnAccount.store') }}">
                 @csrf
 
                 <div class="mb-4">
-                    <label for="fname" class="block text-sm font-medium text-gray-700">Full Name</label>
-                    <input type="text" id="fname" name="fname" placeholder="Enter Full Name" class="input-design"
+                    <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                    <input type="text" id="fname" name="name" placeholder="Enter Full Name" class="input-design"
                         required>
                 </div>
 
                 <div class="mb-4">
-                    <label for="price" class="block text-sm font-medium text-gray-700">Enter Email</label>
-                    <input type="email" id="price" name="price" placeholder="Enter Email" class="input-design" required>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Enter Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter Email" class="input-design" required>
                 </div>
 
                 <div class="mb-4">
@@ -28,7 +28,7 @@
                 <div class="mb-4">
                     <label for="confirm_password" class="block text-sm font-medium text-gray-700">Confirm
                         Password</label>
-                    <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password"
+                    <input type="password" id="confirm_password" name="password_confirmation" placeholder="Confirm Password"
                         class="input-design" required>
                 </div>
 
@@ -47,6 +47,14 @@
                     </script>
                 @endif
 
+                @if ($errors->any())
+                    <div id="validation-errors" class="hidden">
+                        @foreach ($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                        @endforeach
+                    </div>
+                @endif
+
                 {{-- Password Error alert message --}}
                 <script>
                     document.querySelector('form').addEventListener('submit', function (e) {
@@ -62,7 +70,23 @@
                                 confirmButtonColor: '#e3342f'
                             });
                         }
+
+                        const errorContainer = document.getElementById('validation-errors');
+                        if (errorContainer) {
+                            const messages = Array.from(errorContainer.querySelectorAll('p')).map(p => p.textContent);
+                            if (messages.length > 0) {
+                                Swal.fire({
+                                    title: 'Validation Error',
+                                    html: messages.join('<br>'),
+                                    icon: 'error',
+                                    confirmButtonText: 'OK',
+                                    confirmButtonColor: '#e3342f'
+                                });
+                            }
+                        }
                     });
+
+                    
                 </script>
                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\MembersController;
 use App\Http\Controllers\Admin\PaymentsController;
 use App\Http\Controllers\Admin\WalkinSessionController;
 use App\Http\Controllers\Admin\SessionsController;
+use App\Http\Controllers\Admin\QrScanController;
 
 
 Route::get('/', function () {
@@ -46,11 +47,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::prefix('sessions')->name('sessions.')->group(function(){
         Route::get('/memberSessions', [SessionsController::class, 'index'])->name('index');
+        Route::get('/{user}', [QrScanController::class, 'handle'])->name('qrScan');
     });
 
     Route::prefix('createAnAccount')->name('createAnAccount.')->group(function (){
         Route::get('/createAnAccount', [createAccountController::class, 'create'])->name('create');
         Route::get('/accounts', [createAccountController::class, 'index'])->name('index');
+        Route::post('/accounts', [createAccountController::class, 'store'])->name('store');
+        
     });
+
+    
 
 });
