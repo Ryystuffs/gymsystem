@@ -36,6 +36,30 @@
         </div>
     @endif
 
+    @if ($errors->any())
+                    <div id="validation-errors" class="hidden">
+                        @foreach ($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                        @endforeach
+                    </div>
+                @endif
+
+    <script>
+        const errorContainer = document.getElementById('validation-errors');
+            if (errorContainer) {
+                const messages = Array.from(errorContainer.querySelectorAll('p')).map(p => p.textContent);
+                if (messages.length > 0) {
+                    Swal.fire({
+                        title: 'Validation Error',
+                        html: messages.join('<br>'),
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#e3342f'
+                    });
+                }
+        }
+    </script>
+
     <div >
         <div class="flex justify-between p-5 ">
             <div>

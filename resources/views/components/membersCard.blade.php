@@ -115,6 +115,7 @@
                                 //update the amount field
                                 const swalAmount = document.getElementById('swal-amount');
                                 swalAmount.value = selectedPlan.price ?? '';
+                                console.log('Amount updated to:', swalAmount.value);
                             }
                         });
                         }
