@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateUserMembershipRequest extends FormRequest
 {
@@ -27,7 +28,14 @@ class UpdateUserMembershipRequest extends FormRequest
             'expired_at' => 'sometimes|required|date',
             'amount' => 'sometimes|required|numeric|min:0',
             'payment_method' => 'sometimes|required|string|max:255',
-            'user_id' => 'sometimes|required|exists:users,id',
+            'user_id' => [
+            'sometimes',
+            'required',
+            'exists:users,id',
+            Rule::unique('user_memberships')
+                ->ignore($this->route('userMemberships'))
+                ->where(fn($query) => $query->where('is_active', true)),
+        ],
         ];
     }
 }

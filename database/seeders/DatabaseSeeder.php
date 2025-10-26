@@ -22,13 +22,13 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        $this->call([
+        /*$this->call([
             MembershipPlanSeeder::class,
             UserMembershipsSeeder::class,
             PaymentsSeeder::class,
             WalkinSessionSeeder::class,
             MemberSessionsSeeder::class,
-        ]);
+        ]);*/
     }
 
     

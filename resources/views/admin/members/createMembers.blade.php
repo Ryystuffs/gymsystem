@@ -87,9 +87,9 @@
                         });
 
                         const users = @json(
-                            $userMemberships->map(fn($membership) => [
-                                'name' => $membership->user->name,
-                                'id' => $membership->user->id
+                            $users->map(fn($user) => [
+                                'name' => $user->name,
+                                'id' => $user->id
                             ])
                         );
 
