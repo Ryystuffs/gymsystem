@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gym System</title>
+    <title>Log In</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="flex items-center justify-center relative min-h-screen bg-cover bg-center bg-no-repeat bg-fixed bg-[url('/public/images/gymBG.jpg')]">
