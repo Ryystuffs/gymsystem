@@ -12,7 +12,11 @@ use App\Http\Controllers\Admin\QrScanController;
 
 
 Route::get('/', function () {
-    return view('login');
+    return view('landingPage');
+});
+
+Route::prefix('login')->name('login.')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('index');
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -25,7 +29,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::delete('/{userMemberships}', [MembersController::class, 'destroy'])->name('destroy');
         Route::put('/{userMemberships}', [MembersController::class, 'update'])->name('update');
     });
-    
+
 
     Route::prefix('membership')->name('membership.')->group(function () {
         Route::get('/membershipPlan', [MembershipController::class, 'index'])->name('index');
@@ -39,26 +43,24 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/paymentRecords', [PaymentsController::class, 'index'])->name('index');
     });
 
-    Route::prefix('walkin')->name('walkin.')->group(function (){
+    Route::prefix('walkin')->name('walkin.')->group(function () {
         Route::get('/walkinSession', [WalkinSessionController::class, 'index'])->name('index');
         Route::get('/createWalkin', [WalkinSessionController::class, 'create'])->name('create');
         Route::post('/walkinSession', [WalkinSessionController::class, 'store'])->name('store');
     });
 
-    Route::prefix('sessions')->name('sessions.')->group(function(){
+    Route::prefix('sessions')->name('sessions.')->group(function () {
         Route::get('/memberSessions', [SessionsController::class, 'index'])->name('index');
     });
 
-    Route::prefix('createAnAccount')->name('createAnAccount.')->group(function (){
+    Route::prefix('createAnAccount')->name('createAnAccount.')->group(function () {
         Route::get('/createAnAccount', [createAccountController::class, 'create'])->name('create');
         Route::get('/accounts', [createAccountController::class, 'index'])->name('index');
         Route::post('/accounts', [createAccountController::class, 'store'])->name('store');
-        
     });
 
-    Route::prefix('scan')->name('scan.')->group(function (){
+    Route::prefix('scan')->name('scan.')->group(function () {
         Route::get('/scanner', [QrScanController::class, 'scanner'])->name('scanner');
         Route::get('/{user}', [QrScanController::class, 'handle'])->name('qrScan');
     });
-    
 });
