@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\createAccountController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\MembershipController;
 use App\Http\Controllers\Admin\MembersController;
 use App\Http\Controllers\Admin\PaymentsController;
@@ -16,7 +17,7 @@ Route::get('/', function () {
 });
 
 Route::prefix('login')->name('login.')->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('index');
+    Route::get('/login', [LoginController::class, 'index'])->name('index');
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {
