@@ -10,7 +10,7 @@ use App\Http\Controllers\Admin\PaymentsController;
 use App\Http\Controllers\Admin\WalkinSessionController;
 use App\Http\Controllers\Admin\SessionsController;
 use App\Http\Controllers\Admin\QrScanController;
-
+use App\Models\WalkinSession;
 
 Route::get('/', function () {
     return view('landingPage');
@@ -48,6 +48,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/walkinSession', [WalkinSessionController::class, 'index'])->name('index');
         Route::get('/createWalkin', [WalkinSessionController::class, 'create'])->name('create');
         Route::post('/walkinSession', [WalkinSessionController::class, 'store'])->name('store');
+        Route::put('/{walkinSession}',[WalkinSessionController::class, 'checkout'])->name('checkout');
     });
 
     Route::prefix('sessions')->name('sessions.')->group(function () {
