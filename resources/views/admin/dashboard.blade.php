@@ -1,4 +1,15 @@
-<x-navigation>
-    <h1>Admin Dashboard</h1>
-    <p>Welcome to the admin dashboard!</p>
-</x-navigation>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <x-navi>
+
+    </x-navi
+    <h1>dashboard page</h1>
+</body>
+</html>
