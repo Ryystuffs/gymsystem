@@ -65,10 +65,22 @@
                 Swal.fire({
                     title: `Edit Membership Plan`,
                     html: `
-                        <input id="swal-name" class="swal2-input" placeholder="Name" value="${currentName}">
-                        <input id="swal-price" type="number" class="swal2-input" placeholder="Price" value="${currentPrice}">
-                        <input id="swal-duration" type="number" class="swal2-input" placeholder="Duration (days)" value="${currentDuration}">
-                        <textarea id="swal-description" class="swal2-textarea" placeholder="Description">${currentDescription}</textarea>
+                    <div class="mb-4">
+                        <label for="swal-name" class="block text-sm font-medium text-gray-700">Name</label>
+                        <input id="swal-name" class="input-design" placeholder="Name" value="${currentName}">
+                    </div>
+                    <div class="mb-4">
+                        <label for="swal-price" class="block text-sm font-medium text-gray-700">Price</label>
+                        <input id="swal-price" type="number" class="input-design" placeholder="Price" value="${currentPrice}">
+                    </div>    
+                    <div class="mb-4">
+                        <label for="swal-duration" class="block text-sm font-medium text-gray-700">Duration in Days</label>
+                        <input id="swal-duration" type="number" class="input-design" placeholder="Duration (days)" value="${currentDuration}">
+                    </div>
+                    <div class="mb-4">
+                        <label for="swal-description" class="block text-sm font-medium text-gray-700">Description</label>
+                        <textarea id="swal-description" class="input-design" placeholder="Description">${currentDescription}</textarea>
+                    </div
                     `,
                     focusConfirm: false,
                     preConfirm: () => {

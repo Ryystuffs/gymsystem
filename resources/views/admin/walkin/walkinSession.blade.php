@@ -34,13 +34,6 @@
                 <td>
                     <div class="flex justify-center items-center space-x-2 p-2">
                         <button type="submit" class="ml-6 w-12 h-12 btn-secondary edit-button"><img src="{{ asset('/assets/edit.png') }}" alt="Edit" class="w-full h-full object-contain" /></button>
-
-                        <form action="#" method="POST">
-                            @csrf
-                            @method('GET')
-                            <button class="ml-6 w-12 h-12 btn-secondary edit-button">Cancel</button>
-                            <button type="submit" class="ml-6 w-12 h-12 btn-secondary edit-button">Edit</button>
-                        </form>
                         <form action="{{ route('admin.walkin.checkout', $walkinSession->id) }}" method="POST" class="checkout-form">
                             @csrf
                             @method('PUT')
