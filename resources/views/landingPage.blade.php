@@ -23,7 +23,7 @@
             </div>
 
             <div
-                class="nav-links fixed md:static top-[-100%] left-0 w-full md:w-auto h-[60vh] md:h-auto bg-black md:bg-transparent flex flex-col md:flex-row items-center gap-8 px-5 md:px-0 justify-center transition-all duration-500 ease-in-out">
+                class="nav-links fixed md:static top-[-100%] left-0 w-full md:w-auto h-[60vh] md:h-auto bg-black md:bg-transparent flex flex-col md:flex-row items-center px-5 md:px-0 justify-center transition-all duration-500 ease-in-out">
                 <ul class="flex flex-col md:flex-row md:items-center gap-8 text-white text-center">
                     <li><a class="hover:underline" href="#Home">Home</a></li>
                     <li><a class="hover:underline" href="#Services">Services</a></li>

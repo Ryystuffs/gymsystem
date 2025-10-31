@@ -6,6 +6,8 @@
     use Illuminate\Support\Facades\DB;
     use App\Models\WalkinSession;
     use App\Models\Payments;
+use Faker\Provider\ar_EG\Payment;
+use Illuminate\Support\Arr;
 
     class WalkinService {
        public function createWalkinSession(array $data){
@@ -25,6 +27,33 @@
                     'payment_id' => Payments::latest()->first()->id,
                     'created_at' => $data['check_in'],
                 ]);
+            });
+        }
+
+        public function updateWalkinSession(WalkinSession $walkinSession, array $data){
+            return DB::transaction(function () use ($walkinSession, $data){
+                $walkinSession->update([
+                    'name' => $data['name'],
+                    'amount_paid' => $data ['amount_paid']
+                ]);
+
+                if (!empty($data['payment_id'])){
+                    Payments::where('id', $data['payment_id'])->update([
+                        'amount' => $data['amount_paid'],
+                        'payment_method' => $data['payment_method']
+                    ]);
+                }
+                return $walkinSession;
+            });
+        }
+
+        public function checkoutWalkinSession(WalkinSession $walkinSession){
+
+            return DB::transaction(function () use ($walkinSession) {
+                $walkinSession->update([
+                    'check_out' => now(),
+                ]);
+                return $walkinSession;
             });
         }
     }
