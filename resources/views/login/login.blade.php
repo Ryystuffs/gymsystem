@@ -24,14 +24,14 @@
 
                 <div>
                     <label for="uname" class="block font-medium mb-1">Username</label>
-                    <input type="text" name="uname" id="uname" placeholder="Username"
-                        class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-gray-500 text-black" required>
+                    <input type="text" name="uname" id="uname" placeholder="Enter Username"
+                        class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-gray-500 text-white" required>
                 </div>
 
                 <div>
                     <label for="password" class="block font-medium mb-1">Password</label>
-                    <input type="password" name="password" id="password" placeholder="Password"
-                        class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-gray-500 text-black" required>
+                    <input type="password" name="password" id="password" placeholder="Enter Password"
+                        class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-gray-500 text-white" required>
 
                     <div class="flex items-center justify-between mt-2">
                         <label class="flex items-center space-x-2 text-gray-300 text-sm">
