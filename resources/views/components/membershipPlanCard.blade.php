@@ -4,7 +4,7 @@
     <!-- Title -->
     <div class="flex justify-between items-center mb-2">
         <div>
-            <h2 class="text-2xl font-semibold hover:text-blue-600 transition text-red-500">
+            <h2 class="text-2xl font-semibold hover:text-blue-600 transition text-[#0e608f]">
                 {{ $membershipPlan->name }}
             </h2>
         </div>
@@ -32,9 +32,8 @@
             </form>
             <form action="{{ route('admin.membership.destroy', $membershipPlan->id )}}" method="POST">
             @csrf
-
             @method('DELETE')
-                <button type="submit" class="w-12 h-12 btn-delete cursor-pointer">
+                <button type="button" class="w-12 h-12 btn-delete cursor-pointer">
                     <img src="{{ asset('/assets/delete.png') }}" alt="Delete" class="w-full h-full object-contain" />
                 </button>
             </form>
@@ -66,10 +65,22 @@
                 Swal.fire({
                     title: `Edit Membership Plan`,
                     html: `
-                        <input id="swal-name" class="swal2-input" placeholder="Name" value="${currentName}">
-                        <input id="swal-price" type="number" class="swal2-input" placeholder="Price" value="${currentPrice}">
-                        <input id="swal-duration" type="number" class="swal2-input" placeholder="Duration (days)" value="${currentDuration}">
-                        <textarea id="swal-description" class="swal2-textarea" placeholder="Description">${currentDescription}</textarea>
+                    <div class="mb-4">
+                        <label for="swal-name" class="block text-sm font-medium text-gray-700">Name</label>
+                        <input id="swal-name" class="input-design" placeholder="Name" value="${currentName}">
+                    </div>
+                    <div class="mb-4">
+                        <label for="swal-price" class="block text-sm font-medium text-gray-700">Price</label>
+                        <input id="swal-price" type="number" class="input-design" placeholder="Price" value="${currentPrice}">
+                    </div>    
+                    <div class="mb-4">
+                        <label for="swal-duration" class="block text-sm font-medium text-gray-700">Duration in Days</label>
+                        <input id="swal-duration" type="number" class="input-design" placeholder="Duration (days)" value="${currentDuration}">
+                    </div>
+                    <div class="mb-4">
+                        <label for="swal-description" class="block text-sm font-medium text-gray-700">Description</label>
+                        <textarea id="swal-description" class="input-design" placeholder="Description">${currentDescription}</textarea>
+                    </div
                     `,
                     focusConfirm: false,
                     preConfirm: () => {
@@ -97,7 +108,26 @@
                 });
             });
         });
+        document.querySelectorAll('.btn-delete').forEach(button => {
+                button.addEventListener('click', function () {
+                    const form = this.closest('form');
 
+                    Swal.fire({
+                        title: `Delete this Membership Plan?`,
+                        text: "This action cannot be undone.",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#e3342f',
+                        cancelButtonColor: '#6c757d',
+                        confirmButtonText: 'Yes, delete it!',
+                        reverseButtons: true,
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    }); 
+                });
+            });
     </script>
     <!-- Slot for extra content -->
     {{ $slot }}

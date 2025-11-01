@@ -2,12 +2,12 @@
     <div class="flex justify-between p-5 ">
         <h1 class="title-text">WalkinSession</h1>
         <a href="{{ route('admin.walkin.create') }}" class="back-button">
-            Add Walk-In Guest
+            <h1 class="text-xl">Add Walk-In Guest</h1>
         </a>
     </div>
 
-    <table class="min-w-full bg-white border border-gray-300 mt-4 mb-3 rounded-lg overflow-hidden">
-        <thead class="bg-blue-400 text-2xl text-white h-16 ">
+    <table class="min-w-full bg-white border border-gray-300 mt-0 mb-3 rounded-lg overflow-hidden">
+        <thead class="bg-[#057dcd] text-2xl text-white h-16 ">
             <tr class="text-center ">
                 <th>Payment ID</th>
                 <th>Name</th>
@@ -34,13 +34,6 @@
                 <td>
                     <div class="flex justify-center items-center space-x-2 p-2">
                         <button type="submit" class="ml-6 w-12 h-12 btn-secondary edit-button"><img src="{{ asset('/assets/edit.png') }}" alt="Edit" class="w-full h-full object-contain" /></button>
-
-                        <form action="#" method="POST">
-                            @csrf
-                            @method('GET')
-                            <button class="ml-6 w-12 h-12 btn-secondary edit-button">Cancel</button>
-                            <button type="submit" class="ml-6 w-12 h-12 btn-secondary edit-button">Edit</button>
-                        </form>
                         <form action="{{ route('admin.walkin.checkout', $walkinSession->id) }}" method="POST" class="checkout-form">
                             @csrf
                             @method('PUT')

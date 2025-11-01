@@ -17,7 +17,9 @@
         <nav class="flex justify-between items-center w-[92%] mx-auto">
 
             <div>
-                <img src="{{ asset('images/logo.png') }}" alt="logo.png" class="w-16 cursor-pointer">
+                <a href="#Home">
+                    <img src="{{ asset('images/logo.png') }}" alt="logo.png" class="w-16 cursor-pointer">
+                </a>
             </div>
 
             <div
@@ -41,8 +43,8 @@
     </header>
 
     <section id="Home"
-        class="flex flex-col md:flex-row items-center h-screen justify-between pt-32 pb-20 bg-black text-white px-6 md:px-20 bg-cover bg-center bg-no-repeat"
-        style="background-image: url('{{ asset('images/gymBG.jpg') }}');">
+        class="flex flex-col md:flex-row items-center h-screen justify-between pt-32 pb-20 bg-black text-white px-6 md:px-20 bg-cover bg-center bg-no-repeat "
+        style="background-image: url('{{ asset('images/gymBG.jpg') }}') ;">
 
         <div class="md:w-1/2 space-y-6 text-center md:text-left">
             <h1 class="text-5xl md:text-6xl font-bold leading-tight">

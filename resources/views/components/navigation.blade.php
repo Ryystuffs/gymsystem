@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+    <link rel="icon" href="{{ asset('images/admin.png') }}" type="image/png">
     <!-- Alpine.js for toggling sidebar -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
@@ -26,7 +26,7 @@
 
     <div class="flex min-h-screen pt-14 md:pt-0">
         <!-- Sidebar -->
-        <aside class=" inset-y-0 left-0 w-64 bg-white border-r border-gray-200 z-30 transform transition-transform duration-200 ease-in-out
+        <aside class="fixed inset-y-0 left-0 w-80 bg-[#122D3D] border-r border-gray-200 z-30 transform transition-transform duration-200 ease-in-out
             md:translate-x-0 md:static md:inset-0"
             :class="{ '-translate-x-full': !sidebarOpen, 'translate-x-0': sidebarOpen }">
             <div class="p-6 border-b border-gray-200 text-center md:hidden">
@@ -38,65 +38,65 @@
                 </button>
                 <span class="text-xl font-semibold text-red-600">Menu</span>
             </div>
-            <div class="p-6 border-b border-gray-200 text-center hidden md:block">
-                <a href="{{ route('admin.dashboard') }}" class="text-2xl font-semibold text-red-600">Gym System</a>
+            <div class="p-1 border-b border-[#0e608f] text-center hidden md:block">
+                <img src="{{ asset('images/gainlabWhite.png') }}" alt="">
             </div>
-            <nav class="px-4 py-6 space-y-2">
+            <nav class="px-2 py-3 space-y-2">
 
                 <a href="{{ route('admin.dashboard') }}" @click="sidebarOpen = false"
-                    class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">
+                    class="nav-text">
                     <img src="{{ asset('images/dashboard.png') }}" alt="Dashboard Icon"
-                        class="w-5 h-5 inline mr-5">Dashboard</a>
+                        class="nav-icon">Dashboard</a>
 
                 <a href="{{ route('admin.membership.index') }}" @click="sidebarOpen = false"
-                    class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">
+                    class="nav-text">
                     <img src="{{ asset('images/membership.png') }}" alt="Dashboard Icon"
-                        class="w-5 h-5 inline mr-5">Membership Plans</a>
+                        class="nav-icon">Membership Plans</a>
 
                 <a href="{{ route('admin.members.index') }}" @click="sidebarOpen = false"
-                    class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">
+                    class="nav-text">
                     <img src="{{ asset('images/member.png') }}" alt="Dashboard Icon"
-                        class="w-5 h-5 inline mr-5">Members</a>
+                        class="nav-icon">Members</a>
                 
                 <a href="{{ route('admin.payments.index') }}" @click="sidebarOpen = false"
-                    class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">
+                    class="nav-text">
                     <img src="{{ asset('images/payment.png') }}" alt="Dashboard Icon"
-                        class="w-5 h-5 inline mr-5">Payment Records</a>
+                        class="nav-icon">Payment Records</a>
 
-                <div class="pt-4 border-t border-gray-200"></div>
+                <div class="pt-4 border-t border-[#0e608f]"></div>
 
                 <a href="{{ route('admin.scan.scanner') }}" @click="sidebarOpen = false"
-                    class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">
+                    class="nav-text">
                     <img src="{{ asset('images/scanner.png') }}" alt="Dashboard Icon"
-                        class="w-5 h-5 inline mr-5">QR Code Scanner</a>
+                        class="nav-icon">QR Code Scanner</a>
 
                 <a href="{{route('admin.sessions.index')}}" @click="sidebarOpen = false"
-                    class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">
+                    class="nav-text">
                     <img src="{{ asset('images/session.png') }}" alt="Dashboard Icon"
-                        class="w-5 h-5 inline mr-5">Sessions</a>
+                        class="nav-icon">Sessions</a>
 
                 <a href="{{ route('admin.walkin.index') }}" @click="sidebarOpen = false"
-                    class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">
+                    class="nav-text">
                     <img src="{{ asset('images/walkin.png') }}" alt="Dashboard Icon"
-                        class="w-5 h-5 inline mr-5">Walk-in Guest</a>
+                        class="nav-icon">Walk-in Guest</a>
 
-                <div class="pt-4 border-t border-gray-200"></div>
+                <div class="pt-4 border-t border-[#0e608f]"></div>
 
                 <a href="{{ route('admin.createAnAccount.create') }}" @click="sidebarOpen = false"
-                    class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">
+                    class="nav-text">
                     <img src="{{ asset('images/createAccount.png') }}" alt="Dashboard Icon"
-                        class="w-5 h-5 inline mr-5">Add Account</a>
+                        class="nav-icon">Add Account</a>
 
                 <a href="{{ route('admin.createAnAccount.index') }}" @click="sidebarOpen = false"
-                    class="block px-4 py-2 rounded hover:bg-red-50 hover:text-red-600 transition">
+                    class="nav-text">
                     <img src="{{ asset('images/account.png') }}" alt="Dashboard Icon"
-                        class="w-5 h-5 inline mr-5">Accounts</a>
+                        class="nav-icon">Accounts</a>
 
-                <div class="pt-4 border-t border-gray-200">
+                <div class="pt-4 border-t border-[#0e608f]">
                     <a href="#" @click="sidebarOpen = false"
-                        class="block px-4 py-2 text-red-600 hover:bg-red-100 rounded transition font-medium">
+                        class="nav-text">
                         <img src="{{ asset('images/logout.png') }}" alt="Dashboard Icon"
-                            class="w-5 h-5 inline mr-5">Logout</a>
+                            class="nav-icon">Logout</a>
                 </div>
             </nav>
         </aside>
