@@ -11,8 +11,7 @@
 
             <div id="qr-result" class="mt-6 text-center">
                 <span class="text-sm text-gray-400">Scanned Result:</span>
-                <div id="result"
-                    class="block mt-2 text-lg font-semibold text-blue-600 break-words max-w-full"></div>
+                <div id="result" class="block mt-2 text-lg font-semibold text-blue-600 break-words max-w-full"></div>
             </div>
         </div>
 
@@ -26,20 +25,34 @@
     <script>
         function onScanSuccess(decodedText, decodedResult) {
             const resultElement = document.getElementById("result");
-            resultElement.innerText = decodedText;
-
             console.log(decodedText);
 
-            html5QrcodeScanner.clear().then(() => {
-                console.log("QR scanner stopped after successful scan.");
-            }).catch((error) => {
-                console.error("Failed to stop scanning:", error);
-            });
 
             fetch(decodedText)
                 .then(res => res.json())
-                .then(data => alert(data.message))
-                .catch(err => console.error(err));
+                .then(data => {
+                    console.log(data.message)
+                    resultElement.innerText = data.message;
+                    html5QrcodeScanner.clear().then(() => {
+                            console.log("QR scanner stopped after successful scan.");
+                            setTimeout(() => {
+                                resultElement.innerText = "";
+                                html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+                            }, 3000)
+
+                        })
+
+                        .catch(err => console.error(err));
+
+
+
+
+
+                }).catch((error) => {
+                    console.error("Failed to stop scanning:", error);
+                });
+
+
         }
 
         function onScanFailure(error) {
@@ -48,12 +61,16 @@
 
         let html5QrcodeScanner = new Html5QrcodeScanner(
             "qr-reader", {
-                fps: 10,
-                qrbox: { width: 250, height: 250 },
-            },
-            false
+                fps: 10
+                , qrbox: {
+                    width: 250
+                    , height: 250
+                }
+            , }
+            , false
         );
 
         html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+
     </script>
 </x-navigation>
