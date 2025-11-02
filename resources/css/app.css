@@ -36,6 +36,8 @@
     .btn-secondary{
         @apply text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-4 py-2 text-center hover:scale-105 transform transition-transform duration-300;
     }
+    
+
     .btn-delete{
         @apply bg-red-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-red-700 hover:scale-105 transform transition-transform duration-300;
     }
@@ -48,7 +50,7 @@
 
 /* Custom Classes*/
 .back-button{
-    @apply inline-block text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center
+    @apply inline-block text-white bg-[#1d8ac8] hover:bg-[#0e608f] font-medium rounded-lg text-xl px-5 py-2.5 text-center
 }
 
 .title-text{
@@ -63,5 +65,13 @@
     @apply mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 shadow-sm
 }
 .submit-design{
-    @apply w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200
+    @apply w-full bg-[#1d8ac8] hover:bg-[#0e608f] text-white font-semibold py-2 px-4 rounded-md transition duration-200
+}
+
+.nav-icon{
+    @apply w-10 h-10 inline mr-2;
+}
+
+.nav-text{
+    @apply block px-4 py-2 text-xl text-[#e9e9e9] rounded hover:bg-[#057dcd] hover:text-black transition;
 }

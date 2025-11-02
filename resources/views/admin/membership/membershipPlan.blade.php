@@ -15,19 +15,29 @@
         </script>
     @endif
 
-    @if(session('deleted'))
+    {{--  @if(session('deleted'))
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                Swal.fire({
-                    title: 'Success!',
-                    text: "{{ session('deleted') }}",
-                    icon: 'success',
-                    confirmButtonText: 'OK',
-                    confirmButtonColor: '#4CAF50'
-                });
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "{{ session('deleted') }}",
+                        icon: "success"
+                    });
+                }
             });
         </script>
     @endif
+        --}}
+
 
     <div>
         <div class="flex justify-between p-5 mb-5 h-20">
@@ -35,10 +45,11 @@
                 <h1 class="title-text">Membership Plans</h1>
             </div>
             <div>
-                <a href="{{ route('admin.membership.create') }}"
-                    class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
-                    Create New Membership Tier
-                </a>
+                <button type="button"
+                    class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+                    <a href="{{ route('admin.membership.create') }}">
+                        Create New Membership Tier
+                    </a></button>
             </div>
         </div>
 
@@ -50,3 +61,4 @@
         </div>
     </div>
 </x-navigation>
+

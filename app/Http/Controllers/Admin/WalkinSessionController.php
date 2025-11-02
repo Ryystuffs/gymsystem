@@ -30,4 +30,9 @@ class WalkinSessionController extends Controller
         $this->walkinSession->createWalkinSession($data);
         return redirect()->route('admin.walkin.index')->with('success', 'Walkin Session Created');
     }
+
+    public function checkout(WalkinSession $walkinSession){
+        $this->walkinSession->checkoutWalkinSession($walkinSession);
+        return redirect()->route('admin.walkin.index')->with('success', 'Walk In Guest checkout');
+    }
 }

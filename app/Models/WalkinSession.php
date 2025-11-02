@@ -10,6 +10,10 @@ class WalkinSession extends Model
     /** @use HasFactory<\Database\Factories\WalkinSessionFactory> */
     use HasFactory;
     protected $fillable = ['name', 'check_in', 'check_out', 'amount_paid', 'payment_id'];
+    protected $casts = [
+        'check_in' =>'datetime',
+        'check_out' => 'datetime'
+    ];
 
     public function payment(){
         return $this->belongsTo(Payments::class);

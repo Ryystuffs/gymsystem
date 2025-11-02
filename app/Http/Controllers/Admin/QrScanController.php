@@ -26,7 +26,10 @@ class QrScanController extends Controller
             ->first();
 
         if (! $membership) {
-            return redirect()->route('admin.sessions.index')->with(['error' => 'No active membership found.'], 404);
+            return response()->json([
+                'status' => 'error',
+                'message' => 'no active membership, create one first.'
+            ]);
         }
 
         // Check if there’s an open session (no check_out time)
@@ -41,14 +44,21 @@ class QrScanController extends Controller
                 'check_in' => Carbon::now(),
             ]);
 
-            return redirect()->route('admin.sessions.index')->with(['message' => 'Check-in recorded successfully.']);
+            return response()->json([
+                'status' => 'success',
+                'type' => 'check-in',
+                'message' =>  $membership->user->name . ' Check-in successfully'
+            ]);
         } else {
             // Mark existing session as checked out
             $openSession->update([
                 'check_out' => Carbon::now(),
             ]);
-
-            return redirect()->route('admin.sessions.index')->with(['message' => 'Check-out recorded successfully.']);
+            return response()->json([
+                'status' => 'success',
+                'type' => 'check-out',
+                'message' =>  $membership->user->name . ' Check-out successfully'
+            ]);
         }
     }
 

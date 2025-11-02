@@ -1,7 +1,7 @@
 <x-navigation>
     <h1 class="title-text text-center">Payment Records</h1>
 
-    <table class="min-w-full bg-white border border-gray-300 mt-4 mb-3 rounded-lg overflow-hidden"> 
+    <table class="min-w-full bg-white border border-gray-300 mt-4 mb-3 rounded-lg overflow-hidden">
         <thead class="bg-blue-400 text-2xl text-white h-16 ">
             <tr class="text-center">
                 <th>Name</th>
@@ -21,9 +21,15 @@
                     <td class="text-red-600">
                         {{ $payment->amount ?? $payment->walkinSession->amount_paid ?? '0' }}
                     </td>
-                    <td>{{ $payment->payment_method ?? 'N/A' }}</td>
-                    <td>{{ $payment->type ?? 'N/A' }}</td>
-                    <td>{{ $payment->created_at }}</td>
+                    <td>
+                        {{ $payment->payment_method ?? 'N/A' }}
+                    </td>
+                    <td>
+                        {{ $payment->type ?? 'N/A' }}
+                    </td>
+                    <td>
+                        {{ $payment->created_at }}
+                    </td>
                     <td>
                         {{ $payment->membershipPlan->name ?? 'Not a Member' }}
                     </td>
@@ -31,7 +37,7 @@
             @endforeach
         </tbody>
     </table>
-        <div>
-            {{ $payments->links() }}
-        </div>
+    <div>
+        {{ $payments->links() }}
+    </div>
 </x-navigation>
