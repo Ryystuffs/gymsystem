@@ -17,9 +17,10 @@ Route::get('/', function () {
     return view('landingPage');
 });
 
-Route::prefix('auth')->name('auth.')->middleware('guest')->group(function () {
+Route::prefix('auth')->name('auth.')->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->name('index');
     Route::post('/', [LoginController::class, 'attempt'])->name('attempt');
+    
 });
 
 
