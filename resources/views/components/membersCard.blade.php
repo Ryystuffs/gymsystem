@@ -7,7 +7,7 @@
             {{  $userMembership->membershipPlan ? $userMembership->membershipPlan->name : 'N/A' }}
         </p>
         <p>Membership Start: {{ $userMembership->created_at->format('M d, Y') }}</p>
-        <p>Membership End: {{ $userMembership->expired_at }}</p>
+        <p>Membership End: {{ $userMembership->expired_at->format('M d, Y') }}</p>
         <p>@if($userMembership->is_active) Status: Active
         @else Status: Inactive @endif</p>
     </div>

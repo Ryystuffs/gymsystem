@@ -33,26 +33,21 @@
                 .then(data => {
                     console.log(data.message)
                     resultElement.innerText = data.message;
-                    html5QrcodeScanner.clear().then(() => {
-                            console.log("QR scanner stopped after successful scan.");
-                            setTimeout(() => {
-                                resultElement.innerText = "";
-                                html5QrcodeScanner.render(onScanSuccess, onScanFailure);
-                            }, 3000)
+                })
 
-                        })
+            html5QrcodeScanner.clear().then(() => {
+                console.log("QR scanner stopped after successful scan.");
+                setTimeout(() => {
+                        resultElement.innerText = "";
+                        html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+                    }, 3000)
 
-                        .catch(err => console.error(err));
+                    .catch(err => console.error(err));
 
-
-
-
-
-                }).catch((error) => {
-                    console.error("Failed to stop scanning:", error);
-                });
-
-
+            }).catch((error) => {
+                console.error("Failed to stop scanning:", error);
+            });
+    
         }
 
         function onScanFailure(error) {

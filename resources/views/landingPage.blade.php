@@ -32,7 +32,7 @@
             </div>
 
             <div class="flex items-center gap-6">
-                <a href="{{ route('login.index') }}"
+                <a href="{{ route('login') }}"
                     class="bg-black text-white px-6 py-3 rounded-full border border-[#2d2eb4] font-semibold hover:bg-gray-900">
                     Log in
                 </a>
@@ -55,7 +55,7 @@
                 — where passion meets discipline, and every rep brings you closer to your strongest self.
             </p>
             <div class="space-x-4">
-                <a href="{{ route('login.index') }}"
+                <a href="{{ route('login') }}"
                     class="bg-black text-white px-6 py-3 rounded-full border border-[#2d2eb4] font-semibold hover:bg-gray-900 transition">
                     Join Now
                 </a>
