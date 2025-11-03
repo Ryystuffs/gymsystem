@@ -26,7 +26,7 @@
 
     <div class="flex min-h-screen pt-14 md:pt-0">
         <!-- Sidebar -->
-        <aside class="fixed inset-y-0 left-0 w-80 bg-[#122D3D] border-r border-gray-200 z-30 transform transition-transform duration-200 ease-in-out
+        <aside class="fixed inset-y-0 left-0 w-80 bg-black border-r border-gray-200 z-30 transform transition-transform duration-200 ease-in-out
             md:translate-x-0 md:static md:inset-0"
             :class="{ '-translate-x-full': !sidebarOpen, 'translate-x-0': sidebarOpen }">
             <div class="p-6 border-b border-gray-200 text-center md:hidden">
@@ -63,7 +63,7 @@
                     <img src="{{ asset('images/payment.png') }}" alt="Dashboard Icon"
                         class="nav-icon">Payment Records</a>
 
-                <div class="pt-4 border-t border-[#0e608f]"></div>
+                
 
                 <a href="{{ route('admin.scan.scanner') }}" @click="sidebarOpen = false"
                     class="nav-text">
@@ -80,7 +80,7 @@
                     <img src="{{ asset('images/walkin.png') }}" alt="Dashboard Icon"
                         class="nav-icon">Walk-in Guest</a>
 
-                <div class="pt-4 border-t border-[#0e608f]"></div>
+
 
                 <a href="{{ route('admin.createAnAccount.create') }}" @click="sidebarOpen = false"
                     class="nav-text">
@@ -107,7 +107,7 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 px-4 py-6 md:ml-4">
+        <main class="main-content">
             {{ $slot }}
         </main>
 

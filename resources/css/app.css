@@ -49,6 +49,10 @@
 }
 
 /* Custom Classes*/
+.main-content{
+    @apply flex-1 px-0 py-0 md:ml-4;
+}
+
 .back-button{
     @apply inline-block text-white bg-[#1d8ac8] hover:bg-[#0e608f] font-medium rounded-lg text-xl px-5 py-2.5 text-center
 }

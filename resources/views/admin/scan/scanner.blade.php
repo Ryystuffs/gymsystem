@@ -1,5 +1,5 @@
 <x-navigation>
-    <div class="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-4">
+    <div class="min-h-screen bg-gray-50 flex flex-col items-center justify-center">
 
         <div class="text-center mb-10">
             <h1 class="text-3xl font-bold text-gray-800 tracking-tight">QR Code Scanner</h1>
