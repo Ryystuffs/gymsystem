@@ -7,17 +7,17 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="min-h-screen flex flex-col bg-[#3A3838] md:flex-row">
+<body class="min-h-screen flex flex-col bg-[#3A3838] md:flex-row ">
 
-    <div class="w-full md:w-1/2 bg-[#122D3D] flex flex-col justify-center items-center p-8 text-center">
+    <div class="w-full md:w-1/2 flex flex-col justify-center items-center p-8 text-center bg-black  bg-cover bg-center" style="background-image:url('{{ asset("images/bglogin.jpg") }}'); ">
         <img src="{{ asset('images/gainlabWhite.png') }}" alt="Gym Image" class="mb-6 rounded-lg max-w-xs md:max-w-sm">
         <h1 class="text-3xl md:text-4xl font-bold mb-2 text-white">Start Your Journey Now</h1>
         <hr class="border-white w-24 md:w-110 mb-2 mx-auto">
         <h2 class="text-xl md:text-2xl text-white">Achieve Your Dream Body</h2>
     </div>
 
-    <div class="w-full md:w-1/2 flex justify-center items-center bg-[#3A3838] text-white p-8">
-        <div class="w-full max-w-md rounded-lg">
+    <div class="w-full md:w-1/2 flex justify-center items-center bg-[#000000] text-white p-8">
+        <div class="w-full max-w-lg rounded-lg bg-[#121212] p-15 border-1 border-gray-600">
             <h1 class="text-2xl md:text-3xl font-bold text-center mb-6">Login</h1>
             <form action="{{ route('attempt') }}" method="POST" class="space-y-6">
                 @csrf
