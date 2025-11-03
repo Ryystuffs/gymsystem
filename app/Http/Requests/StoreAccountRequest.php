@@ -25,7 +25,7 @@ class StoreAccountRequest extends FormRequest
             //
             'name' => 'required|string|unique:users|max:255',
             'email' => 'required|email|unique:users|max:255',
-            'password' => 'required|string|confirmed',
+            'password' => 'required|string|confirmed|min:8',
         ];
     }
 }

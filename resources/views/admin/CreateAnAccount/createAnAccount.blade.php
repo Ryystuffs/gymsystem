@@ -11,12 +11,12 @@
                 <div class="mb-4">
                     <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
                     <input type="text" id="fname" name="name" placeholder="Enter Full Name" class="input-design"
-                        required>
+                        required value="{{ old('name') }}">
                 </div>
 
                 <div class="mb-4">
                     <label for="email" class="block text-sm font-medium text-gray-700">Enter Email</label>
-                    <input type="email" id="email" name="email" placeholder="Enter Email" class="input-design" required>
+                    <input type="email" id="email" name="email" placeholder="Enter Email" class="input-design" required value="{{ old('email') }}">
                 </div>
 
                 <div class="mb-4">
@@ -31,6 +31,7 @@
                     <input type="password" id="confirm_password" name="password_confirmation" placeholder="Confirm Password"
                         class="input-design" required>
                 </div>
+
 
                 {{-- Success alert message --}}
                 @if (session('success'))
@@ -48,7 +49,7 @@
                 @endif
 
                 @if ($errors->any())
-                    <div id="validation-errors" class="hidden">
+                    <div id="validation-errors">
                         @foreach ($errors->all() as $error)
                             <p>{{ $error }}</p>
                         @endforeach

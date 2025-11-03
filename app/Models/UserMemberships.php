@@ -13,6 +13,9 @@ class UserMemberships extends Model
     /** @use HasFactory<\Database\Factories\UserMembershipsFactory> */
     use HasFactory;
     protected $fillable = ['user_id', 'membership_plan_id', 'expired_at', 'is_active', 'created_at'];
+    protected $casts = [
+        'expired_at' =>'datetime',
+    ];
 
     public function user()
     {

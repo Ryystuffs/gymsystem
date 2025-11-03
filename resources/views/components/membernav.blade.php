@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Member</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link rel="icon" href="{{ asset('images/admin.png') }}" type="image/png">
-    <!-- Alpine.js for toggling sidebar -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body class="bg-gray-100 font-sans text-gray-800" x-data="{ sidebarOpen: false }">
+<body>
+
+    <body class="bg-gray-100 font-sans text-gray-800" x-data="{ sidebarOpen: false }">
     <!-- Responsive Design -->
     <header class="bg-white shadow md:hidden fixed top-0 left-0 right-0 z-20">
         <div class="flex items-center justify-between px-4 py-3">
@@ -43,51 +42,19 @@
             </div>
             <nav class="px-2 py-3 space-y-2">
 
-                <a href="{{ route('admin.dashboard') }}" @click="sidebarOpen = false"
+                <a href="#" @click="sidebarOpen = false"
                     class="nav-text">
                     <img src="{{ asset('images/dashboard.png') }}" alt="Dashboard Icon"
                         class="nav-icon">Dashboard</a>
 
-                <a href="{{ route('admin.membership.index') }}" @click="sidebarOpen = false"
-                    class="nav-text">
-                    <img src="{{ asset('images/membership.png') }}" alt="Dashboard Icon"
-                        class="nav-icon">Membership Plans</a>
-
-                <a href="{{ route('admin.members.index') }}" @click="sidebarOpen = false"
-                    class="nav-text">
-                    <img src="{{ asset('images/member.png') }}" alt="Dashboard Icon"
-                        class="nav-icon">Members</a>
-                
-                <a href="{{ route('admin.payments.index') }}" @click="sidebarOpen = false"
-                    class="nav-text">
-                    <img src="{{ asset('images/payment.png') }}" alt="Dashboard Icon"
-                        class="nav-icon">Payment Records</a>
-
                 <div class="pt-4 border-t border-[#0e608f]"></div>
 
-                <a href="{{ route('admin.scan.scanner') }}" @click="sidebarOpen = false"
+                <a href="#" @click="sidebarOpen = false"
                     class="nav-text">
                     <img src="{{ asset('images/scanner.png') }}" alt="Dashboard Icon"
                         class="nav-icon">QR Code Scanner</a>
 
-                <a href="{{route('admin.sessions.index')}}" @click="sidebarOpen = false"
-                    class="nav-text">
-                    <img src="{{ asset('images/session.png') }}" alt="Dashboard Icon"
-                        class="nav-icon">Sessions</a>
-
-                <a href="{{ route('admin.walkin.index') }}" @click="sidebarOpen = false"
-                    class="nav-text">
-                    <img src="{{ asset('images/walkin.png') }}" alt="Dashboard Icon"
-                        class="nav-icon">Walk-in Guest</a>
-
-                <div class="pt-4 border-t border-[#0e608f]"></div>
-
-                <a href="{{ route('admin.createAnAccount.create') }}" @click="sidebarOpen = false"
-                    class="nav-text">
-                    <img src="{{ asset('images/createAccount.png') }}" alt="Dashboard Icon"
-                        class="nav-icon">Add Account</a>
-
-                <a href="{{ route('admin.createAnAccount.index') }}" @click="sidebarOpen = false"
+                <a href="#" @click="sidebarOpen = false"
                     class="nav-text">
                     <img src="{{ asset('images/account.png') }}" alt="Dashboard Icon"
                         class="nav-icon">Accounts</a>
@@ -105,15 +72,8 @@
                 </div>
             </nav>
         </aside>
-
-        <!-- Main Content -->
-        <main class="flex-1 px-4 py-6 md:ml-4">
-            {{ $slot }}
-        </main>
-
-
-        @stack('scripts')
-    </div>
+    <main>
+        {{ $slot }}
+    </main>
 </body>
-
 </html>
