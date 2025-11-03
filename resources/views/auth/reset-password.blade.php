@@ -11,8 +11,8 @@
 </head>
 
 <body>
-    <div class="min-h-screen bg-[#1E1E1E] flex flex-column items-center justify-center">
-        <div class="bg-white shadow-lg rounded-2xl p-6 pb-10 w-full max-w-md border border-gray-100">
+    <div class="min-h-screen bg-[#121212] flex flex-column items-center justify-center">
+        <div class="bg-white shadow-lg rounded-2xl p-6 pb-10 w-full max-w-md border-1 border-gray-400">
             <form action="{{ route('password.update') }}" method="POST">
 
                 <div class="flex flex-col">
@@ -45,7 +45,7 @@
                 -->  
                         <input type="hidden" name="token" value="{{ $token }}">
 
-                        <button class="p-1 bg-[#122D3D] rounded-md border border-black text-white" type="submit">Save
+                        <button class="p-1 bg-black rounded-md border border-black text-white" type="submit">Save
                             Password</button>
 
                         @if (session('status'))

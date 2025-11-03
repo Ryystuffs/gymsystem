@@ -11,8 +11,8 @@
 </head>
 
 <body>
-    <div class="min-h-screen bg-[#1E1E1E] flex flex-column items-center justify-center">
-        <div class="bg-white shadow-lg rounded-2xl p-6 w-full max-w-md border border-gray-100">
+    <div class="min-h-screen bg-[#121212] flex flex-column items-center justify-center">
+        <div class="bg-white shadow-lg rounded-2xl p-6 w-full max-w-md border-1 border-gray-400">
             <form action="{{ route('password.email') }}" method="POST">
                 @csrf
                 <div class="text-center pt-4 pb-10">
@@ -22,7 +22,7 @@
 
                 <div class="flex flex-col">
                     
-                    <input class="relative p-1 pl-8 border border-black rounded-md" type="email" name="email" placeholder="Enter Email Address" required>
+                    <input class="relative p-1 pl-8 border border-black rounded-md" type="email" name="email" placeholder="Enter Email Address">
                     <ion-icon class="absolute p-2" name="mail-outline"></ion-icon><br>
 
                     @if (session('status'))
@@ -34,8 +34,8 @@
                     @enderror
 
 
-                    <button class="p-1 bg-[#122D3D] rounded-md border border-black text-white" type="submit">Send Verification</button><br>
-                    <a class="text-center" href="#"><button>Back to Login</button></a>
+                    <button class="p-1 bg-black rounded-md border border-black text-white" type="submit">Send Verification</button><br>
+                    <a class="text-center" href="{{ route('login') }}"><button>Back to Login</button></a>
                 </div>
             </form>
         </div>
