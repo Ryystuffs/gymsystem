@@ -36,7 +36,8 @@
                             <input type="checkbox" onclick="togglePassword()" class="h-4 w-4">
                             <span>Show Password</span>
                         </label>
-                        <a href="#" class="text-sm hover:underline text-gray-300">Forgot Password?</a>
+                        
+                        <a href="{{ route('password.request')}}" class="text-sm hover:underline text-gray-300">Forgot Password?</a>
                     </div>
                 </div>
 
