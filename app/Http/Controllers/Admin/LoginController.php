@@ -12,7 +12,7 @@ class LoginController extends Controller
 {
     //  
     public function index(){
-        return view ('auth.login');
+        return view ('login');
     }
 
     public function attempt(Request $request){
@@ -45,6 +45,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('auth.index');    
+        return redirect()->route('login');    
     }
 }

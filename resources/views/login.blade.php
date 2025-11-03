@@ -19,7 +19,7 @@
     <div class="w-full md:w-1/2 flex justify-center items-center bg-[#3A3838] text-white p-8">
         <div class="w-full max-w-md rounded-lg">
             <h1 class="text-2xl md:text-3xl font-bold text-center mb-6">Login</h1>
-            <form action="{{ route('auth.attempt') }}" method="POST" class="space-y-6">
+            <form action="{{ route('attempt') }}" method="POST" class="space-y-6">
                 @csrf
 
                 <div>
