@@ -28,4 +28,8 @@ class Kernel extends ConsoleKernel
         //* * * * * php C:\xampp\htdocs\dashboard\gymsystem\artisan schedule:run >> /dev/null 2>&1 (do this when deployed)
 
     }
+    protected $routeMiddleware = [
+        
+        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+    ];
 }
