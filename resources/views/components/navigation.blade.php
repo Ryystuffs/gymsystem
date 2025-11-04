@@ -28,7 +28,7 @@
 
     <div class="flex min-h-screen pt-14 md:pt-0">
         <!-- Sidebar -->
-        <aside class="fixed inset-y-0 left-0 w-85 bg-black border-r border-gray-200 z-30 transform transition-transform duration-200 ease-in-out
+        <aside class="fixed inset-y-0 left-0 w-72 bg-black border-r border-gray-200 z-30 transform transition-transform duration-200 ease-in-out
             md:translate-x-0 md:static md:inset-0 flex flex-col"
             :class="{ '-translate-x-full': !sidebarOpen, 'translate-x-0': sidebarOpen }">
 
@@ -43,11 +43,10 @@
                 <span class="text-xl font-semibold text-red-600">Menu</span>
             </div>
 
-            <div class="p-1 border-b border-[#0e608f] text-center hidden md:block">
-                <img src="{{ asset('images/gainlabWhite.png') }}" alt="">
+            <div class="p-1 pb-4 text-center hidden md:block">
+                <img src="{{ asset('images/gainlabWhite.png') }}" alt="gainlab logo" class="p-2 w-42">
             </div>
 
-  
             <nav class="px-2 py-3 space-y-2 flex-1 overflow-y-auto">
 
                 <a href="{{ route('admin.dashboard') }}" @click="sidebarOpen = false" class="nav-text">
@@ -69,7 +68,7 @@
                     <button @click="open = !open"
                         class="nav-text w-full flex items-center justify-between focus:outline-none">
                         <div class="flex items-center space-x-2">
-                            <img src="{{ asset('images/account.png') }}" alt="Account Icon" class="nav-icon">
+                            <img src="{{ asset('images/memberManage.png') }}" alt="Account Icon" class="nav-icon">
                             <span>Member Management</span>
                             <svg :class="{ 'rotate-180': open }"
                                 class="w-6 h-6 transform transition-transform duration-200 ml-auto" fill="none"
@@ -95,8 +94,8 @@
                     <button @click="open = !open"
                         class="nav-text w-full flex items-center justify-between focus:outline-none">
                         <div class="flex items-center space-x-2">
-                            <ion-icon class="nav-icon" name="build-sharp"></ion-icon>
-                            <span>Users Management</span>
+                            <img src="{{ asset('images/userManage.png') }}" alt="Account Icon" class="nav-icon">
+                            <span>User Management</span>
                             <svg :class="{ 'rotate-180': open }"
                                 class="w-6 h-6 transform transition-transform duration-200 ml-auto" fill="none"
                                 stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"
@@ -124,7 +123,7 @@
                 </div>
             </nav>
 
-            <div class="p-4 border-t border-[#0e608f] mt-auto">
+            <div class="p-4 mt-auto">
                 <form action="{{ route('admin.logout')}}" method="POST" @click="sidebarOpen = false" class="nav-text">
                     @csrf
                     <button type="submit" class="w-full text-left flex items-center">
