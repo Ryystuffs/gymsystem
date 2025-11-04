@@ -6,8 +6,6 @@
     use Illuminate\Support\Facades\DB;
     use App\Models\WalkinSession;
     use App\Models\Payments;
-use Faker\Provider\ar_EG\Payment;
-use Illuminate\Support\Arr;
 
     class WalkinService {
        public function createWalkinSession(array $data){
