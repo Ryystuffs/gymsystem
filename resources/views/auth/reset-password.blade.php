@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Reset Password</title>
 </head>
 
@@ -32,34 +33,65 @@
                     <ion-icon class="absolute pt-46 pl-2" name="lock-closed-outline"></ion-icon><br>
 
                     <input class="relative p-1 pl-8 border border-black rounded-md" type="password"
-                        name="password_confirmation" id="password_confirmation" placeholder="Password Confirmation"
+                        name="password_confirmation" id="password_confirmation" placeholder="Re-Enter Password"
                         required>
-                    <ion-icon class="absolute pt-60 pl-2" name="lock-closed-outline"></ion-icon><br>
-                 <!-- 
-                    <div class="">
+                    <ion-icon class="absolute pt-60 pl-2" name="lock-closed-outline"></ion-icon>
+
+                    <div class="mb-8">
                         <label class="text-black text-sm">
-                            <input type="checkbox" onclick="togglePassword()" class="h-3 w-3">
-                            <span>Show Password</span>
+                            <input type="checkbox" onclick="togglePassword()" class="h-3 w-3 accent-black">
+                            <span class="text-sm">Show Password</span>
                         </label>
                     </div>
-                -->  
-                        <input type="hidden" name="token" value="{{ $token }}">
 
-                        <button class="p-1 bg-black rounded-md border border-black text-white" type="submit">Save
-                            Password</button>
+                    <input type="hidden" name="token" value="{{ $token }}">
 
-                        @if (session('status'))
-                            <div>{{ session('status') }}</div>
-                        @endif
+                    <button class="p-1 bg-black rounded-md border border-black text-white" type="submit">Save
+                        Password</button>
 
-                        @error('email')
-                            <div>{{ $message }}</div>
-                        @enderror
-                    </div>
+                    @if (session('status'))
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                Swal.fire({
+                                    title: 'Success!',
+                                    text: "{{ session('status') }}",
+                                    icon: 'success',
+                                    confirmButtonText: 'OK',
+                                    confirmButtonColor: '#4CAF50'
+                                });
+                            });
+                        </script>
+                    @endif
+
+                    @error('email')
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                Swal.fire({
+                                    title: 'Error!',
+                                    text: "{{ $message }}",
+                                    icon: 'error',
+                                    confirmButtonText: 'OK',
+                                    confirmButtonColor: '#d33'
+                                });
+                            });
+                        </script>
+                    @enderror
+                </div>
             </form>
         </div>
     </div>
     </div>
+
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const confirmPasswordField = document.getElementById('password_confirmation');
+
+            passwordField.type = passwordField.type === 'password' ? 'text' : 'password';
+            confirmPasswordField.type = confirmPasswordField.type === 'password' ? 'text' : 'password';
+        }
+    </script>
+
 </body>
 
 </html>

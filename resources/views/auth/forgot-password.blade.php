@@ -8,6 +8,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>Forgot Password</title>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -21,20 +22,42 @@
                 </div>
 
                 <div class="flex flex-col">
-                    
-                    <input class="relative p-1 pl-8 border border-black rounded-md" type="email" name="email" placeholder="Enter Email Address">
+
+                    <input class="relative p-1 pl-8 border border-black rounded-md" type="email" name="email"
+                        placeholder="Enter Email Address">
                     <ion-icon class="absolute p-2" name="mail-outline"></ion-icon><br>
 
                     @if (session('status'))
-                        <div class="alert alert-success">{{ session('status') }}</div>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                Swal.fire({
+                                    title: 'Success!',
+                                    text: "{{ session('status') }}",
+                                    icon: 'success',
+                                    confirmButtonText: 'OK',
+                                    confirmButtonColor: '#4CAF50'
+                                });
+                            });
+                        </script>
                     @endif
 
                     @error('email')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                Swal.fire({
+                                    title: 'Error!',
+                                    text: "{{ $message }}",
+                                    icon: 'error',
+                                    confirmButtonText: 'OK',
+                                    confirmButtonColor: '#d33'
+                                });
+                            });
+                        </script>
                     @enderror
 
 
-                    <button class="p-1 bg-black rounded-md border border-black text-white" type="submit">Send Verification</button><br>
+                    <button class="p-1 bg-black rounded-md border border-black text-white" type="submit">Send
+                        Verification</button><br>
                     <a class="text-center" href="{{ route('login') }}"><button>Back to Login</button></a>
                 </div>
             </form>
