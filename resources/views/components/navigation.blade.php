@@ -9,7 +9,9 @@
     <link rel="icon" href="{{ asset('images/admin.png') }}" type="image/png">
     <!-- Alpine.js for toggling sidebar -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 </head>
+
 <body class="bg-gray-100 font-sans text-gray-800" x-data="{ sidebarOpen: false }">
     <!-- Responsive Design -->
     <header class="bg-white shadow md:hidden fixed top-0 left-0 right-0 z-20">
@@ -26,9 +28,11 @@
 
     <div class="flex min-h-screen pt-14 md:pt-0">
         <!-- Sidebar -->
-        <aside class="fixed inset-y-0 left-0 w-80 bg-black border-r border-gray-200 z-30 transform transition-transform duration-200 ease-in-out
-            md:translate-x-0 md:static md:inset-0"
+        <aside class="fixed inset-y-0 left-0 w-85 bg-black border-r border-gray-200 z-30 transform transition-transform duration-200 ease-in-out
+            md:translate-x-0 md:static md:inset-0 flex flex-col"
             :class="{ '-translate-x-full': !sidebarOpen, 'translate-x-0': sidebarOpen }">
+
+            <!-- Mobile Design -->
             <div class="p-6 border-b border-gray-200 text-center md:hidden">
                 <button @click="sidebarOpen = false" class="text-gray-500 float-right">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
@@ -38,73 +42,100 @@
                 </button>
                 <span class="text-xl font-semibold text-red-600">Menu</span>
             </div>
+
             <div class="p-1 border-b border-[#0e608f] text-center hidden md:block">
                 <img src="{{ asset('images/gainlabWhite.png') }}" alt="">
             </div>
-            <nav class="px-2 py-3 space-y-2">
 
-                <a href="{{ route('admin.dashboard') }}" @click="sidebarOpen = false"
-                    class="nav-text">
-                    <img src="{{ asset('images/dashboard.png') }}" alt="Dashboard Icon"
-                        class="nav-icon">Dashboard</a>
+  
+            <nav class="px-2 py-3 space-y-2 flex-1 overflow-y-auto">
 
-                <a href="{{ route('admin.membership.index') }}" @click="sidebarOpen = false"
-                    class="nav-text">
-                    <img src="{{ asset('images/membership.png') }}" alt="Dashboard Icon"
-                        class="nav-icon">Membership Plans</a>
+                <a href="{{ route('admin.dashboard') }}" @click="sidebarOpen = false" class="nav-text">
+                    <img src="{{ asset('images/dashboard.png') }}" alt="Dashboard Icon" class="nav-icon">Dashboard</a>
 
-                <a href="{{ route('admin.members.index') }}" @click="sidebarOpen = false"
-                    class="nav-text">
-                    <img src="{{ asset('images/member.png') }}" alt="Dashboard Icon"
-                        class="nav-icon">Members</a>
-                
-                <a href="{{ route('admin.payments.index') }}" @click="sidebarOpen = false"
-                    class="nav-text">
-                    <img src="{{ asset('images/payment.png') }}" alt="Dashboard Icon"
-                        class="nav-icon">Payment Records</a>
+                <a href="{{ route('admin.membership.index') }}" @click="sidebarOpen = false" class="nav-text">
+                    <img src="{{ asset('images/membership.png') }}" alt="Dashboard Icon" class="nav-icon">Membership
+                    Plans</a>
 
-                
+                <a href="{{ route('admin.scan.scanner') }}" @click="sidebarOpen = false" class="nav-text">
+                    <img src="{{ asset('images/scanner.png') }}" alt="Dashboard Icon" class="nav-icon">QR Code
+                    Scanner</a>
 
-                <a href="{{ route('admin.scan.scanner') }}" @click="sidebarOpen = false"
-                    class="nav-text">
-                    <img src="{{ asset('images/scanner.png') }}" alt="Dashboard Icon"
-                        class="nav-icon">QR Code Scanner</a>
+                <a href="{{ route('admin.walkin.index') }}" @click="sidebarOpen = false" class="nav-text">
+                    <img src="{{ asset('images/walkin.png') }}" alt="Dashboard Icon" class="nav-icon">Walk-In
+                    Management</a>
 
-                <a href="{{route('admin.sessions.index')}}" @click="sidebarOpen = false"
-                    class="nav-text">
-                    <img src="{{ asset('images/session.png') }}" alt="Dashboard Icon"
-                        class="nav-icon">Sessions</a>
+                <div x-data="{ open: false }" class="space-y-1">
+                    <button @click="open = !open"
+                        class="nav-text w-full flex items-center justify-between focus:outline-none">
+                        <div class="flex items-center space-x-2">
+                            <img src="{{ asset('images/account.png') }}" alt="Account Icon" class="nav-icon">
+                            <span>Member Management</span>
+                            <svg :class="{ 'rotate-180': open }"
+                                class="w-6 h-6 transform transition-transform duration-200 ml-auto" fill="none"
+                                stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg>
+                        </div>
 
-                <a href="{{ route('admin.walkin.index') }}" @click="sidebarOpen = false"
-                    class="nav-text">
-                    <img src="{{ asset('images/walkin.png') }}" alt="Dashboard Icon"
-                        class="nav-icon">Walk-in Guest</a>
+                    </button>
+                    <div x-show="open" x-collapse class="pl-5 space-y-1">
+                        <a href="{{ route('admin.members.index') }}" @click="sidebarOpen = false" class="nav-text">
+                            <img src="{{ asset('images/member.png') }}" alt="Dashboard Icon"
+                                class="nav-icon">Members</a>
 
+                        <a href="{{ route('admin.sessions.index') }}" @click="sidebarOpen = false" class="nav-text">
+                            <img src="{{ asset('images/session.png') }}" alt="Dashboard Icon"
+                                class="nav-icon">Sessions</a>
+                    </div>
+                </div>
 
+                <div x-data="{ open: false }" class="space-y-1">
+                    <button @click="open = !open"
+                        class="nav-text w-full flex items-center justify-between focus:outline-none">
+                        <div class="flex items-center space-x-2">
+                            <ion-icon class="nav-icon" name="build-sharp"></ion-icon>
+                            <span>Users Management</span>
+                            <svg :class="{ 'rotate-180': open }"
+                                class="w-6 h-6 transform transition-transform duration-200 ml-auto" fill="none"
+                                stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg>
+                        </div>
+                    </button>
+                    <div x-show="open" x-collapse class="pl-5 space-y-1">
+                        <a href="{{ route('admin.createAnAccount.create') }}" @click="sidebarOpen = false"
+                            class="nav-text">
+                            <img src="{{ asset('images/createAccount.png') }}" alt="Add Account Icon"
+                                class="nav-icon">Add Account
+                        </a>
 
-                <a href="{{ route('admin.createAnAccount.create') }}" @click="sidebarOpen = false"
-                    class="nav-text">
-                    <img src="{{ asset('images/createAccount.png') }}" alt="Dashboard Icon"
-                        class="nav-icon">Add Account</a>
+                        <a href="{{ route('admin.createAnAccount.index') }}" @click="sidebarOpen = false"
+                            class="nav-text">
+                            <img src="{{ asset('images/account.png') }}" alt="Accounts Icon" class="nav-icon">Accounts
+                        </a>
 
-                <a href="{{ route('admin.createAnAccount.index') }}" @click="sidebarOpen = false"
-                    class="nav-text">
-                    <img src="{{ asset('images/account.png') }}" alt="Dashboard Icon"
-                        class="nav-icon">Accounts</a>
-
-                <div class="pt-4 border-t border-[#0e608f]">
-
-                    <form action="{{ route('admin.logout')}}" method="POST"  @click="sidebarOpen = false" class="nav-text">
-                    @csrf   
-                            <button type="submit">
-                                <img src="{{ asset('images/logout.png') }}" alt="Dashboard Icon"
-                                    class="nav-icon">
-                                Logout
-                            </button>
-                    </form>
+                        <a href="{{ route('admin.payments.index') }}" @click="sidebarOpen = false" class="nav-text">
+                            <img src="{{ asset('images/payment.png') }}" alt="Dashboard Icon" class="nav-icon">Payment
+                            Records</a>
+                    </div>
                 </div>
             </nav>
+
+            <div class="p-4 border-t border-[#0e608f] mt-auto">
+                <form action="{{ route('admin.logout')}}" method="POST" @click="sidebarOpen = false" class="nav-text">
+                    @csrf
+                    <button type="submit" class="w-full text-left flex items-center">
+                        <img src="{{ asset('images/logout.png') }}" alt="Dashboard Icon" class="nav-icon">
+                        Logout
+                    </button>
+                </form>
+            </div>
+
         </aside>
+
 
         <!-- Main Content -->
         <main class="main-content">
