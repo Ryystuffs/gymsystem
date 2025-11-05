@@ -37,7 +37,7 @@
                     Log in
                 </a>
                 <ion-icon onclick="onToggleMenu(this)" name="menu"
-                    class="text-3xl bg-[#2d2eb4] cursor-pointer md:hidden p-1 rounded-md"></ion-icon>
+                    class="text-3xl bg-white cursor-pointer md:hidden p-1 rounded-md"></ion-icon>
             </div>
         </nav>
     </header>
@@ -90,11 +90,11 @@
     <section id="About"
         class="flex flex-col md:flex-row bg-black text-white p-10 min-h-screen justify-center items-center gap-10">
         <div class="w-full md:w-1/2 flex justify-center">
-            <img class="w-3/4 md:w-full max-w-sm md:max-w-lg rounded-lg object-contain"
-                src="{{ asset('images/equipment.png') }}" alt="">
+            <img class=""
+                src="{{ asset('images/phoneDemo.png') }}" alt="">
         </div>
         <div class="w-full md:w-1/2 text-center md:text-left space-y-6">
-            <h1 class="text-3xl md:text-5xl font-bold leading-tight">Login. Scan. Train. <br> — Fitness Made Simple.
+            <h1 class="text-3xl md:text-5xl font-bold leading-tight"><span class="text-blue-700">Login.</span> Scan. Train. <br> — Fitness Made Simple.
             </h1>
             <p class="text-gray-300">
                 Your membership comes with a unique QR code that gives you secure, contactless entry to the gym.

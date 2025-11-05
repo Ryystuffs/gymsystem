@@ -11,9 +11,9 @@
 
 <body>
 
-    <body class="bg-gray-100 font-sans text-gray-800" x-data="{ sidebarOpen: false }">
+    <body class="bg-[#121212] font-sans text-gray-800" x-data="{ sidebarOpen: false }">
         <!-- Responsive Design -->
-        <header class="bg-white shadow md:hidden fixed top-0 left-0 right-0 z-20">
+        <header class="bg-black shadow md:hidden fixed top-0 left-0 right-0 z-20">
             <div class="flex items-center justify-between px-4 py-3">
                 <button @click="sidebarOpen = true" class="text-gray-600 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
@@ -21,7 +21,7 @@
                         <path d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
-                <span class="text-lg font-semibold text-red-600">Gym System</span>
+                <span class="text-lg font-semibold text-white">GainLab</span>
             </div>
         </header>
 
@@ -38,7 +38,7 @@
                             <path d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
-                    <span class="text-xl font-semibold text-red-600">Menu</span>
+                    <span class="text-xl font-semibold text-white">Menu</span>
                 </div>
 
                 <div class="p-1 pb-4 text-center hidden md:block">
@@ -47,15 +47,15 @@
 
                 <nav class="px-2 py-3 space-y-2 flex-1 overflow-y-auto">
 
-                    <a href="#" @click="sidebarOpen = false" class="nav-text">
+                    <a href="{{ route('member.dashboard') }}" @click="sidebarOpen = false" class="nav-text">
                         <img src="{{ asset('images/dashboard.png') }}" alt="Dashboard Icon"
                             class="nav-icon">Dashboard</a>
 
-                    <a href="#" @click="sidebarOpen = false" class="nav-text">
-                        <img src="{{ asset('images/scanner.png') }}" alt="Dashboard Icon" class="nav-icon">QR Code
-                        Scanner</a>
+                    <a href="" @click="sidebarOpen = false" class="nav-text">
+                        <img src="{{ asset('images/scanner.png') }}" alt="Dashboard Icon" class="nav-icon">My sessions
+                        </a>
 
-                    <a href="#" @click="sidebarOpen = false" class="nav-text">
+                    <a href="{{ route('member.showAccount') }}" @click="sidebarOpen = false" class="nav-text">
                         <img src="{{ asset('images/account.png') }}" alt="Dashboard Icon" class="nav-icon">Account</a>
 
                 </nav>
@@ -73,7 +73,7 @@
 
             </aside>
 
-            <main>
+            <main class="w-screen">
                 {{ $slot }}
             </main>
         </div>

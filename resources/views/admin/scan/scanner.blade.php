@@ -34,6 +34,7 @@
                     console.log(data.message)
                     resultElement.innerText = data.message;
                 })
+                .catch(err => console.error(err));
 
             html5QrcodeScanner.clear().then(() => {
                 console.log("QR scanner stopped after successful scan.");
@@ -42,8 +43,7 @@
                         html5QrcodeScanner.render(onScanSuccess, onScanFailure);
                     }, 3000)
 
-                    .catch(err => console.error(err));
-
+                    
             }).catch((error) => {
                 console.error("Failed to stop scanning:", error);
             });
