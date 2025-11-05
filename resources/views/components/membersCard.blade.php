@@ -1,15 +1,20 @@
 <div class="flex flex-col justify-between relative bg-white rounded-lg shadow-md p-5 mb-5 min-w-full mx-auto">
     <!-- Title -->
     <div class="flex flex-col">
-        <h2 class="text-3xl font-semibold hover:text-blue-600 transition">{{ $userMembership->user->name }}</h2>
+        <h2 class="text-3xl font-bold">{{ $userMembership->user->name }}</h2>
 
-        <p class="text-red-600 text-2xl ">
+        <p class="text-[#2d2eb4] text-2xl ">
             {{  $userMembership->membershipPlan ? $userMembership->membershipPlan->name : 'N/A' }}
         </p>
         <p>Membership Start: {{ $userMembership->created_at->format('M d, Y') }}</p>
         <p>Membership End: {{ $userMembership->expired_at->format('M d, Y') }}</p>
-        <p>@if($userMembership->is_active) Status: Active
-        @else Status: Inactive @endif</p>
+        <p>
+            @if($userMembership->is_active) 
+                Status: Active
+            @else 
+                Status: Inactive 
+            @endif
+        </p>
     </div>
 
 

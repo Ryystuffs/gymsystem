@@ -8,7 +8,7 @@
                 <input class="border-none outline-none text-gray-700 placeholder-gray-400 bg-transparent w-full md:w-64"
                     type="search" id="search-input" name="q" placeholder="Search payments...">
                 <button type="submit"
-                    class="bg-[#057dcd] hover:bg-[#0469ab] text-white font-semibold px-3 py-1 rounded-md transition">
+                    class="bg-[#1f2122] hover:bg-[#3f3233] text-white font-semibold px-3 py-1 rounded-md transition">
                     Search
                 </button>
             </form>
@@ -16,7 +16,7 @@
 
 
         <table class="min-w-full bg-white border border-gray-300 mb-3 mr-10 rounded-lg overflow-hidden">
-            <thead class="bg-blue-400 text-xl text-white h-16 ">
+            <thead class="bg-[#1f2122] text-xl text-white h-16 ">
                 <tr class="text-center">
                     <th>Name</th>
                     <th>Amount</th>
@@ -32,7 +32,7 @@
                         <td class="font-bold p-4">
                             {{ $payment->user->name ?? $payment->walkinSession->name ?? 'N/A' }}
                         </td>
-                        <td class="text-red-600">
+                        <td class="text-[#2d2eb4]">
                             {{ $payment->amount ?? $payment->walkinSession->amount_paid ?? '0' }}
                         </td>
                         <td>

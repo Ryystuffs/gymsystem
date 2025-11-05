@@ -16,7 +16,8 @@
 
                 <div class="mb-4">
                     <label for="email" class="block text-sm font-medium text-gray-700">Enter Email</label>
-                    <input type="email" id="email" name="email" placeholder="Enter Email" class="input-design" required value="{{ old('email') }}">
+                    <input type="email" id="email" name="email" placeholder="Enter Email" class="input-design" required
+                        value="{{ old('email') }}">
                 </div>
 
                 <div class="mb-4">
@@ -28,71 +29,46 @@
                 <div class="mb-4">
                     <label for="confirm_password" class="block text-sm font-medium text-gray-700">Confirm
                         Password</label>
-                    <input type="password" id="confirm_password" name="password_confirmation" placeholder="Confirm Password"
-                        class="input-design" required>
+                    <input type="password" id="confirm_password" name="password_confirmation"
+                        placeholder="Confirm Password" class="input-design" required>
                 </div>
-
-
-                {{-- Success alert message --}}
-                @if (session('success'))
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function () {
-                            Swal.fire({
-                                title: 'Success!',
-                                text: "{{ session('success') }}",
-                                icon: 'success',
-                                confirmButtonText: 'OK',
-                                confirmButtonColor: '#4CAF50'
-                            });
-                        });
-                    </script>
-                @endif
-
-                @if ($errors->any())
-                    <div id="validation-errors">
-                        @foreach ($errors->all() as $error)
-                            <p>{{ $error }}</p>
-                        @endforeach
-                    </div>
-                @endif
-
-                {{-- Password Error alert message --}}
-                <script>
-                    document.querySelector('form').addEventListener('submit', function (e) {
-                        const password = document.getElementById('password').value;
-                        const confirm = document.getElementById('confirm_password').value;
-
-                        if (password !== confirm) {
-                            Swal.fire({
-                                title: 'Validation Error',
-                                text: 'Passwords do not match.',
-                                icon: 'error',
-                                confirmButtonText: 'OK',
-                                confirmButtonColor: '#e3342f'
-                            });
-                        }
-
-                        const errorContainer = document.getElementById('validation-errors');
-                        if (errorContainer) {
-                            const messages = Array.from(errorContainer.querySelectorAll('p')).map(p => p.textContent);
-                            if (messages.length > 0) {
-                                Swal.fire({
-                                    title: 'Validation Error',
-                                    html: messages.join('<br>'),
-                                    icon: 'error',
-                                    confirmButtonText: 'OK',
-                                    confirmButtonColor: '#e3342f'
-                                });
-                            }
-                        }
-                    });
-
-                    
-                </script>
-                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
                 <button type="submit" class="submit-design"> Create Account </button>
             </form>
         </div>
     </div>
+
+    {{-- Password Error alert message --}}
+    <script>
+        document.querySelector('form').addEventListener('submit', function (e) {
+            const password = document.getElementById('password').value;
+            const confirm = document.getElementById('confirm_password').value;
+
+            if (password !== confirm) {
+                Swal.fire({
+                    title: 'Validation Error',
+                    text: 'Passwords do not match.',
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#e3342f'
+                });
+            }
+
+            const errorContainer = document.getElementById('validation-errors');
+            if (errorContainer) {
+                const messages = Array.from(errorContainer.querySelectorAll('p')).map(p => p.textContent);
+                if (messages.length > 0) {
+                    Swal.fire({
+                        title: 'Validation Error',
+                        html: messages.join('<br>'),
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#e3342f'
+                    });
+                }
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
 </x-navigation>
