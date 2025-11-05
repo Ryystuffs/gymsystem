@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\PaymentsController;
 use App\Http\Controllers\Admin\WalkinSessionController;
 use App\Http\Controllers\Admin\SessionsController;
 use App\Http\Controllers\Admin\QrScanController;
+use App\Http\Controllers\Admin\ResetPasswordController;
 use Phiki\Phast\Root;
 
 Route::get('/', function () {
@@ -19,6 +20,13 @@ Route::get('/', function () {
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'attempt'])->name('attempt');
+
+
+Route::get('/forgot-password', [ResetPasswordController::class, 'showReset'])->name('password.request');
+Route::post('/forgot-password', [ResetPasswordController::class , 'submit'])->name('password.email');
+Route::post('/reset-password', [ResetPasswordController::class,'update'])->name('password.update');
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'resetForm'])->name('password.reset');
+
 
 
 Route::middleware('auth')->group(function (){
@@ -74,5 +82,6 @@ Route::middleware('auth')->group(function (){
 
     Route::prefix('member')->name('member.')->group(function (){
         Route::get('/dashboard', [MemberDashboardController::class, 'dashboard'])->name('dashboard');
+        Route::get('/memberAccount', [MemberDashboardController::class, 'showAccount'])->name('showAccount');
     });
 });

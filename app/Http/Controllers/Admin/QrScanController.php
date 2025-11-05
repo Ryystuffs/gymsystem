@@ -21,10 +21,12 @@ class QrScanController extends Controller
     public function handle(User $user)
     {
         // Find the user's active membership
+
+        $now = Carbon::now();
+
         $membership = UserMemberships::where('user_id', $user->id)
             ->where('is_active', true)
             ->first();
-
         if (! $membership) {
             return response()->json([
                 'status' => 'error',
@@ -32,6 +34,16 @@ class QrScanController extends Controller
             ]);
         }
 
+        if ($now->greaterThan($membership->expired_at)) {
+            $membership->update([
+                'is_active' => false
+            ]);
+
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Membership expired'
+            ]);
+        }
         // Check if there’s an open session (no check_out time)
         $openSession = MemberSessions::where('user_membership_id', $membership->id)
             ->whereNull('check_out')
@@ -61,5 +73,4 @@ class QrScanController extends Controller
             ]);
         }
     }
-
 }

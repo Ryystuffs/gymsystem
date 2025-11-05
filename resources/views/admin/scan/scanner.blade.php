@@ -1,5 +1,5 @@
 <x-navigation>
-    <div class="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-4">
+    <div class="min-h-screen bg-gray-50 flex flex-col items-center justify-center">
 
         <div class="text-center mb-10">
             <h1 class="text-3xl font-bold text-gray-800 tracking-tight">QR Code Scanner</h1>
@@ -34,6 +34,7 @@
                     console.log(data.message)
                     resultElement.innerText = data.message;
                 })
+                .catch(err => console.error(err));
 
             html5QrcodeScanner.clear().then(() => {
                 console.log("QR scanner stopped after successful scan.");
@@ -42,8 +43,7 @@
                         html5QrcodeScanner.render(onScanSuccess, onScanFailure);
                     }, 3000)
 
-                    .catch(err => console.error(err));
-
+                    
             }).catch((error) => {
                 console.error("Failed to stop scanning:", error);
             });
