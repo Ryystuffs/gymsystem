@@ -67,26 +67,40 @@ class PaymentsController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('q');
+        $filters = $request->input('filters');
 
         $payments = Payments::with(['user', 'walkinSession', 'membershipPlan'])
-            ->where(function ($q) use ($query) {
-                $q->whereHas('user', function ($q) use ($query) {
-                    $q->where('name', 'LIKE', "%{$query}%");
-                })
-                    ->orWhereHas('walkinSession', function ($q) use ($query) {
+            ->where(function ($q) use ($query, $filters) {
+
+                if (!empty($query)) {
+                    $q->whereHas('user', function ($q) use ($query) {
                         $q->where('name', 'LIKE', "%{$query}%");
                     })
-                    ->orWhereHas('membershipPlan', function ($q) use ($query) {
-                        $q->where('name', 'LIKE', "%{$query}%");
-                    })
-                    ->orWhere('payment_method', 'LIKE', "%{$query}%")
-                    ->orWhere('type', 'LIKE', "%{$query}%");
-            })
+                        ->orWhereHas('walkinSession', function ($q) use ($query) {
+                            $q->where('name', 'LIKE', "%{$query}%");
+                        })
+                        ->orWhereHas('membershipPlan', function ($q) use ($query) {
+                            $q->where('name', 'LIKE', "%{$query}%");
+                        });
+                }
+
+                if (!empty($filters)) {
+                    $q->orWhere('type', 'LIKE', "%{$filters}%");
+                }
+            })->orderByRaw("
+        CASE
+            WHEN EXISTS (SELECT 1 FROM users WHERE users.id = payments.user_id AND users.name LIKE ?) THEN 0
+            WHEN EXISTS (SELECT 1 FROM walkin_sessions WHERE walkin_sessions.id = walkin_sessions.name LIKE ?) THEN 1
+            WHEN EXISTS (SELECT 1 FROM membership_plans WHERE membership_plans.id = payments.membership_plan_id AND membership_plans.name LIKE ?) THEN 2
+            ELSE 3
+        END
+    ", ["%{$query}%", "%{$query}%", "%{$query}%"])
             ->orderBy('created_at', 'desc')
             ->paginate(10)
-            ->appends(['q' => $query]);
-
-
+            ->appends([
+                'q' => $query,
+                'filters' => $filters,
+            ]);
 
         return view('admin.payments.paymentRecords', ['payments' => $payments]);
     }
