@@ -9,14 +9,14 @@
             <input class="border-none outline-none text-gray-700 placeholder-gray-400 bg-transparent w-full md:w-64"
                 type="search" id="search-input" name="q" placeholder="Search accounts...">
             <button type="submit"
-                class="bg-[#057dcd] hover:bg-[#0469ab] text-white font-semibold px-3 py-1 rounded-md transition">
+                class="bg-[#1f2122] hover:bg-[#3f3233] text-white font-semibold px-3 py-1 rounded-md transition">
                 Search
             </button>
         </form>
     </div>
 
     <table class="min-w-full bg-white border border-gray-300 mb-3 rounded-lg overflow-hidden">
-        <thead class="bg-blue-400 text-2xl text-white h-16 ">
+        <thead class="bg-[#1f2122] text-xl text-white h-16 ">
             <tr class="text-center">
                 <th>Name</th>
                 <th>Email</th>

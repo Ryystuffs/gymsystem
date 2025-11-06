@@ -4,7 +4,7 @@
     <!-- Title -->
     <div class="flex justify-between items-center mb-2">
         <div>
-            <h2 class="text-2xl font-semibold hover:text-blue-600 transition text-[#0e608f]">
+            <h2 class="text-3xl font-semibold text-[#2d2eb4]">
                 {{ $membershipPlan->name }}
             </h2>
         </div>

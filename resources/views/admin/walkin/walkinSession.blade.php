@@ -1,13 +1,26 @@
 <x-navigation>
-    <div class="flex justify-between p-5 ">
-        <h1 class="title-text">WalkinSession</h1>
+    
+    <div class="p-4 flex flex-col md:flex-row md:items-center md:justify-between bg-none text-black">
+        <h1 class="text-2xl font-bold mb-3 md:mb-0">Walk-In Sessions</h1>
+        
+        <form action="/search" method="get"
+            class="flex items-center space-x-2 bg-white rounded-lg px-3 py-1 shadow-sm w-full md:w-auto">
+            <input class="border-none outline-none text-gray-700 placeholder-gray-400 bg-transparent w-full md:w-64"
+                type="search" id="search-input" name="q" placeholder="Search guest...">
+            <button type="submit"
+                class="bg-[#1f2122] hover:bg-[#3f3233] text-white font-semibold px-3 py-1 rounded-md transition">
+                Search
+            </button>
+        </form>
+
         <a href="{{ route('admin.walkin.create') }}" class="back-button">
             <h1 class="text-xl">Add Walk-In Guest</h1>
         </a>
+
     </div>
 
     <table class="min-w-full bg-white border border-gray-300 mt-0 mb-3 rounded-lg overflow-hidden">
-        <thead class="bg-[#057dcd] text-2xl text-white h-16 ">
+        <thead class="bg-[#1f2122] text-xl text-white h-16 ">
             <tr class="text-center ">
                 <th>Payment ID</th>
                 <th>Name</th>
@@ -26,7 +39,7 @@
                 <td class="font-bold">
                     {{ $walkinSession->name }}
                 </td>
-                <td class="text-red-600">
+                <td class="text-[#2d2eb4]">
                     {{ $walkinSession->amount_paid }}
                 </td>
                 <td>{{ $walkinSession->check_in->format('M d, Y h:i A') }}</td>
