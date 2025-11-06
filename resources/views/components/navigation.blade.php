@@ -139,7 +139,7 @@
 
 
         <!-- Main Content -->
-        <main class="main-content">
+        <main class="main-content p">
             {{ $slot }}
         </main>
 

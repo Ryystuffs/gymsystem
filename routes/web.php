@@ -53,6 +53,7 @@ Route::middleware('auth')->group(function (){
 
         Route::prefix('payments')->name('payments.')->group(function () {
             Route::get('/paymentRecords', [PaymentsController::class, 'index'])->name('index');
+            Route::get('/search', [PaymentsController::class, 'search'])->name('search');
         });
 
         Route::prefix('walkin')->name('walkin.')->group(function () {

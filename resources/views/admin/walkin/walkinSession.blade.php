@@ -1,69 +1,77 @@
 <x-navigation>
-    
-    <div class="p-4 flex flex-col md:flex-row md:items-center md:justify-between bg-none text-black">
-        <h1 class="text-2xl font-bold mb-3 md:mb-0">Walk-In Sessions</h1>
-        
-        <form action="/search" method="get"
-            class="flex items-center space-x-2 bg-white rounded-lg px-3 py-1 shadow-sm w-full md:w-auto">
-            <input class="border-none outline-none text-gray-700 placeholder-gray-400 bg-transparent w-full md:w-64"
-                type="search" id="search-input" name="q" placeholder="Search guest...">
-            <button type="submit"
-                class="bg-[#1f2122] hover:bg-[#3f3233] text-white font-semibold px-3 py-1 rounded-md transition">
-                Search
-            </button>
-        </form>
+    <div class="pt-2 mt-2 pb-0 border border-gray-300">
+        <div class="p-4 flex flex-col md:flex-row md:items-center md:justify-between bg-none text-black">
+            <h1 class="text-2xl font-bold mb-3 md:mb-0">Walk-In Sessions</h1>
 
-        <a href="{{ route('admin.walkin.create') }}" class="back-button">
-            <h1 class="text-xl">Add Walk-In Guest</h1>
-        </a>
+            <div class="flex flex-row gap-2">
+                <form action="/search" method="get"
+                    class="flex items-center space-x-2 bg-white rounded-lg px-3 py-1 shadow-sm w-full md:w-auto">
+                    <input
+                        class="border-none outline-none text-gray-700 placeholder-gray-400 bg-transparent w-full md:w-64"
+                        type="search" id="search-input" name="q" placeholder="Search guest...">
+                    <button type="submit"
+                        class="bg-[#1f2122] hover:bg-[#3f3233] text-white font-semibold px-3 py-1 rounded-md transition">
+                        Search
+                    </button>
+                </form>
 
+                <a href="{{ route('admin.walkin.create') }}" class="back-button">
+                    <h1 class="text-lg">Add Walk-In Guest</h1>
+                </a>
+            </div>
+
+        </div>
+
+        <table class="min-w-full bg-white border border-gray-300 mt-0 mb-0 rounded-lg overflow-hidden">
+            <thead class="bg-[#1f2122] text-xl text-white h-16 ">
+                <tr class="text-center ">
+                    <th>Payment ID</th>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Check-in Time</th>
+                    <th>Check-out Time</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($walkinSessions as $walkinSession)
+                    <tr class="text-center border-t border-gray-300">
+                        <td>
+                            {{ $walkinSession->payment_id ?? 'N/A' }}
+                        </td>
+                        <td class="font-bold">
+                            {{ $walkinSession->name }}
+                        </td>
+                        <td class="text-[#2d2eb4]">
+                            {{ $walkinSession->amount_paid }}
+                        </td>
+                        <td>{{ $walkinSession->check_in->format('M d, Y h:i A') }}</td>
+                        <td>{{ optional($walkinSession->check_out)->format('M d, Y h:i A') }}</td>
+                        <td>
+                            <div class="flex justify-center items-center space-x-2 p-2">
+                                <button type="submit" class="ml-6 w-12 h-12 btn-secondary edit-button"><img
+                                        src="{{ asset('/assets/edit.png') }}" alt="Edit"
+                                        class="w-full h-full object-contain" /></button>
+                                <form action="{{ route('admin.walkin.checkout', $walkinSession->id) }}" method="POST"
+                                    class="checkout-form">
+                                    @csrf
+                                    @method('PUT')
+                                    <button id="submitBtn" type="submit" class="w-12 h-12 btn-delete bg-[#4CAF50]"><img
+                                            src="{{ asset('images/checkOut.png') }}" alt="Edit"
+                                            class="w-full h-full object-contain" /></button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
-
-    <table class="min-w-full bg-white border border-gray-300 mt-0 mb-3 rounded-lg overflow-hidden">
-        <thead class="bg-[#1f2122] text-xl text-white h-16 ">
-            <tr class="text-center ">
-                <th>Payment ID</th>
-                <th>Name</th>
-                <th>Amount</th>
-                <th>Check-in Time</th>
-                <th>Check-out Time</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($walkinSessions as $walkinSession)
-            <tr class="text-center border-t border-gray-300">
-                <td>
-                    {{ $walkinSession->payment_id ?? 'N/A' }}
-                </td>
-                <td class="font-bold">
-                    {{ $walkinSession->name }}
-                </td>
-                <td class="text-[#2d2eb4]">
-                    {{ $walkinSession->amount_paid }}
-                </td>
-                <td>{{ $walkinSession->check_in->format('M d, Y h:i A') }}</td>
-                <td>{{ optional($walkinSession->check_out)->format('M d, Y h:i A') }}</td>
-                <td>
-                    <div class="flex justify-center items-center space-x-2 p-2">
-                        <button type="submit" class="ml-6 w-12 h-12 btn-secondary edit-button"><img src="{{ asset('/assets/edit.png') }}" alt="Edit" class="w-full h-full object-contain" /></button>
-                        <form action="{{ route('admin.walkin.checkout', $walkinSession->id) }}" method="POST" class="checkout-form">
-                            @csrf
-                            @method('PUT')
-                            <button id="submitBtn" type="submit" class="w-12 h-12 btn-delete bg-[#4CAF50]"><img src="{{ asset('images/checkOut.png') }}" alt="Edit" class="w-full h-full object-contain" /></button>
-                        </form>
-                    </div>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-
-    <div>
+    <div class="px-2 pt-2">
         {{ $walkinSessions->links() }}
     </div>
 
 
-    
+
 
 </x-navigation>
