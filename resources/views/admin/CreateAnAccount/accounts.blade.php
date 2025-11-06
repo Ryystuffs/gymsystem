@@ -39,4 +39,25 @@
         {{ $users->links() }}
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                Swal.fire({
+                    title: 'Success!',
+                    text: "{{ session('success') }}",
+                    icon: 'success',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#4CAF50'
+                });
+            });
+
+            function togglePassword() {
+                const passwordField = document.getElementById('password');
+                passwordField.type = passwordField.type === 'password' ? 'text' : 'password';
+            }
+        </script>
+
+    @endif
+
 </x-navigation>

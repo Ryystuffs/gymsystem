@@ -9,28 +9,34 @@
                 @csrf
 
                 <div class="mb-4">
-                    <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                    <label for="name" class="block text-lg font-medium text-gray-700">Full Name</label>
                     <input type="text" id="fname" name="name" placeholder="Enter Full Name" class="input-design"
                         required value="{{ old('name') }}">
                 </div>
 
                 <div class="mb-4">
-                    <label for="email" class="block text-sm font-medium text-gray-700">Enter Email</label>
+                    <label for="email" class="block text-lg font-medium text-gray-700">Enter Email</label>
                     <input type="email" id="email" name="email" placeholder="Enter Email" class="input-design" required
                         value="{{ old('email') }}">
                 </div>
 
                 <div class="mb-4">
-                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <label for="password" class="block text-lg font-medium text-gray-700">Password</label>
                     <input type="password" id="password" name="password" placeholder="Enter Password"
                         class="input-design" required>
                 </div>
 
-                <div class="mb-4">
-                    <label for="confirm_password" class="block text-sm font-medium text-gray-700">Confirm
-                        Password</label>
+                <div class="">
+                    <label for="confirm_password" class="block text-lg font-medium text-gray-700">Confirm
+                        Password
+                    </label>
                     <input type="password" id="confirm_password" name="password_confirmation"
                         placeholder="Confirm Password" class="input-design" required>
+                </div>
+
+                <div class="mb-4 mt-2">
+                    <input class="accent-black" type="checkbox" onclick="togglePassword()">
+                    <span>Show Password</span>
                 </div>
 
                 <button type="submit" class="submit-design"> Create Account </button>
@@ -39,7 +45,17 @@
     </div>
 
     {{-- Password Error alert message --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const confirmPasswordField = document.getElementById('confirm_password');
+
+            passwordField.type = passwordField.type === 'password' ? 'text' : 'password';
+            confirmPasswordField.type = confirmPasswordField.type === 'password' ? 'text' : 'password';
+        }
+
+
         document.querySelector('form').addEventListener('submit', function (e) {
             const password = document.getElementById('password').value;
             const confirm = document.getElementById('confirm_password').value;
@@ -69,6 +85,6 @@
             }
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     
 </x-navigation>
