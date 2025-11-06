@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
 </head>
 
 <body class="min-h-screen flex flex-col bg-[#3A3838] md:flex-row ">

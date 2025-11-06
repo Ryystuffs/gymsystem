@@ -7,11 +7,12 @@
     <title>Member</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
 </head>
 
 <body>
 
-    <body class="bg-[#121212] font-sans text-gray-800" x-data="{ sidebarOpen: false }">
+    <body class="bg-white font-sans text-gray-800" x-data="{ sidebarOpen: false }">
         <!-- Responsive Design -->
         <header class="bg-black shadow md:hidden fixed top-0 left-0 right-0 z-20">
             <div class="flex items-center justify-between px-4 py-3">
@@ -21,13 +22,15 @@
                         <path d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
-                <span class="text-lg font-semibold text-white">GainLab</span>
+                <div class="p-1 text-center md:block">
+                    <img src="{{ asset('images/gainlabWhite.png') }}" alt="" class="h-11">
+                </div>
             </div>
         </header>
 
         <div class="flex min-h-screen pt-14 md:pt-0">
             <!-- Sidebar -->
-            <aside class="fixed inset-y-0 left-0 w-72 bg-black border-r border-gray-200 z-30 transform transition-transform duration-200 ease-in-out
+            <aside class="fixed inset-y-0 left-0 w-72 bg-black z-30 transform transition-transform duration-200 ease-in-out
             md:translate-x-0 md:static md:inset-0 flex flex-col"
                 :class="{ '-translate-x-full': !sidebarOpen, 'translate-x-0': sidebarOpen }">
 
