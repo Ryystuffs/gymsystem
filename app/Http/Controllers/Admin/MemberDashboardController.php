@@ -19,7 +19,7 @@ class MemberDashboardController extends Controller
         $user = Auth::user();
         return view ('member.qrcode', ['user' => $user]);
     }
-
+    
     public function dashboard(){
         $user = Auth::user();
         $membership = $user->userMemberships()->latest()->first();
