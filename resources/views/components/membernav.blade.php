@@ -51,7 +51,7 @@
                         <img src="{{ asset('images/dashboard.png') }}" alt="Dashboard Icon"
                             class="nav-icon">Dashboard</a>
 
-                    <a href="" @click="sidebarOpen = false" class="nav-text">
+                    <a href="{{ route('member.showSessions')}}" @click="sidebarOpen = false" class="nav-text">
                         <img src="{{ asset('images/scanner.png') }}" alt="Dashboard Icon" class="nav-icon">My sessions
                         </a>
 
