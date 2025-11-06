@@ -53,6 +53,7 @@ Route::middleware('auth')->group(function (){
 
         Route::prefix('payments')->name('payments.')->group(function () {
             Route::get('/paymentRecords', [PaymentsController::class, 'index'])->name('index');
+            Route::get('/search', [PaymentsController::class, 'search'])->name('search');
         });
 
         Route::prefix('walkin')->name('walkin.')->group(function () {
@@ -82,7 +83,7 @@ Route::middleware('auth')->group(function (){
 
     Route::prefix('member')->name('member.')->group(function (){
         Route::get('/dashboard', [MemberDashboardController::class, 'dashboard'])->name('dashboard');
-        Route::get('/memberAccount', [MemberDashboardController::class, 'showAccount'])->name('showAccount');
-        Route::get('/memberSessions', [MemberDashboardController::class, 'showSessions'])->name('showSessions');
+        Route::get('/account', [MemberDashboardController::class, 'account'])->name('showAccount');
+        Route::get('/qrcode', [MemberDashboardController::class, 'showQrCode'])->name('showSessions');
     });
 });

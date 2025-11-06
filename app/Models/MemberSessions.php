@@ -13,6 +13,8 @@ class MemberSessions extends Model
 
 
     protected $fillable = ['user_membership_id', 'check_in', 'check_out'];
+    protected $casts = ['check_in' => 'datetime', 
+    'check_out' => 'datetime'];
 
 
     public function userMembership(){

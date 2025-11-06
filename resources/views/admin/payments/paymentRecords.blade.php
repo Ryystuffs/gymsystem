@@ -3,10 +3,10 @@
         <div class="p-4 flex flex-col md:flex-row md:items-center md:justify-between bg-none text-black">
             <h1 class="text-2xl font-bold mb-3 md:mb-0">Payment Records</h1>
 
-            <form action="/search" method="get"
+            <form action="{{ route('admin.payments.search') }}" method="GET"
                 class="flex items-center space-x-2 bg-white rounded-lg px-3 py-1 shadow-sm w-full md:w-auto">
                 <input class="border-none outline-none text-gray-700 placeholder-gray-400 bg-transparent w-full md:w-64"
-                    type="search" id="search-input" name="q" placeholder="Search payments...">
+                    type="search" id="search-input" name="q" placeholder="Search payments..." value="{{ request('q') }}">
                 <button type="submit"
                     class="bg-[#1f2122] hover:bg-[#3f3233] text-white font-semibold px-3 py-1 rounded-md transition">
                     Search

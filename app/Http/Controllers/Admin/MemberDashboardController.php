@@ -9,25 +9,22 @@ class MemberDashboardController extends Controller
 {
     //
 
-    public function dashboard(){
-
-        
-
+    public function account(){
         $user = Auth::user();
         $membership = $user->userMemberships()->latest()->first();
-        return view ('member.dashboard', ['user' => $user , 'membership' => $membership]);
+        return view ('member.account', ['user' => $user , 'membership' => $membership]);
     }
 
-    public function showAccount(){
+    public function showQrCode(){
         $user = Auth::user();
-        return view ('member.memberAccount', ['user' => $user]);
+        return view ('member.qrcode', ['user' => $user]);
     }
 
-    public function showSessions(){
+    public function dashboard(){
         $user = Auth::user();
         $membership = $user->userMemberships()->latest()->first();
         $sessions = $membership->memberSessions()->orderBy('check_in','desc')->paginate(10);
 
-        return view ('member.memberSessions', ['sessions' => $sessions, 'user' => $user]);
+        return view ('member.dashboard', ['sessions' => $sessions, 'user' => $user]);
     }
 }
