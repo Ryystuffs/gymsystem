@@ -36,14 +36,14 @@ class PaymentsController extends Controller
                     ->orWhere('type', 'LIKE', "%{$query}%");
             })
             ->orderBy('created_at', 'desc')
-            ->paginate(3)
+            ->paginate(10)
             ->appends(['q' => $query]);
 
 
 
         return view('admin.payments.paymentRecords', ['payments' => $payments, 'query' => $query]);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */

@@ -83,6 +83,7 @@ Route::middleware('auth')->group(function (){
 
     Route::prefix('member')->name('member.')->group(function (){
         Route::get('/dashboard', [MemberDashboardController::class, 'dashboard'])->name('dashboard');
-        Route::get('/memberAccount', [MemberDashboardController::class, 'showAccount'])->name('showAccount');
+        Route::get('/account', [MemberDashboardController::class, 'account'])->name('showAccount');
+        Route::get('/qrcode', [MemberDashboardController::class, 'showQrCode'])->name('showSessions');
     });
 });

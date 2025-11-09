@@ -17,8 +17,8 @@
         <thead class="bg-[#1f2122] text-xl text-white h-16 ">
             <tr class="text-center">
                 <th>Name</th>
-                <th>check In</th>
-                <th>check Out</th>
+                <th>Check In</th>
+                <th>Check Out</th>
             </tr>
         </thead>
 
