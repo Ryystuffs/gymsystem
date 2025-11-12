@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Payments;
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\WalkinSession;
 
 class PaymentsController extends Controller
 {
@@ -68,35 +66,42 @@ class PaymentsController extends Controller
     }
     public function search(Request $request)
     {
-        $query = Payments::query();
+        $query = $request->input('q');
+        $filters = $request->input('filters');
 
-        // Filter by payment type (Membership or Walk-in)
-        if ($request->filled('type')) {
-            $query->where('type', $request->type);
-        }
+        $payments = Payments::with(['user', 'walkinSession', 'membershipPlan'])
+            ->where(function ($q) use ($query, $filters) {
 
-        // Search by name (either from User or WalkinSession)
-        if ($request->filled('search')) {
-            $search = $request->search;
-            $query->where(function ($q) use ($search) {
-                $q->whereHas('user', function ($u) use ($search) {
-                    $u->where('name', 'like', "%{$search}%");
-                })->orWhereHas('walkinSession', function ($w) use ($search) {
-                    $w->where('name', 'like', "%{$search}%");
-                });
-            });
-        }
+                if (!empty($query)) {
+                    $q->whereHas('user', function ($q) use ($query) {
+                        $q->where('name', 'LIKE', "%{$query}%");
+                    })
+                        ->orWhereHas('walkinSession', function ($q) use ($query) {
+                            $q->where('name', 'LIKE', "%{$query}%");
+                        })
+                        ->orWhereHas('membershipPlan', function ($q) use ($query) {
+                            $q->where('name', 'LIKE', "%{$query}%");
+                        });
+                }
 
-        $payments = $query->orderBy('created_at', 'desc')->paginate(10);
-
-        // If request is AJAX, return only table HTML (for dynamic update)
-        if ($request->ajax()) {
-            return response()->json([
-                'html' => view('admin.payments.partials.partialTable', compact('payments'))->render()
+                if (!empty($filters)) {
+                    $q->orWhere('type', 'LIKE', "%{$filters}%");
+                }
+            })->orderByRaw("
+        CASE
+            WHEN EXISTS (SELECT 1 FROM users WHERE users.id = payments.user_id AND users.name LIKE ?) THEN 0
+            WHEN EXISTS (SELECT 1 FROM walkin_sessions WHERE walkin_sessions.id = walkin_sessions.name LIKE ?) THEN 1
+            WHEN EXISTS (SELECT 1 FROM membership_plans WHERE membership_plans.id = payments.membership_plan_id AND membership_plans.name LIKE ?) THEN 2
+            ELSE 3
+        END
+    ", ["%{$query}%", "%{$query}%", "%{$query}%"])
+            ->orderBy('created_at', 'desc')
+            ->paginate(10)
+            ->appends([
+                'q' => $query,
+                'filters' => $filters,
             ]);
-        }
 
-        // Otherwise load the full page
-        return view('admin.payments.paymentRecords', compact('payments'));
+        return view('admin.payments.paymentRecords', ['payments' => $payments]);
     }
 }
