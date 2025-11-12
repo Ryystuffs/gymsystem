@@ -5,14 +5,14 @@
             <form id="search-form" action="{{ route('admin.payments.search') }}" method="GET" class="flex items-center space-x-2 bg-white rounded-lg px-3 py-1 shadow-sm w-full md:w-auto">
                 <div class="flex flex-row gap-2">
                     <div class="bg-white rounded-lg p-2 shadow-sm">
-                    <input type="search" id="search-input" name="q" value="{{ request('q') }}" placeholder="Search payments..." class="border-none outline-none text-gray-700 placeholder-gray-400 bg-transparent w-full md:w-64">
+                    <input type="search" id="searchInput" name="q" value="" placeholder="Search payments..." class="border-none outline-none text-gray-700 placeholder-gray-400 bg-transparent w-full md:w-64">
                     <a href="{{ route('admin.payments.index') }}" class="bg-[#1f2122] hover:bg-[#3f3233] text-white font-semibold px-3 py-1 rounded-md mx-3 transition">
                         Clear
                     </a>
-                        <select class="px-3" name="filters" id="" onchange="this.form.submit()">
-                            <option value="" {{ request('filters') == '' ? 'selected' : '' }}>All</option>
-                            <option value="Membership" {{ request('filters') == 'Membership' ? 'selected' : '' }}>Member</option>
-                            <option value="Walk-in" {{ request('filters') == 'Walk-in' ? 'selected' : '' }}>Walk-in</option>
+                        <select class="px-3" name="filters" id="type">
+                            <option value="">All</option>
+                            <option value="Membership">Member</option>
+                            <option value="Walk-in">Walk-in</option>
                         </select>
                     </div>
             </form>
@@ -61,4 +61,6 @@
     <div class="px-2 pt-2">
         {{ $payments->links() }}
     </div>
+
+    
 </x-navigation>
