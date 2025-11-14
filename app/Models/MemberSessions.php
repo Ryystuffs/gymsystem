@@ -20,4 +20,14 @@ class MemberSessions extends Model
     public function userMembership(){
         return $this->belongsTo(UserMemberships::class);
     }
+    public function user(){
+    return $this->hasOneThrough(
+        User::class,
+        UserMemberships::class,
+        'id',                 // Foreign key on user_memberships
+        'id',                 // Foreign key on users
+        'user_membership_id', // Local key on member_sessions
+        'user_id'             // Local key on user_memberships
+    );
+}
 }

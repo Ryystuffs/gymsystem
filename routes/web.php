@@ -61,10 +61,12 @@ Route::middleware('auth')->group(function (){
             Route::get('/createWalkin', [WalkinSessionController::class, 'create'])->name('create');
             Route::post('/walkinSession', [WalkinSessionController::class, 'store'])->name('store');
             Route::put('/{walkinSession}',[WalkinSessionController::class, 'checkout'])->name('checkout');
+            Route::get('/search', [WalkinSessionController::class, 'search'])->name('search');
         });
 
         Route::prefix('sessions')->name('sessions.')->group(function () {
             Route::get('/memberSessions', [SessionsController::class, 'index'])->name('index');
+            Route::get('/search', [SessionsController::class, 'search'])->name('search');
         });
 
         Route::prefix('createAnAccount')->name('createAnAccount.')->group(function () {

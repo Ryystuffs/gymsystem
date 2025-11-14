@@ -4,7 +4,7 @@
             <h1 class="text-2xl font-bold mb-3 md:mb-0">Walk-In Sessions</h1>
 
             <div class="flex flex-row gap-2">
-                <form action="/search" method="get"
+                <form action="{{ route('admin.walkin.search') }}" method="GET"
                     class="flex items-center space-x-2 bg-white rounded-lg px-3 py-1 shadow-sm w-full md:w-auto">
                     <input
                         class="border-none outline-none text-gray-700 placeholder-gray-400 bg-transparent w-full md:w-64"

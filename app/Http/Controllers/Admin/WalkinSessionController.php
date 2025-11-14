@@ -35,4 +35,21 @@ class WalkinSessionController extends Controller
         $this->walkinSession->checkoutWalkinSession($walkinSession);
         return redirect()->route('admin.walkin.index')->with('success', 'Walk In Guest checkout');
     }
+    public function search(Request $request)
+    {
+        $query = $request->input('q');
+        $filters = $request->input('filters');
+
+        $walkinSessions = WalkinSession::
+            where('name', 'LIKE', "%{$query}%")
+            ->orderBy('created_at', 'desc')
+            ->paginate(10)
+            ->appends([
+                'q' => $query,
+                'filters' => $filters,
+            ]);
+
+        return view('admin.walkin.walkinSession', ['walkinSessions' => $walkinSessions]);
+    }
 }
+    

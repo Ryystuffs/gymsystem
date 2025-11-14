@@ -22,20 +22,20 @@ class PaymentsController extends Controller
         $query = $request->input('q');
         $filters = $request->input('filters');
 
-        $payments = Payments::with(['user', 'walkinSession', 'membershipPlan'])
+        $payments = Payments::with(['user', 'walkinSession'])
             ->where(function ($q) use ($query, $filters) {
 
                 if (!empty($query)) {
                     $q->whereHas('user', function ($w) use ($query) {
                         $w->where('name', 'LIKE', "%{$query}%");
-                    })
-                        ->orWhereHas('walkinSession', function ($x) use ($query) {
-                            $x->where('name', 'LIKE', "%{$query}%");
-                        });
+                    });
+                    $q->orWhereHas('walkinSession', function ($x) use ($query) {
+                        $x->where('name', 'LIKE', "%{$query}%");
+                    });
                 }
 
                 if (!empty($filters)) {
-                    $q->where('type', 'LIKE', "%{$filters}%");
+                    $q->where('type', $filters);
                 }
             })
             ->orderBy('created_at', 'desc')
