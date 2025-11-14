@@ -14,8 +14,8 @@
                         <img src="{{ asset('images/memberBlack.png') }}" alt="Members Icon" class="w-20 h-20">
                     </div>
                     <div class="m-2">
-                        <h3 class="text-lg font-semibold text-gray-700">Total Members</h3>
-                        <p class="text-2xl font-bold text-indigo-600">11</p>
+                        <h3 class="text-lg font-semibold text-gray-700">Total Active Members</h3>
+                        <p class="text-2xl font-bold text-indigo-600">{{$members}}</p>
                     </div>
                 </div>
 
@@ -25,7 +25,7 @@
                     </div>
                     <div>
                         <h3 class="text-lg font-semibold text-gray-700">Total User</h3>
-                        <p class="text-2xl font-bold text-green-600">14</p>
+                        <p class="text-2xl font-bold text-green-600">{{$user}}</p>
                     </div>
                 </div>
 
@@ -35,7 +35,7 @@
                     </div>
                     <div>
                         <h3 class="text-lg font-semibold text-gray-700">Membership Plans</h3>
-                        <p class="text-2xl font-bold text-violet-600">5</p>
+                        <p class="text-2xl font-bold text-violet-600">{{$plans}}</p>
                     </div>
                 </div>
 
@@ -45,7 +45,7 @@
                     </div>
                     <div>
                         <h3 class="text-lg font-semibold text-gray-700">Total Revenue</h3>
-                        <p class="text-2xl font-bold text-yellow-600">₱ 25,320</p>
+                        <p class="text-2xl font-bold text-yellow-600">₱ {{ $total}}</p>
                     </div>
                 </div>
 
@@ -83,6 +83,9 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
         <script>
+
+            console.log(@json($monthlyRevenue));
+            const sessions = @json($sessions);
             const bar = document.getElementById('BarGraph').getContext('2d');
             const pie = document.getElementById('PieChart').getContext('2d');
             const pie2nd = document.getElementById('pie2nd').getContext('2d');
@@ -91,18 +94,19 @@
                 type: 'bar',
                 data: {
                     datasets: [{
-                        type: 'line',
+                        type: 'bar',
                         label: 'Monthly Revenue',
-                        data: [1456, 2030, 1954, 2140, 924]
+                        data: @json($monthlyRevenue)
                     }],
                     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
                 },
                 options: {
                     scales: {
                         y: {
-                            beginAtZero: true
+                            suggestedMin: 5000,
+                            suggestedMax: 20000
                         }
-                    }
+                    }   
                 }
             });
 
@@ -111,7 +115,7 @@
                 data: {
                     labels: ['Member', 'Non-Member'],
                     datasets: [{
-                        data: [12, 19],
+                        data: sessions,
                         borderWidth: 1
                     }]
                 },
