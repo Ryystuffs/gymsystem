@@ -28,12 +28,13 @@ class WalkinSessionController extends Controller
     public function store(StoreWalkinRequest $request){
         $data = $request->validated();
         $this->walkinSession->createWalkinSession($data);
-        return redirect()->route('admin.walkin.index')->with('success', 'Walkin Session Created');
+        return redirect()->route('admin.walkin.index')->with('success', 'Guest Added Successfully');
     }
 
     public function checkout(WalkinSession $walkinSession){
+        $userName = $walkinSession->name;
         $this->walkinSession->checkoutWalkinSession($walkinSession);
-        return redirect()->route('admin.walkin.index')->with('success', 'Walk In Guest checkout');
+        return redirect()->route('admin.walkin.index')->with('checkout', "$userName Successfully CheckOut");
     }
     public function search(Request $request)
     {

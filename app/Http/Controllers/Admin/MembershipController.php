@@ -32,18 +32,18 @@ class MembershipController extends Controller
         $data = $request->validated();
         $this->membershipPlan->createMembershipPlan($data);
 
-        return redirect()->route('admin.membership.index')->with('success', 'MembershipPlan Created');
+        return redirect()->route('admin.membership.index')->with('success', 'Membership Plan Created');
     }
 
     public function destroy(MembershipPlan $membershipPlan){
         $this->membershipPlan->deleteMembershipPlan($membershipPlan);
-        return redirect()->route('admin.membership.index')->with('deleted', 'MembershipPlan Deleted');
+        return redirect()->route('admin.membership.index')->with('deleted', 'Membership Plan Deleted');
     }
 
     public function update(MembershipPlan $membershipPlan, UpdateMembershipPlanRequest $request){
         $data = $request->validated();
         $this->membershipPlan->updateMembershipPlan($membershipPlan, $data);
-        return redirect()->route('admin.membership.index')->with('success', 'MembershipPlan Updated');
+        return redirect()->route('admin.membership.index')->with('success', 'Membership Plan Updated');
     }
 }
 
