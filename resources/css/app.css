@@ -51,11 +51,11 @@
 
 /* Custom Classes*/
 .main-content{
-    @apply flex-1 px-1 py-2 md:ml-4;
+    @apply relative flex-1 pl-72 w-screen py-0 md:m-3;
 }
 
 .back-button{
-    @apply inline-block text-white bg-[#1d8ac8] hover:bg-[#0e608f] font-medium rounded-lg text-xl px-5 py-2.5 text-center
+    @apply inline-block text-white bg-[#122D3D] hover:bg-[#133F4F] font-medium rounded-lg text-xl px-5 py-2.5 text-center
 }
 
 .title-text{
@@ -70,7 +70,15 @@
     @apply mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 shadow-sm
 }
 .submit-design{
-    @apply w-full bg-[#1d8ac8] hover:bg-[#0e608f] text-white font-semibold py-2 px-4 rounded-md transition duration-200
+    @apply w-full bg-[#122D3D] hover:bg-[#133F4F] text-white font-semibold py-2 px-4 rounded-md transition duration-200
+}
+
+.swal-label{
+    @apply text-lg font-bold text-gray-700
+}
+
+.swal-input{
+    @apply mt-1 block w-full px-4 py-2 border border-b border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm
 }
 
 .nav-icon{
@@ -79,4 +87,8 @@
 
 .nav-text{
     @apply block px-4 py-2 text-base text-[#e9e9e9] rounded hover:bg-[#3e3e3e] transition;
+}
+
+.dashboard-card{
+    @apply flex items-center gap-4 p-0 bg-white;
 }

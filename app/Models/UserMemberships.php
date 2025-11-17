@@ -14,6 +14,7 @@ class UserMemberships extends Model
     use HasFactory;
     protected $fillable = ['user_id', 'membership_plan_id', 'expired_at', 'is_active', 'created_at'];
     protected $casts = [
+        'created_at' => 'datetime',
         'expired_at' =>'datetime',
     ];
 
@@ -27,7 +28,7 @@ class UserMemberships extends Model
     }
 
     public function memberSessions(){
-        return $this->hasMany(MemberSessions::class);
+        return $this->hasMany(MemberSessions::class, 'user_membership_id');
     }
 
 }

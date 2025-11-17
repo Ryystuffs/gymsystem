@@ -1,44 +1,40 @@
-
-
 <div class="relative min-h-[300px] bg-white rounded-lg shadow-md p-5 mb-5 min-w-full mx-auto">
     <!-- Title -->
     <div class="flex justify-between items-center mb-2">
         <div>
-            <h2 class="text-2xl font-semibold hover:text-blue-600 transition text-[#0e608f]">
+            <h2 class="text-3xl font-semibold text-[#2d2eb4]">
                 {{ $membershipPlan->name }}
             </h2>
         </div>
 
         <!-- Edit/Delete buttons -->
         <div class="top-3 right-4 flex space-x-2">
-                <button type="button" class="w-12 h-12 btn-secondary edit-button"
-                    data-id="{{ $membershipPlan->id }}"
-                    data-name="{{ $membershipPlan->name }}"
-                    data-price="{{ $membershipPlan->price }}"
-                    data-duration="{{ $membershipPlan->duration }}"
-                    data-description="{{ $membershipPlan->description }}">
+            <button type="button" class="w-12 h-12 btn-secondary edit-button" data-id="{{ $membershipPlan->id }}"
+                data-name="{{ $membershipPlan->name }}" data-price="{{ $membershipPlan->price }}"
+                data-duration="{{ $membershipPlan->duration }}" data-description="{{ $membershipPlan->description }}">
                 <img src="{{ asset('/assets/edit.png') }}" alt="Edit" class="w-full h-full object-contain" />
             </button>
 
 
-                <!-- Hidden form for update -->
-            <form method="POST" action="{{ route('admin.membership.update', $membershipPlan->id) }}" class="edit-form hidden" id="edit-form-{{ $membershipPlan->id }}">
+            <!-- Hidden form for update -->
+            <form method="POST" action="{{ route('admin.membership.update', $membershipPlan->id) }}"
+                class="edit-form hidden" id="edit-form-{{ $membershipPlan->id }}">
                 @csrf
                 @method('PUT')
-                    <input type="hidden" name="name">
-                    <input type="hidden" name="price">
-                    <input type="hidden" name="duration">
-                    <input type="hidden" name="description">
+                <input type="hidden" name="name">
+                <input type="hidden" name="price">
+                <input type="hidden" name="duration">
+                <input type="hidden" name="description">
             </form>
-            <form action="{{ route('admin.membership.destroy', $membershipPlan->id )}}" method="POST">
-            @csrf
-            @method('DELETE')
+            <form action="{{ route('admin.membership.destroy', $membershipPlan->id)}}" method="POST">
+                @csrf
+                @method('DELETE')
                 <button type="button" class="w-12 h-12 btn-delete cursor-pointer">
                     <img src="{{ asset('/assets/delete.png') }}" alt="Delete" class="w-full h-full object-contain" />
                 </button>
             </form>
         </div>
-    
+
     </div>
     <div class="border-1 rounded-2xl min-h-[80%] p-4 bg-gray-50">
         <p class="text-lg text-gray-700 mb-2">
@@ -65,22 +61,24 @@
                 Swal.fire({
                     title: `Edit Membership Plan`,
                     html: `
-                    <div class="mb-4">
-                        <label for="swal-name" class="block text-sm font-medium text-gray-700">Name</label>
-                        <input id="swal-name" class="input-design" placeholder="Name" value="${currentName}">
+                    <div class="swal-form-container text-left">
+                        <div class="mt-5 mb-4">
+                            <label for="swal-name" class="swal-label">Name</label>
+                            <input id="swal-name" class="swal-input" placeholder="Name" value="${currentName}">
+                        </div>
+                        <div class="mb-4">
+                            <label for="swal-price" class="swal-label">Price</label>
+                            <input id="swal-price" type="number" class="swal-input" placeholder="Price" value="${currentPrice}">
+                        </div>    
+                        <div class="mb-4">
+                            <label for="swal-duration" class="swal-label">Duration in Days</label>
+                            <input id="swal-duration" type="number" class="swal-input" placeholder="Duration (days)" value="${currentDuration}">
+                        </div>
+                        <div class="mb-4">
+                            <label for="swal-description" class="swal-label">Description</label>
+                            <textarea id="swal-description" class="swal-input" placeholder="Description">${currentDescription}</textarea>
+                        </div
                     </div>
-                    <div class="mb-4">
-                        <label for="swal-price" class="block text-sm font-medium text-gray-700">Price</label>
-                        <input id="swal-price" type="number" class="input-design" placeholder="Price" value="${currentPrice}">
-                    </div>    
-                    <div class="mb-4">
-                        <label for="swal-duration" class="block text-sm font-medium text-gray-700">Duration in Days</label>
-                        <input id="swal-duration" type="number" class="input-design" placeholder="Duration (days)" value="${currentDuration}">
-                    </div>
-                    <div class="mb-4">
-                        <label for="swal-description" class="block text-sm font-medium text-gray-700">Description</label>
-                        <textarea id="swal-description" class="input-design" placeholder="Description">${currentDescription}</textarea>
-                    </div
                     `,
                     focusConfirm: false,
                     preConfirm: () => {
@@ -96,6 +94,7 @@
                     confirmButtonColor: '#4CAF50',
                     cancelButtonText: 'Cancel',
                     cancelButtonColor: '#6c757d',
+                    
                 }).then((result) => {
                     if (result.isConfirmed) {
                         const form = document.getElementById(`edit-form-${id}`);
@@ -109,25 +108,25 @@
             });
         });
         document.querySelectorAll('.btn-delete').forEach(button => {
-                button.addEventListener('click', function () {
-                    const form = this.closest('form');
+            button.addEventListener('click', function () {
+                const form = this.closest('form');
 
-                    Swal.fire({
-                        title: `Delete this Membership Plan?`,
-                        text: "This action cannot be undone.",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#e3342f',
-                        cancelButtonColor: '#6c757d',
-                        confirmButtonText: 'Yes, delete it!',
-                        reverseButtons: true,
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            form.submit();
-                        }
-                    }); 
+                Swal.fire({
+                    title: `Delete this Membership Plan?`,
+                    text: "This action cannot be undone.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#e3342f',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Yes, delete it!',
+                    reverseButtons: true,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
                 });
             });
+        });
     </script>
     <!-- Slot for extra content -->
     {{ $slot }}

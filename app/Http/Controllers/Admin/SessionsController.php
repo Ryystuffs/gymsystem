@@ -64,4 +64,23 @@ class SessionsController extends Controller
     {
         //
     }
+    public function search(Request $request)
+    {
+        $query = $request->input('q');
+        $filters = $request->input('filters');
+
+        
+        $memberSessions = MemberSessions::with(['userMembership.user'])
+            ->whereHas('userMembership.user', function ($q2) use ($query){
+                $q2->where('name', 'LIKE', "%{$query}%");
+            })
+            ->orderBy('created_at', 'desc')
+            ->paginate(10)
+            ->appends([
+                'q' => $query,
+                'filters' => $filters,
+            ]);
+
+        return view('admin.sessions.memberSessions', ['memberSessions' => $memberSessions]);
+    }
 }

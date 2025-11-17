@@ -53,6 +53,7 @@ Route::middleware('auth')->group(function (){
 
         Route::prefix('payments')->name('payments.')->group(function () {
             Route::get('/paymentRecords', [PaymentsController::class, 'index'])->name('index');
+            Route::get('/search', [PaymentsController::class, 'search'])->name('search');
         });
 
         Route::prefix('walkin')->name('walkin.')->group(function () {
@@ -60,10 +61,12 @@ Route::middleware('auth')->group(function (){
             Route::get('/createWalkin', [WalkinSessionController::class, 'create'])->name('create');
             Route::post('/walkinSession', [WalkinSessionController::class, 'store'])->name('store');
             Route::put('/{walkinSession}',[WalkinSessionController::class, 'checkout'])->name('checkout');
+            Route::get('/search', [WalkinSessionController::class, 'search'])->name('search');
         });
 
         Route::prefix('sessions')->name('sessions.')->group(function () {
             Route::get('/memberSessions', [SessionsController::class, 'index'])->name('index');
+            Route::get('/search', [SessionsController::class, 'search'])->name('search');
         });
 
         Route::prefix('createAnAccount')->name('createAnAccount.')->group(function () {
@@ -82,6 +85,7 @@ Route::middleware('auth')->group(function (){
 
     Route::prefix('member')->name('member.')->group(function (){
         Route::get('/dashboard', [MemberDashboardController::class, 'dashboard'])->name('dashboard');
-        Route::get('/memberAccount', [MemberDashboardController::class, 'showAccount'])->name('showAccount');
+        Route::get('/account', [MemberDashboardController::class, 'account'])->name('showAccount');
+        Route::get('/qrcode', [MemberDashboardController::class, 'showQrCode'])->name('showSessions');
     });
 });
