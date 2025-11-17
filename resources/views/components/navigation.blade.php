@@ -31,7 +31,7 @@
     <div class="flex min-h-screen pt-14 md:pt-0">
         <!-- Sidebar -->
         <aside class="fixed inset-y-0 left-0 w-72 bg-black border-r border-gray-200 z-30 transform transition-transform duration-200 ease-in-out
-            md:translate-x-0 md:static md:inset-0 flex flex-col justify-between"
+            md:translate-x-0 md:inset-0 flex flex-col justify-between"
             :class="{ '-translate-x-full': !sidebarOpen, 'translate-x-0': sidebarOpen }">
 
             <div class="flex flex-col overflow-y-auto h-full pb-20">

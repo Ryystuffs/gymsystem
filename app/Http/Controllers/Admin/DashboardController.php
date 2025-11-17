@@ -18,7 +18,10 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $planLabels = MembershipPlan::pluck('name')->toArray();
+        $plans = count($planLabels);
         $plans = MembershipPlan::count();
+
         $members = UserMemberships::where('is_active', true)->count();
         $user = User::count();
         $revenue = Payments::selectRaw('MONTH(created_at) as month, SUM(amount) as total')
@@ -39,11 +42,13 @@ class DashboardController extends Controller
             $total = $total += $revenue[$i] ?? 0;
         }
         return view('admin.dashboard', [
-            'monthlyRevenue' => $monthlyRevenue, 
-            'total' => $total, 'members' => $members, 
-            'user' => $user, 
-            'plans' => $plans, 
-            'sessions' => $sessions
+            'monthlyRevenue' => $monthlyRevenue,
+            'total' => $total,
+            'members' => $members,
+            'user' => $user,
+            'plans' => $plans,
+            'sessions' => $sessions,
+            'planLabels' => $planLabels
         ]);
     }
 }

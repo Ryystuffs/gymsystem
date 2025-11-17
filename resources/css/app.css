@@ -51,7 +51,7 @@
 
 /* Custom Classes*/
 .main-content{
-    @apply flex-1 px-0 py-0 md:m-3;
+    @apply relative flex-1 pl-72 w-screen py-0 md:m-3;
 }
 
 .back-button{

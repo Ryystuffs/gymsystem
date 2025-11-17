@@ -59,7 +59,7 @@
                         </a>
 
                     <a href="{{ route('member.showAccount') }}" @click="sidebarOpen = false" class="nav-text">
-                        <img src="{{ asset('images/account.png') }}" alt="Dashboard Icon" class="nav-icon">Account</a>
+                        <img src="{{ asset('images/account.png') }}" alt="Dashboard Icon" class="nav-icon">My Account</a>
 
                 </nav>
                 

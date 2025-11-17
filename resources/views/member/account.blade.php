@@ -1,7 +1,7 @@
 <x-membernav>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5 bg-white p-7 h-screen place-items-center">
         <div class="p-10 bg-[#121212] min-h-[150px] w-[95%] md:w-[75%] md:h-[50%] rounded-lg text-white">
-            Email: {{$user->email}}
+            {{Auth::user()->name}}
         </div>
         <div class="lex flex-col items-center p-10 bg-[#121212] min-h-[150px] w-[95%] md:w-[75%] md:h-[50%] rounded-lg text-white">
             Your membership: 

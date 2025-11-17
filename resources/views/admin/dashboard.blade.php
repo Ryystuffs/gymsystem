@@ -1,10 +1,10 @@
-<body class="bg-gray-100 font-sans text-gray-800">
+<body class="bg-gray-100 font-sans text-gray-800 pt-5">
     <x-navigation>
-        <div class="max-w-screen mx-auto p-6">
+        <div class="max-w-screen mx-auto">
 
             <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
                 <h1 class="text-3xl font-bold text-gray-800">Dashboard</h1>
-                <p class="text-2xl text-gray-500 mt-2 md:mt-0">Welcome back, Admin</p>
+                <p class="text-2xl text-gray-500 mt-2 md:mt-0">Welcome back, Admin {{Auth::user()->name}}</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -51,7 +51,7 @@
 
             </div>
 
-            <div class="flex flex-col lg:flex-row gap-6 mb-8">
+            <div class="flex flex-col lg:flex-row gap-4 mb-8">
 
                 <div class="flex-1 bg-white p-6 rounded-xl shadow-sm">
                     <div class="flex items-center text-center justify-between mb-4">
@@ -85,6 +85,8 @@
         <script>
 
             console.log(@json($monthlyRevenue));
+
+            console.log(@json($planLabels));
             const sessions = @json($sessions);
             const bar = document.getElementById('BarGraph').getContext('2d');
             const pie = document.getElementById('PieChart').getContext('2d');
@@ -94,7 +96,7 @@
                 type: 'bar',
                 data: {
                     datasets: [{
-                        type: 'bar',
+                        type: 'line',
                         label: 'Monthly Revenue',
                         data: @json($monthlyRevenue)
                     }],
@@ -122,11 +124,11 @@
             });
 
             new Chart(pie2nd, {
-                type: 'pie',
+                type: 'doughnut',
                 data: {
-                    labels: ['Member', 'Non-Member'],
+                    labels: @json($planLabels),
                     datasets: [{
-                        data: [12, 19],
+                        data: [12, 19, 20, 30, 21, 34],
                         borderWidth: 1
                     }]
                 },
