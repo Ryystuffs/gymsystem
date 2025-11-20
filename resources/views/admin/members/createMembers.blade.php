@@ -12,7 +12,7 @@
             <form method="POST" action="{{ route('admin.members.store') }}">
                 @csrf
                 <div class="mb-4">
-                    <label for="fname" class="block text-sm font-medium text-gray-700">Full Name</label>
+                    <label for="fname" class="label-design">Full Name</label>
                     <input type="text" id="fname" name="fname" placeholder="Enter Full Name" class="input-design" required>
                 </div>
 
@@ -21,7 +21,7 @@
                 <ul id="namelist" class="absolute z-10 w-full bg-white border border-gray-300 rounded-md mr-5 mt-1 max-h-40 overflow-y-auto hidden"></ul>
 
                 <div class="mb-4">
-                    <label for="membershipPlan" class="block text-sm font-medium text-gray-700">Choose a Membership Plan</label>
+                    <label for="membershipPlan" class="label-design">Choose a Membership Plan</label>
                     <select id="membershipPlan" name="membership_plan_id" class="input-design" required>
                         <option value="" disabled selected>Select a Membership Plan</option>
                         @foreach($membershipPlans as $membershipPlan)
@@ -31,12 +31,12 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="expired_at" class="block text-sm font-medium text-gray-700">Duration</label>
+                    <label for="expired_at" class="label-design">Duration</label>
                     <input type="date" id="duration" name="expired_at" placeholder="Duration in days" class="input-design" value="" required readonly>
                 </div>
 
                 <div class="mb-6">
-                    <label for="payment_method" class="block text-sm font-medium text-gray-700">Payment Method</label>
+                    <label for="payment_method" class="label-design">Payment Method</label>
                     <select id="payment_method" name="payment_method" class="input-design" required>
                         <option value="Gcash">Gcash</option>
                         <option value="Cash">Cash</option>
@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="mb-6">
-                    <label for="amount_paid" class="block text-sm font-medium text-gray-700">Amount Paid</label>
+                    <label for="amount_paid" class="label-design">Amount Paid</label>
                     <input type="number" id="amount_paid" name="amount" placeholder="Amount Paid" class="input-design" required readonly>
                 </div>
 

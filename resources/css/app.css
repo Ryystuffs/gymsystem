@@ -18,7 +18,7 @@
 @layer base {
 
     html{
-        @apply bg-[#F5F5F5];
+        @apply bg-[#010001];
     }
     .login-page{
         @apply  dark:bg-gray-950 flex flex-col items-center font-sans   ;
@@ -51,26 +51,30 @@
 
 /* Custom Classes*/
 .main-content{
-    @apply relative flex-1 pl-72 w-screen py-0 md:m-3;
+    @apply relative bg-[#010001] flex-1 pl-72 w-screen py-0 md:m-3;
 }
 
 .back-button{
-    @apply inline-block text-white bg-[#122D3D] hover:bg-[#133F4F] font-medium rounded-lg text-xl px-5 py-2.5 text-center
+    @apply inline-block text-white bg-[#2d2eb4] hover:bg-[#5254e0] font-medium rounded-lg text-xl px-5 py-2.5 text-center
 }
 
 .title-text{
-    @apply text-3xl font-bold text-[#333333];
+    @apply text-3xl font-bold text-[#fdfdfd];
 }
 
 .login-input{
     @apply w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300
 }
 
+.label-design{
+    @apply block text-lg font-bold text-[#fdfdfd]
+}
+
 .input-design{
-    @apply mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 shadow-sm
+    @apply mt-1 block w-full px-4 py-2 text-[#fdfdfd] border border-gray-600 rounded-md focus:ring-indigo-500 focus:border-indigo-500 shadow-sm
 }
 .submit-design{
-    @apply w-full bg-[#122D3D] hover:bg-[#133F4F] text-white font-semibold py-2 px-4 rounded-md transition duration-200
+    @apply w-full bg-[#2d2eb4] hover:bg-[#5254e0] text-white font-semibold py-2 px-4 rounded-md transition duration-200
 }
 
 .swal-label{
@@ -90,5 +94,11 @@
 }
 
 .dashboard-card{
-    @apply flex items-center gap-4 p-0 bg-white;
+    @apply flex items-center gap-4 p-0 bg-[#292626] rounded-xl;
 }
+
+.dashboard-stat-number{
+    @apply pt-3 text-3xl font-bold text-green-500;
+}
+
+
