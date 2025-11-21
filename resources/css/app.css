@@ -94,7 +94,7 @@
 }
 
 .dashboard-card{
-    @apply flex items-center gap-4 p-0 bg-[#292626] rounded-xl;
+    @apply flex items-center gap-4 p-3 bg-[#292626] rounded-xl;
 }
 
 .dashboard-stat-number{

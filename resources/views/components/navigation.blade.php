@@ -23,7 +23,7 @@
                 </svg>
             </button>
             <div class="p-1 text-center md:block">
-                <a href="{{ route("admin.dashboard") }}">
+                <a href="{{ route('admin.dashboard') }}">
                     <img src="{{ asset('images/gainlabWhite.png') }}" alt="" class="h-11">
                 </a>
             </div>
