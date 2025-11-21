@@ -1,6 +1,6 @@
 <x-navigation>
     <div class="p-1">
-        <div class="flex justify-between p-5 ">
+        <div class="flex justify-between mb-5 pt-2 px-1">
             <h1 class="title-text">Add New Member</h1>
             <a href="{{ route('admin.members.index') }}" class="back-button">
                 Back to Members List
