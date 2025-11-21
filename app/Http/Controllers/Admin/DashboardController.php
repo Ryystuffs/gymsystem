@@ -20,7 +20,12 @@ class DashboardController extends Controller
     {
         $planLabels = MembershipPlan::pluck('name')->toArray();
         $plans = count($planLabels);
-        $plans = MembershipPlan::count();
+
+        $perPlan = UserMemberships::selectRaw('membership_plan_id, COUNT(*) as total')
+            ->groupBy('membership_plan_id')
+            ->get()
+            ->pluck('total', 'membership_plan_id')
+            ->toArray();
 
         $members = UserMemberships::where('is_active', true)->count();
         $user = User::count();
@@ -48,7 +53,8 @@ class DashboardController extends Controller
             'user' => $user,
             'plans' => $plans,
             'sessions' => $sessions,
-            'planLabels' => $planLabels
+            'planLabels' => $planLabels,
+            'perPlan' => $perPlan,
         ]);
     }
 }

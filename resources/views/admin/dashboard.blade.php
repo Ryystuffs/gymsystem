@@ -85,6 +85,7 @@
         <script>
 
             console.log(@json($monthlyRevenue));
+            console.log(@json($perPlan));
 
             console.log(@json($planLabels));
             const sessions = @json($sessions);
@@ -129,7 +130,7 @@
                 data: {
                     labels: @json($planLabels),
                     datasets: [{
-                        data: [12, 19, 20],
+                        data: @json(array_values($perPlan)),
                         borderWidth: 1
                     }]
                 },
