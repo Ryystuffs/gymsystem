@@ -51,7 +51,7 @@
 
 /* Custom Classes*/
 .main-content{
-    @apply relative bg-[#010001] flex-1 pl-72 w-screen py-0 md:m-3;
+    @apply relative bg-[#010001] flex-1 md:pl-72 w-screen py-0 md:m-3;
 }
 
 .back-button{
@@ -94,7 +94,7 @@
 }
 
 .dashboard-card{
-    @apply flex items-center gap-4 p-0 bg-[#292626] rounded-xl;
+    @apply flex items-center gap-4 p-3 bg-[#292626] rounded-xl;
 }
 
 .dashboard-stat-number{
