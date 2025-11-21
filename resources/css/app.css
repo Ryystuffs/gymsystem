@@ -35,7 +35,7 @@
         @apply bg-red-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-red-700 hover:scale-105 transform transition-transform duration-300;
     }
     .btn-secondary{
-        @apply text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-4 py-2 text-center hover:scale-105 transform transition-transform duration-300;
+        @apply focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center hover:scale-105 transform transition-transform duration-300;
     }
     
 
@@ -55,7 +55,7 @@
 }
 
 .back-button{
-    @apply inline-block text-white bg-[#2d2eb4] hover:bg-[#5254e0] font-medium rounded-lg text-xl px-5 py-2.5 text-center
+    @apply inline-block text-black bg-[#c3a06a] hover:bg-[#e0a752] font-medium rounded-lg text-xl px-5 py-2.5 text-center
 }
 
 .title-text{

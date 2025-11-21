@@ -1,18 +1,19 @@
-<div class="flex flex-col justify-between relative bg-white rounded-lg shadow-md p-5 mb-5 min-w-full mx-auto">
+<div class="flex flex-col justify-between relative bg-[#292626] rounded-lg shadow-md p-5 mb-5 min-w-full mx-auto">
     <!-- Title -->
     <div class="flex flex-col">
-        <h2 class="text-3xl font-bold">{{ $userMembership->user->name }}</h2>
+        <h2 class="text-2xl text-[#fdfdfd] mb-3 font-bold">{{ $userMembership->user->name }}</h2>
 
-        <p class="text-[#2d2eb4] text-2xl ">
+        <p class="text-[#676fd4] text-xl ">
             {{  $userMembership->membershipPlan ? $userMembership->membershipPlan->name : 'N/A' }}
         </p>
-        <p>Membership Start: {{ $userMembership->created_at->format('M d, Y') }}</p>
-        <p>Membership End: {{ $userMembership->expired_at->format('M d, Y') }}</p>
-        <p>
+        <p class="text-[#fdfdfd]"><span class="text-gray-300">Membership Start: </span>
+            {{ $userMembership->created_at->format('M d, Y') }}</p>
+        <p class="text-[#fdfdfd]"><span class="text-gray-300">Membership End: </span> {{ $userMembership->expired_at->format('M d, Y') }}</p>
+        <p class="text-[#fdfdfd]">
             @if($userMembership->is_active)
-                Status: Active
+                <span class="text-gray-300">Status:</span> <span class="text-green-400">Active</span>
             @else
-                Status: Inactive
+                <span class="text-gray-300">Status:</span> <span class="text-red-400">Inactive</span>
             @endif
         </p>
     </div>
@@ -21,7 +22,7 @@
     <!-- Edit/Delete buttons -->
     <div class="flex justify-end space-x-2">
         <!-- Edit Button -->
-        <button type="button" class="w-12 h-12 btn-secondary edit-button"
+        <button type="button" class="w-12 h-12 btn-secondary bg-[#c3a06a] hover:bg-[#e0a752]"
             data-member="{{ $userMembership->user->name }}" data-id="{{ $userMembership->id }}"
             data-name="{{ $userMembership->membershipPlan->name ?? '' }}"
             data-expired="{{ \Carbon\Carbon::parse($userMembership->expired_at)->format('Y-m-d') }}"

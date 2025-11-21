@@ -1,12 +1,11 @@
 <div class="relative bg-[#292626] rounded-xl shadow-lg p-6 mb-6 w-full mx-auto text-[#fdfdfd]">
 
-    <div class="flex justify-between items-center border-b border-[#3a3838] pb-4 mb-4">
+    <div class="flex justify-between items-center border-b border-[#3a3838] pb-3 mb-4">
         <h2 class="text-3xl font-semibold">{{ $membershipPlan->name }}</h2>
 
         <div class="flex items-center space-x-3">
 
-            <button type="button"
-                class="p-2.5 rounded-lg bg-[#b1b30f] hover:bg-[#56570f] transition edit-button"
+            <button type="button" class="p-2.5 rounded-lg bg-[#c3a06a] hover:bg-[#e0a752] btn-secondary transition edit-button"
                 data-id="{{ $membershipPlan->id }}"
                 data-name="{{ $membershipPlan->name }}"
                 data-price="{{ $membershipPlan->price }}"

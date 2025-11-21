@@ -1,7 +1,7 @@
 <body class="bg-[#010001]">
     <x-navigation>
-        <div class="p-1">
-            <div class="flex justify-between p-5 ">
+        <div class="p-5">
+            <div class="flex justify-between px-2 mb-5 mt-3 ">
                 <h1 class="text-3xl font-bold text-[#fdfdfd]">Add New Membership Plan</h1>
 
                 <a href="{{ route('admin.membership.index') }}" class="back-button">Back to Membership Plan</a>

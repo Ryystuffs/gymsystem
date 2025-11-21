@@ -1,90 +1,92 @@
-<x-navigation>
-    <div class="p-1">
-        <div class="flex justify-between p-5 ">
-            <h1 class="title-text">Create New Account</h1>
+<body class="bg-[#010001]">
+    <x-navigation>
+        <div class="p-5">
+            <div class="flex justify-between px-2 mt-5 mb-5 ">
+                <h1 class="title-text">Create New Account</h1>
+            </div>
+            <div class="bg-[#292626] p-8 rounded-lg shadow-md">
+
+                <form method="POST" action="{{ route('admin.createAnAccount.store') }}">
+                    @csrf
+
+                    <div class="mb-4">
+                        <label for="name" class="label-design">Full Name</label>
+                        <input type="text" id="fname" name="name" placeholder="Enter Full Name" class="input-design"
+                            required value="{{ old('name') }}">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="email" class="label-design">Enter Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter Email" class="input-design"
+                            required value="{{ old('email') }}">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="password" class="label-design">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter Password"
+                            class="input-design" required>
+                    </div>
+
+                    <div class="">
+                        <label for="confirm_password" class="label-design">Confirm
+                            Password
+                        </label>
+                        <input type="password" id="confirm_password" name="password_confirmation"
+                            placeholder="Confirm Password" class="input-design" required>
+                    </div>
+
+                    <div class="mb-4 mt-2">
+                        <input class="accent-black" type="checkbox" onclick="togglePassword()">
+                        <span class="text-[#fdfdfd]">Show Password</span>
+                    </div>
+
+                    <button type="submit" class="submit-design"> Create Account </button>
+                </form>
+            </div>
         </div>
-        <div class="bg-white p-8 rounded-lg shadow-md">
 
-            <form method="POST" action="{{ route('admin.createAnAccount.store') }}">
-                @csrf
+        {{-- Password Error alert message --}}
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            function togglePassword() {
+                const passwordField = document.getElementById('password');
+                const confirmPasswordField = document.getElementById('confirm_password');
 
-                <div class="mb-4">
-                    <label for="name" class="block text-lg font-medium text-gray-700">Full Name</label>
-                    <input type="text" id="fname" name="name" placeholder="Enter Full Name" class="input-design"
-                        required value="{{ old('name') }}">
-                </div>
-
-                <div class="mb-4">
-                    <label for="email" class="block text-lg font-medium text-gray-700">Enter Email</label>
-                    <input type="email" id="email" name="email" placeholder="Enter Email" class="input-design" required
-                        value="{{ old('email') }}">
-                </div>
-
-                <div class="mb-4">
-                    <label for="password" class="block text-lg font-medium text-gray-700">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Enter Password"
-                        class="input-design" required>
-                </div>
-
-                <div class="">
-                    <label for="confirm_password" class="block text-lg font-medium text-gray-700">Confirm
-                        Password
-                    </label>
-                    <input type="password" id="confirm_password" name="password_confirmation"
-                        placeholder="Confirm Password" class="input-design" required>
-                </div>
-
-                <div class="mb-4 mt-2">
-                    <input class="accent-black" type="checkbox" onclick="togglePassword()">
-                    <span>Show Password</span>
-                </div>
-
-                <button type="submit" class="submit-design"> Create Account </button>
-            </form>
-        </div>
-    </div>
-
-    {{-- Password Error alert message --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        function togglePassword() {
-            const passwordField = document.getElementById('password');
-            const confirmPasswordField = document.getElementById('confirm_password');
-
-            passwordField.type = passwordField.type === 'password' ? 'text' : 'password';
-            confirmPasswordField.type = confirmPasswordField.type === 'password' ? 'text' : 'password';
-        }
-
-
-        document.querySelector('form').addEventListener('submit', function (e) {
-            const password = document.getElementById('password').value;
-            const confirm = document.getElementById('confirm_password').value;
-
-            if (password !== confirm) {
-                Swal.fire({
-                    title: 'Validation Error',
-                    text: 'Passwords do not match.',
-                    icon: 'error',
-                    confirmButtonText: 'OK',
-                    confirmButtonColor: '#e3342f'
-                });
+                passwordField.type = passwordField.type === 'password' ? 'text' : 'password';
+                confirmPasswordField.type = confirmPasswordField.type === 'password' ? 'text' : 'password';
             }
 
-            const errorContainer = document.getElementById('validation-errors');
-            if (errorContainer) {
-                const messages = Array.from(errorContainer.querySelectorAll('p')).map(p => p.textContent);
-                if (messages.length > 0) {
+
+            document.querySelector('form').addEventListener('submit', function (e) {
+                const password = document.getElementById('password').value;
+                const confirm = document.getElementById('confirm_password').value;
+
+                if (password !== confirm) {
                     Swal.fire({
                         title: 'Validation Error',
-                        html: messages.join('<br>'),
+                        text: 'Passwords do not match.',
                         icon: 'error',
                         confirmButtonText: 'OK',
                         confirmButtonColor: '#e3342f'
                     });
                 }
-            }
-        });
-    </script>
-    
-    
-</x-navigation>
+
+                const errorContainer = document.getElementById('validation-errors');
+                if (errorContainer) {
+                    const messages = Array.from(errorContainer.querySelectorAll('p')).map(p => p.textContent);
+                    if (messages.length > 0) {
+                        Swal.fire({
+                            title: 'Validation Error',
+                            html: messages.join('<br>'),
+                            icon: 'error',
+                            confirmButtonText: 'OK',
+                            confirmButtonColor: '#e3342f'
+                        });
+                    }
+                }
+            });
+        </script>
+
+
+    </x-navigation>
+</body>

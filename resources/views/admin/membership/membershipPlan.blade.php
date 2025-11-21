@@ -42,8 +42,8 @@
         --}}
 
 
-        <div>
-            <div class="flex justify-between p-5 mb-5 h-20">
+        <div class="p-5">
+            <div class="flex justify-between px-2 mt-3 mb-0 h-20">
                 <div>
                     <h1 class="title-text">Membership Plans</h1>
                 </div>

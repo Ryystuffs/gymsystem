@@ -10,7 +10,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
 
                 <div class="dashboard-card">
-                    <div class="p-3 bg-blue-200">
+                    <div class="p-3 bg-blue-200 rounded-xl">
                         <img src="{{ asset('images/memberBlack.png') }}" alt="Members Icon" class="w-20 h-20">
                     </div>
                     <div class="m-2">
@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="dashboard-card">
-                    <div class="p-3 bg-green-200">
+                    <div class="p-3 bg-green-200 rounded-xl">
                         <img src="{{ asset('images/accountBlack.png') }}" alt="User Accounts Icon" class="w-20 h-20">
                     </div>
                     <div>
@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="dashboard-card">
-                    <div class="p-3 bg-violet-200">
+                    <div class="p-3 bg-violet-200 rounded-xl">
                         <img src="{{ asset('images/membershipBlack.png') }}" alt="Plans Icon" class="w-20 h-20">
                     </div>
                     <div>
@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="dashboard-card">
-                    <div class="p-3 bg-yellow-200">
+                    <div class="p-3 bg-yellow-200 rounded-xl">
                         <img src="{{ asset('images/revenueBlack.png') }}" alt="Plans Icon" class="w-20 h-20">
                     </div>
                     <div>
@@ -100,7 +100,7 @@
                         type: 'bar',
                         label: 'Monthly Revenue',
                         data: @json($monthlyRevenue),
-                        backgroundColor: '#5254e0'
+                        backgroundColor: '#696ed2'
                     }],
                     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
                 },

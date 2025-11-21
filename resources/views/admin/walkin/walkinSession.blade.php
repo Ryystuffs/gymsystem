@@ -50,14 +50,14 @@
                             <td class="text-[#fdfdfd]">{{ optional($walkinSession->check_out)->format('M d, Y h:i A') }}</td>
                             <td>
                                 <div class="flex justify-center items-center space-x-2 p-2">
-                                    <button type="submit" class="ml-6 w-12 h-12 btn-secondary edit-button"><img
+                                    <button type="submit" class="ml-6 w-12 h-12 btn-secondary bg-[#c3a06a] hover:bg-[#e0a752]"><img
                                             src="{{ asset('/assets/edit.png') }}" alt="Edit"
                                             class="w-full h-full object-contain" /></button>
                                     <form action="{{ route('admin.walkin.checkout', $walkinSession->id) }}" method="POST"
                                         class="checkout-form">
                                         @csrf
                                         @method('PUT')
-                                        <button id="submitBtn" type="submit" class="w-12 h-12 btn-delete bg-[#4CAF50]"><img
+                                        <button id="submitBtn" type="submit" class="w-12 h-12 btn-delete bg-[#676fd4] hover:bg-[#525be0]"><img
                                                 src="{{ asset('images/checkOut.png') }}" alt="Edit"
                                                 class="w-full h-full object-contain" /></button>
                                     </form>

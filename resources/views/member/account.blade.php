@@ -3,7 +3,7 @@
         <div class="p-10 bg-[#121212] min-h-[150px] w-[95%] md:w-[75%] md:h-[50%] rounded-lg text-white">
             {{Auth::user()->name}}
         </div>
-        <div class="lex flex-col items-center p-10 bg-[#121212] min-h-[150px] w-[95%] md:w-[75%] md:h-[50%] rounded-lg text-white">
+        <div class="flex flex-col items-center p-10 bg-[#121212] min-h-[150px] w-[95%] md:w-[75%] md:h-[50%] rounded-lg text-white">
             Your membership: 
             <div>
                 Start Time: {{$membership->created_at->format('M d, Y')}}
