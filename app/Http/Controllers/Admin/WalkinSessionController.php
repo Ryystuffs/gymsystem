@@ -24,6 +24,11 @@ class WalkinSessionController extends Controller
     public function create(){
         return view('admin.walkin.createWalkin');
     }
+    public function update(WalkinSession $membershipPlan, UpdateWalkinSessionRequest $request){
+        $data = $request->validated();
+        $this->walkinSession->updateWalkinSession($walkinSession, $data);
+        return redirect()->route('admin.walkin.index')->with('success', 'Walk-In Session Plan Updated');
+    }
 
     public function store(StoreWalkinRequest $request){
         $data = $request->validated();

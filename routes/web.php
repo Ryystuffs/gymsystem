@@ -49,7 +49,7 @@ Route::middleware('auth')->group(function (){
             Route::post('/membershipPlan', [MembershipController::class, 'store'])->name('store');
             Route::delete('/{membershipPlan}', [MembershipController::class, 'destroy'])->name('destroy');
             Route::put('/{membershipPlan}', [MembershipController::class, 'update'])->name('update');
-        });
+        }); 
 
         Route::prefix('payments')->name('payments.')->group(function () {
             Route::get('/paymentRecords', [PaymentsController::class, 'index'])->name('index');
@@ -62,6 +62,7 @@ Route::middleware('auth')->group(function (){
             Route::post('/walkinSession', [WalkinSessionController::class, 'store'])->name('store');
             Route::put('/{walkinSession}',[WalkinSessionController::class, 'checkout'])->name('checkout');
             Route::get('/search', [WalkinSessionController::class, 'search'])->name('search');
+            Route::put('/{walkinSession}', [WalkinSessionController::class, 'update'])->name('update');
         });
 
         Route::prefix('sessions')->name('sessions.')->group(function () {

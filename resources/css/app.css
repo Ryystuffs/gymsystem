@@ -55,7 +55,7 @@
 }
 
 .back-button{
-    @apply inline-block text-black bg-[#c3a06a] hover:bg-[#e0a752] font-medium rounded-lg text-xl px-5 py-2.5 text-center
+    @apply inline-block text-[#fdfdfd] font-medium bg-[#5d5a5a] hover:bg-[#e0a752] font-medium rounded-lg text-xl px-5 py-2.5 text-center
 }
 
 .title-text{
@@ -82,7 +82,7 @@
 }
 
 .swal-input{
-    @apply mt-1 block w-full px-4 py-2 border border-b border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm
+    @apply mt-1 block w-full text-[#fdfdfd] px-4 py-2 border border-b border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 rounded-lg mt-2 shadow-sm
 }
 
 .nav-icon{

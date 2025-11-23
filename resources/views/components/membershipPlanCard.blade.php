@@ -81,17 +81,17 @@ document.querySelectorAll('.edit-button').forEach(button => {
         Swal.fire({
             title: `Edit Membership Plan`,
             html: `
-                <div class="text-left bg-[]">
-                    <label for="swal-name" class="block mb-1 font-medium">Name</label>
+                <div class="text-left bg-[#292626] p-4 rounded-lg">
+                    <label for="swal-name" class="block mb-1 font-medium text-[#fdfdfd]">Name</label>
                     <input id="swal-name" class="swal-input" value="${currentName}"><br><br>
 
-                    <label for="swal-price" class="block mb-1 font-medium">Price</label>
+                    <label for="swal-price" class="block mb-1 font-medium text-[#fdfdfd]">Price</label>
                     <input id="swal-price" type="number" class="swal-input" value="${currentPrice}"><br><br>
 
-                    <label for="swal-duration" class="block mb-1 font-medium">Duration (days)</label>
+                    <label for="swal-duration" class="block mb-1 font-medium text-[#fdfdfd]">Duration (days)</label>
                     <input id="swal-duration" type="number" class="swal-input" value="${currentDuration}"><br><br>
 
-                    <label for="swal-description" class="block mb-1 font-medium">Description</label>
+                    <label for="swal-description" class="block mb-1 font-medium text-[#fdfdfd]">Description</label>
                     <textarea id="swal-description" class="swal-input">${currentDescription}</textarea>
                 </div>
             `,
@@ -104,7 +104,9 @@ document.querySelectorAll('.edit-button').forEach(button => {
             showCancelButton: true,
             confirmButtonColor: '#4CAF50',
             cancelButtonColor: '#6c757d',
-            confirmButtonText: 'Edit'
+            confirmButtonText: 'Edit',
+            background: '#292626',
+            color: '#fdfdfd'
         }).then(result => {
             if (result.isConfirmed) {
                 const form = document.getElementById(`edit-form-${id}`);
