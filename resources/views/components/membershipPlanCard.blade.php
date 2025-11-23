@@ -83,13 +83,13 @@ document.querySelectorAll('.edit-button').forEach(button => {
             html: `
                 <div class="text-left bg-[#292626] p-4 rounded-lg">
                     <label for="swal-name" class="block mb-1 font-medium text-[#fdfdfd]">Name</label>
-                    <input id="swal-name" class="swal-input" value="${currentName}"><br><br>
+                    <input id="swal-name" class="swal-input" value="${currentName}"><br>
 
                     <label for="swal-price" class="block mb-1 font-medium text-[#fdfdfd]">Price</label>
-                    <input id="swal-price" type="number" class="swal-input" value="${currentPrice}"><br><br>
+                    <input id="swal-price" type="number" class="swal-input" value="${currentPrice}"><br>
 
                     <label for="swal-duration" class="block mb-1 font-medium text-[#fdfdfd]">Duration (days)</label>
-                    <input id="swal-duration" type="number" class="swal-input" value="${currentDuration}"><br><br>
+                    <input id="swal-duration" type="number" class="swal-input" value="${currentDuration}"><br>
 
                     <label for="swal-description" class="block mb-1 font-medium text-[#fdfdfd]">Description</label>
                     <textarea id="swal-description" class="swal-input">${currentDescription}</textarea>

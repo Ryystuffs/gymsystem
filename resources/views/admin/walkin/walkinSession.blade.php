@@ -50,9 +50,10 @@
                             <td class="text-[#fdfdfd]">{{ optional($walkinSession->check_out)->format('M d, Y h:i A') }}
                             </td>
                             <td>
+                                
                                 <div class="flex justify-center items-center space-x-2 p-2">
                                     <button type="button"
-                                        class="p-2.5 rounded-lg bg-[#c3a06a] hover:bg-[#e0a752] btn-secondary transition edit-button"
+                                        class="p-2.5 rounded-lg bg-[#c3a06a] hover:bg-[#e0a752] btn-secondary transition walkin-edit"
                                         data-id="{{ $walkinSession->id }}" data-name="{{ $walkinSession->name }}"
                                         data-price="{{ $walkinSession->check_in }}"
                                         data-duration="{{ $walkinSession->check_out }}"
@@ -67,7 +68,7 @@
                                         @method('PUT')
                                         <button id="submitBtn" type="submit"
                                             class="w-12 h-12 btn-delete bg-[#676fd4] hover:bg-[#525be0]"><img
-                                                src="{{ asset('images/checkOut.png') }}" alt="Edit"
+                                                src="{{ asset('images/checkOut.png') }}" alt="Check Out"
                                                 class="w-full h-full object-contain" /></button>
                                     </form>
 
@@ -77,9 +78,7 @@
                                         @csrf
                                         @method('PUT')
                                         <input type="hidden" name="name">
-                                        <input type="hidden" name="checkin">
-                                        <input type="hidden" name="checkout">
-                                        <input type="hidden" name="amountpaid">
+                                        <input type="hidden" name="amount_paid">
                                     </form>
 
 
@@ -94,36 +93,26 @@
             {{ $walkinSessions->links('vendor.pagination.tailwind') }}
         </div>
         <script>
-            document.querySelectorAll('.edit-button').forEach(button => {
+            document.querySelectorAll('.walkin-edit').forEach(button => {
                 button.addEventListener('click', function () {
                     const id = this.dataset.id;
                     const currentName = this.dataset.name;
-                    const currentCheckin = this.dataset.checkin;
-                    const currentCheckout = this.dataset.checkout;
-                    const currentAmountPaid = this.dataset.amountpaid;
+                    const currentAmountPaid = this.dataset.amount_paid;
 
                     Swal.fire({
-                        title: `Edit Membership Plan`,
+                        title: `Edit ${currentName} Membership`,
                         html: `
                 <div class="text-left bg-[#292626] p-4 rounded-lg">
                     <label for="swal-name" class="block mb-1 font-medium text-[#fdfdfd]">Name</label>
-                    <input id="swal-name" class="swal-input" value="${currentName}"><br><br>
+                    <input id="swal-name" class="swal-input" value="${currentName}"><br>
 
-                    <label for="swal-price" class="block mb-1 font-medium text-[#fdfdfd]">Check In</label>
-                    <input id="swal-checkin" type="number" class="swal-input" value="${currentCheckin}"><br><br>
-
-                    <label for="swal-duration" class="block mb-1 font-medium text-[#fdfdfd]">Check Out</label>
-                    <input id="swal-checkout" type="number" class="swal-input" value="${currentCheckout}"><br><br>
-
-                    <label for="swal-description" class="block mb-1 font-medium text-[#fdfdfd]">Amount Paid</label>
-                    <input id="swal-amountpaid" class="swal-input">${currentAmountPaid}</input>
+                    <label for="swal-amount_paid" class="block mb-1 font-medium text-[#fdfdfd]">Amount Paid</label>
+                    <input id="swal-amount_paid" class="swal-input">${currentAmountPaid}</input>
                 </div>
             `,
                         preConfirm: () => ({
                             name: document.getElementById('swal-name').value,
-                            price: document.getElementById('swal-checkin').value,
-                            duration: document.getElementById('swal-checkout').value,
-                            description: document.getElementById('swal-amountpaid').value,
+                            description: document.getElementById('swal-amount_paid').value,
                         }),
                         showCancelButton: true,
                         confirmButtonColor: '#4CAF50',
@@ -135,9 +124,7 @@
                         if (result.isConfirmed) {
                             const form = document.getElementById(`edit-form-${id}`);
                             form.querySelector('input[name="name"]').value = result.value.name;
-                            form.querySelector('input[name="checkin"]').value = result.value.checkin;
-                            form.querySelector('input[name="checkout"]').value = result.value.checkout;
-                            form.querySelector('input[name="amountpaid"]').value = result.value.amountpaid;
+                            form.querySelector('input[name="amount_paid"]').value = result.value.amount_paid;
                             form.submit();
                         }
                     });

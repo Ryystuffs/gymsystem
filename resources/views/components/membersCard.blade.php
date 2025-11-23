@@ -8,7 +8,8 @@
         </p>
         <p class="text-[#fdfdfd]"><span class="text-gray-300">Membership Start: </span>
             {{ $userMembership->created_at->format('M d, Y') }}</p>
-        <p class="text-[#fdfdfd]"><span class="text-gray-300">Membership End: </span> {{ $userMembership->expired_at->format('M d, Y') }}</p>
+        <p class="text-[#fdfdfd]"><span class="text-gray-300">Membership End: </span>
+            {{ $userMembership->expired_at->format('M d, Y') }}</p>
         <p class="text-[#fdfdfd]">
             @if($userMembership->is_active)
                 <span class="text-gray-300">Status:</span> <span class="text-green-400">Active</span>
@@ -22,7 +23,7 @@
     <!-- Edit/Delete buttons -->
     <div class="flex justify-end space-x-2">
         <!-- Edit Button -->
-        <button type="button" class="w-12 h-12 btn-secondary bg-[#c3a06a] hover:bg-[#e0a752]"
+        <button type="button" class="w-12 h-12 btn-secondary bg-[#c3a06a] hover:bg-[#e0a752] edit-button"
             data-member="{{ $userMembership->user->name }}" data-id="{{ $userMembership->id }}"
             data-name="{{ $userMembership->membershipPlan->name ?? '' }}"
             data-expired="{{ \Carbon\Carbon::parse($userMembership->expired_at)->format('Y-m-d') }}"
@@ -69,20 +70,29 @@
                 Swal.fire({
                     title: `Edit ${memberName} Membership`,
                     html: `
-                    <input id="swal-expired" type="date" class="swal2-input" value="${currentExpired}" readonly>
-                    <select id="swal-plan" class="swal2-input">
-                        <option value="" disabled>Select Membership Plan</option>
-                        @foreach($membershipPlans as $plan)
-                            <option value="{{ $plan->id }}" ${currentPlan === '{{ $plan->name }}' ? 'selected' : ''}>{{ $plan->name }}</option>
-                        @endforeach
-                    </select>
-                    <select id="swal-payment" class="swal2-input">
-                        <option value="" disabled Selected>Select Payment Method</option>
-                        @foreach($payments->unique('payment_method') as $payment)
-                            <option value="{{ $payment->payment_method }}">{{ $payment->payment_method }}</option>
-                        @endforeach
-                    </select>
-                    <input id="swal-amount" type="hidden" class="swal2-input" value="${currentAmount}" readonly>
+                    <div class="text-left p-4">
+                        <label for="swal-expired" class="block mb-1 font-medium text-[#fdfdfd]">Membership Expiration Date</label>
+                        <input id="swal-expired" type="date" class="swal-input" value="${currentExpired}" readonly><br>
+
+                        <label for="swal-plan" class="block mb-1 font-medium text-[#fdfdfd]">Membership Plan</label>
+                        <select id="swal-plan" class="swal-input">
+                            <option value="" disabled class="bg-[#292626]">Select Membership Plan</option>
+                            @foreach($membershipPlans as $plan)
+                                <option class="bg-[#292626]" value="{{ $plan->id }}" ${currentPlan === '{{ $plan->name }}' ? 'selected' : ''}>{{ $plan->name }}</option>
+                            @endforeach
+                        </select><br>
+
+                        <label for="swal-payment" class="block mb-1 font-medium text-[#fdfdfd]">Payment Method</label>
+                        <select id="swal-payment" class="swal-input">
+                            <option value="" disabled Selected class="bg-[#292626]">Select Payment Method</option>
+                            @foreach($payments->unique('payment_method') as $payment)
+                                <option class="bg-[#292626]" value="{{ $payment->payment_method }}">{{ $payment->payment_method }}</option>
+                            @endforeach
+                        </select><br>
+
+                        <label for="swal-amount" class="block mb-1 font-medium text-[#fdfdfd]">Amount</label>
+                        <input id="swal-amount" type="number" class="swal-input" value="${currentAmount}" readonly>
+                    </div>
                 `,
                     showCancelButton: true,
                     confirmButtonText: 'Edit',
@@ -90,6 +100,8 @@
                     cancelButtonText: 'Cancel',
                     cancelButtonColor: '#6c757d',
                     focusConfirm: false,
+                    background: '#292626',
+                    color: '#fdfdfd',
                     preConfirm: () => {
                         const plan = document.getElementById('swal-plan').value;
                         const expired = document.getElementById('swal-expired').value;

@@ -60,7 +60,7 @@ Route::middleware('auth')->group(function (){
             Route::get('/walkinSession', [WalkinSessionController::class, 'index'])->name('index');
             Route::get('/createWalkin', [WalkinSessionController::class, 'create'])->name('create');
             Route::post('/walkinSession', [WalkinSessionController::class, 'store'])->name('store');
-            Route::put('/{walkinSession}',[WalkinSessionController::class, 'checkout'])->name('checkout');
+            Route::put('/{walkinSession}/checkout',[WalkinSessionController::class, 'checkout'])->name('checkout');
             Route::get('/search', [WalkinSessionController::class, 'search'])->name('search');
             Route::put('/{walkinSession}', [WalkinSessionController::class, 'update'])->name('update');
         });
