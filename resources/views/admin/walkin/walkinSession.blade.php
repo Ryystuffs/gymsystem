@@ -1,30 +1,41 @@
 <body class="bg-[#010001]">
     <x-navigation>
         <div class="pt-2 mt-2 pb-0 p-6">
-            <div class="ml-2 flex flex-col md:flex-row md:items-center md:justify-between bg-none text-black">
+            <div class="ml-1 flex flex-col md:flex-row md:items-center md:justify-between bg-none text-black">
                 <h1 class="title-text">Walk-In Sessions</h1>
+            </div>
 
-                <div class="flex flex-row gap-2 mb-4">
-                    <form action="{{ route('admin.walkin.search') }}" method="GET"
-                        class="flex items-center space-x-2 bg-[#292626] rounded-lg px-3 py-1 shadow-sm w-full md:w-auto">
-                        <input
-                            class="border-none outline-none text-gray-700 placeholder-gray-400 bg-transparent w-full md:w-64"
-                            type="search" id="search-input" name="q" placeholder="Search guest...">
-                        <button type="submit"
-                            class="bg-[#1f2122] hover:bg-[#3f3233] text-white font-semibold px-3 py-1 rounded-md transition">
-                            Search
-                        </button>
-                    </form>
+            <div class="flex justify-between items-start mb-3 mt-7">
 
+                <div class="flex flex-row space-x-1">
+
+                    <input type="text" id="filter-name"
+                        class="h-auto w-full px-3 py-2 rounded-lg bg-[#403c3c] text-white placeholder-gray-300 border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition"
+                        placeholder="Search name...">
+
+                    <input type="date" id="filter-start"
+                        class="h-auto w-full px-3 py-2 rounded-lg bg-[#403c3c] text-white border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition">
+
+                    <input type="date" id="filter-end"
+                        class="h-auto w-full px-3 py-2 rounded-lg bg-[#403c3c] text-white border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition">
+
+                    <button id="clearFilters"
+                        class="w-sm px-6 py-2 bg-[#403c3c] hover:bg-[#5d5a5a] text-white border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition rounded-lg">
+                        Clear Filters
+                    </button>
+                </div>
+
+                <div>
                     <a href="{{ route('admin.walkin.create') }}" class="back-button">
-                        <h1 class="text-lg">Add Walk-In Guest</h1>
+                        <h1 class="font-bold text-[18px]">Add Walk-In Guest</h1>
                     </a>
                 </div>
 
             </div>
 
+
             <table class="min-w-full bg-[#292626] border border-[#2d2eb4] mt-0 mb-0 rounded-lg overflow-hidden">
-                <thead class="bg-[#403c3c] text-xl text-white h-16 ">
+                <thead class="bg-[#403c3c] font-bold text-white h-14">
                     <tr class="text-center ">
                         <th>Payment ID</th>
                         <th>Name</th>
@@ -50,7 +61,7 @@
                             <td class="text-[#fdfdfd]">{{ optional($walkinSession->check_out)->format('M d, Y h:i A') }}
                             </td>
                             <td>
-                                
+
                                 <div class="flex justify-center items-center space-x-2 p-2">
                                     <button type="button"
                                         class="p-2.5 rounded-lg bg-[#c3a06a] hover:bg-[#e0a752] btn-secondary transition walkin-edit"
@@ -74,7 +85,7 @@
 
                                     <!-- Hidden form for edit -->
                                     <form method="POST" action="{{ route('admin.walkin.update', $walkinSession->id)}}"
-                                                class=" edit-form bg-[#292626] hidden" id="edit-form-{{ $walkinSession->id }}">
+                                        class=" edit-form bg-[#292626] hidden" id="edit-form-{{ $walkinSession->id }}">
                                         @csrf
                                         @method('PUT')
                                         <input type="hidden" name="name">
@@ -119,7 +130,7 @@
                         cancelButtonColor: '#6c757d',
                         confirmButtonText: 'Edit',
                         background: '#292626',
-                        color: '#fdfdfd'
+                        color: '#fdfdfd',
                     }).then(result => {
                         if (result.isConfirmed) {
                             const form = document.getElementById(`edit-form-${id}`);
@@ -128,6 +139,55 @@
                             form.submit();
                         }
                     });
+                });
+            });
+
+            document.addEventListener("DOMContentLoaded", function () {
+                const nameInput = document.getElementById("filter-name");
+                const startDateInput = document.getElementById("filter-start");
+                const endDateInput = document.getElementById("filter-end");
+
+                const tableRows = document.querySelectorAll("tbody tr");
+
+                function filterTable() {
+                    const nameVal = nameInput.value.toLowerCase();
+                    const startVal = startDateInput.value;
+                    const endVal = endDateInput.value;
+
+                    tableRows.forEach(row => {
+                        const paymentID = row.children[0].textContent.toLowerCase();
+                        const name = row.children[1].textContent.toLowerCase();
+                        const checkIn = row.children[3].textContent;
+
+                        let show = true;
+
+                        if (nameVal && !name.includes(nameVal)) show = false;
+
+                        const rowDate = new Date(checkIn);
+
+                        if (startVal) {
+                            const startDate = new Date(startVal);
+                            if (rowDate < startDate) show = false;
+                        }
+
+                        if (endVal) {
+                            const endDate = new Date(endVal);
+                            if (rowDate > endDate) show = false;
+                        }
+
+                        row.style.display = show ? "" : "none";
+                    });
+                }
+
+                nameInput.addEventListener("keyup", filterTable);
+                startDateInput.addEventListener("change", filterTable);
+                endDateInput.addEventListener("change", filterTable);
+
+                document.getElementById("clearFilters").addEventListener("click", function () {
+                    nameInput.value = "";
+                    startDateInput.value = "";
+                    endDateInput.value = "";
+                    filterTable();
                 });
             });
         </script>

@@ -6,7 +6,15 @@
             </div>
             <div class="bg-[#292626] p-8 rounded-lg shadow-md">
 
-                <form method="POST" action="{{ route('admin.createAnAccount.store') }}">
+                @if ($errors->any())
+                    <div id="validation-errors" class="hidden">
+                        @foreach ($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                        @endforeach
+                    </div>
+                @endif
+                
+                <form id="createForm" method="POST" action="{{ route('admin.createAnAccount.store') }}">
                     @csrf
 
                     <div class="mb-4">
@@ -45,48 +53,65 @@
             </div>
         </div>
 
-        {{-- Password Error alert message --}}
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script>
-            function togglePassword() {
-                const passwordField = document.getElementById('password');
-                const confirmPasswordField = document.getElementById('confirm_password');
-
-                passwordField.type = passwordField.type === 'password' ? 'text' : 'password';
-                confirmPasswordField.type = confirmPasswordField.type === 'password' ? 'text' : 'password';
-            }
 
 
-            document.querySelector('form').addEventListener('submit', function (e) {
+    </x-navigation>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const confirmPasswordField = document.getElementById('confirm_password');
+            passwordField.type = passwordField.type === 'password' ? 'text' : 'password';
+            confirmPasswordField.type = confirmPasswordField.type === 'password' ? 'text' : 'password';
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const form = document.getElementById('createForm');
+
+            form.addEventListener('submit', function (e) {
+
                 const password = document.getElementById('password').value;
                 const confirm = document.getElementById('confirm_password').value;
 
                 if (password !== confirm) {
+                    e.preventDefault();
                     Swal.fire({
                         title: 'Validation Error',
                         text: 'Passwords do not match.',
                         icon: 'error',
                         confirmButtonText: 'OK',
-                        confirmButtonColor: '#e3342f'
+                        confirmButtonColor: '#e3342f',
+                        background: '#292626',
+                        color: '#fdfdfd'
                     });
+                    return;
                 }
 
                 const errorContainer = document.getElementById('validation-errors');
                 if (errorContainer) {
-                    const messages = Array.from(errorContainer.querySelectorAll('p')).map(p => p.textContent);
+                    const messages = Array.from(errorContainer.querySelectorAll('p'))
+                        .map(p => p.textContent);
+
                     if (messages.length > 0) {
+                        e.preventDefault();
                         Swal.fire({
                             title: 'Validation Error',
                             html: messages.join('<br>'),
                             icon: 'error',
                             confirmButtonText: 'OK',
-                            confirmButtonColor: '#e3342f'
+                            confirmButtonColor: '#e3342f',
+                            background: '#292626',
+                            color: '#fdfdfd',
                         });
                     }
                 }
+
             });
-        </script>
+        });
+    </script>
 
 
-    </x-navigation>
 </body>

@@ -60,8 +60,9 @@
                     <canvas id="BarGraph" class="h-[500px]"></canvas>
                 </div>
 
-                <div class="w-auto lg:w-[auto] bg-[#292626] px-15 py-3 rounded-xl shadow-sm flex flex-col justify-center">
-                    
+                <div
+                    class="w-auto lg:w-[auto] bg-[#292626] px-15 py-3 rounded-xl shadow-sm flex flex-col justify-center">
+
                     <h2 class="text-lg font-semibold text-[#fdfdfd] mb-4 text-center">Today's Session</h2>
                     <div class="flex justify-center">
                         <canvas id="PieChart" class="h-[115px] text-[#fdfdfd]"></canvas>
@@ -74,6 +75,13 @@
 
                 </div>
 
+            </div>
+
+            <div class="flex-1 bg-[#292626] p-6 rounded-xl shadow-sm">
+                <h2 class="text-2xl font-semibold text-[#fdfdfd]">Session Reports</h2>
+                <div class="flex justify-center">
+                    <canvas id="sessionChart" class="h-[30px] w-20 text-[#fdfdfd]"></canvas>
+                </div>
             </div>
 
         </div>
@@ -92,6 +100,7 @@
             const bar = document.getElementById('BarGraph').getContext('2d');
             const pie = document.getElementById('PieChart').getContext('2d');
             const pie2nd = document.getElementById('pie2nd').getContext('2d');
+            const sessionChart = document.getElementById('sessionChart').getContext('2d');
 
             new Chart(bar, {
                 type: 'bar',
@@ -99,7 +108,7 @@
                     datasets: [{
                         type: 'bar',
                         label: 'Monthly Revenue',
-                        data: @json($monthlyRevenue),
+                        data: @json($monthlyRevenue), 
                         backgroundColor: '#696ed2'
                     }],
                     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -110,7 +119,7 @@
                             suggestedMin: 5000,
                             suggestedMax: 20000
                         }
-                    }   
+                    }
                 },
             });
 
@@ -133,6 +142,26 @@
                         data: @json(array_values($perPlan)),
                         borderWidth: 1
                     }]
+                },
+            });
+
+            new Chart(sessionChart, {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        type: 'line',
+                        labels: ['Member Sessions', 'Walk-in Sessions'],
+                        data: [20, 15, 25, 10, 30,],
+                        backgroundColor: '#696ed2'
+                    }],
+                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+                },
+                options: {
+                    scales: {
+                        y: {
+
+                        }
+                    }
                 },
             });
 
