@@ -20,8 +20,19 @@ class DashboardController extends Controller
     {
         $planLabels = MembershipPlan::pluck('name')->toArray();
         $plans = count($planLabels);
-        $plans = MembershipPlan::count();
 
+        $perPlan = UserMemberships::selectRaw('membership_plan_id, COUNT(*) as total')
+            ->groupBy('membership_plan_id')
+            ->get()
+            ->pluck('total', 'membership_plan_id')
+            ->toArray();
+
+        $memberSession = MemberSessions::whereDate('check_in', now())->count();
+        $walkin = WalkinSession::whereDate('check_in', now())->count();
+
+        
+
+        $sessions = [$memberSession, $walkin];
         $members = UserMemberships::where('is_active', true)->count();
         $user = User::count();
         $revenue = Payments::selectRaw('MONTH(created_at) as month, SUM(amount) as total')
@@ -29,17 +40,26 @@ class DashboardController extends Controller
             ->orderBy('month')
             ->get()
             ->pluck('total', 'month');
-        $memberSession = MemberSessions::whereDate('check_in', now())->count();
-        $walkin = WalkinSession::whereDate('check_in', now())->count();
-
-
-        $sessions = [$memberSession, $walkin];
         $monthlyRevenue = [];
         $total = 0;
 
         for ($i = 1; $i <= 12; $i++) {
             $monthlyRevenue[] = $revenue[$i] ?? 0;
             $total = $total += $revenue[$i] ?? 0;
+        }
+        $perMember = MemberSessions::selectRaw('DAYOFWEEK(check_in) as day, COUNT(*) as total')
+            ->whereBetween('check_in', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+            ->groupBy('day')
+            ->get()
+            ->pluck('total', 'day');
+        $perWalkin = WalkinSession::selectRaw('DAYOFWEEK(check_in) as day, COUNT(*) as total')
+            ->whereBetween('check_in', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+            ->groupBy('day')
+            ->get()
+            ->pluck('total', 'day');
+        $totalSessions = [];
+        for ($i = 1; $i <= 7; $i++) {
+            $totalSessions[] = ($perMember[$i] ?? 0) + ($perWalkin[$i] ?? 0);
         }
         return view('admin.dashboard', [
             'monthlyRevenue' => $monthlyRevenue,
@@ -48,7 +68,9 @@ class DashboardController extends Controller
             'user' => $user,
             'plans' => $plans,
             'sessions' => $sessions,
-            'planLabels' => $planLabels
+            'planLabels' => $planLabels,
+            'perPlan' => $perPlan,
+            'totalSessions' => $totalSessions,
         ]);
     }
 }

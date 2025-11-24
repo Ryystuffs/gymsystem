@@ -12,11 +12,13 @@ use App\Http\Controllers\Admin\WalkinSessionController;
 use App\Http\Controllers\Admin\SessionsController;
 use App\Http\Controllers\Admin\QrScanController;
 use App\Http\Controllers\Admin\ResetPasswordController;
-use Phiki\Phast\Root;
-
+use App\Http\Controllers\Admin\RegisterController;
 Route::get('/', function () {
     return view('landingPage');
 });
+
+Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'attempt'])->name('attempt');
@@ -49,7 +51,7 @@ Route::middleware('auth')->group(function (){
             Route::post('/membershipPlan', [MembershipController::class, 'store'])->name('store');
             Route::delete('/{membershipPlan}', [MembershipController::class, 'destroy'])->name('destroy');
             Route::put('/{membershipPlan}', [MembershipController::class, 'update'])->name('update');
-        });
+        }); 
 
         Route::prefix('payments')->name('payments.')->group(function () {
             Route::get('/paymentRecords', [PaymentsController::class, 'index'])->name('index');
@@ -60,8 +62,9 @@ Route::middleware('auth')->group(function (){
             Route::get('/walkinSession', [WalkinSessionController::class, 'index'])->name('index');
             Route::get('/createWalkin', [WalkinSessionController::class, 'create'])->name('create');
             Route::post('/walkinSession', [WalkinSessionController::class, 'store'])->name('store');
-            Route::put('/{walkinSession}',[WalkinSessionController::class, 'checkout'])->name('checkout');
+            Route::put('/{walkinSession}/checkout',[WalkinSessionController::class, 'checkout'])->name('checkout');
             Route::get('/search', [WalkinSessionController::class, 'search'])->name('search');
+            Route::put('/{walkinSession}', [WalkinSessionController::class, 'update'])->name('update');
         });
 
         Route::prefix('sessions')->name('sessions.')->group(function () {

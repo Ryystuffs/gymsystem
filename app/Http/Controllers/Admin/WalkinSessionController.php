@@ -7,6 +7,7 @@ use App\Http\Requests\StoreWalkinRequest;
 use App\Models\WalkinSession;
 use App\Services\WalkinService;
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdateWalkinSessionRequest;
 
 class WalkinSessionController extends Controller
 {   
@@ -24,6 +25,11 @@ class WalkinSessionController extends Controller
     public function create(){
         return view('admin.walkin.createWalkin');
     }
+    public function update(WalkinSession $walkinSession, UpdateWalkinSessionRequest $request){
+        $data = $request->validated();
+        $this->walkinSession->updateWalkinSession($walkinSession, $data);
+        return redirect()->route('admin.walkin.index')->with('success', 'Walk-In Session Plan Updated');
+    }
 
     public function store(StoreWalkinRequest $request){
         $data = $request->validated();
@@ -32,9 +38,18 @@ class WalkinSessionController extends Controller
     }
 
     public function checkout(WalkinSession $walkinSession){
-        $userName = $walkinSession->name;
-        $this->walkinSession->checkoutWalkinSession($walkinSession);
-        return redirect()->route('admin.walkin.index')->with('checkout', "$userName Successfully CheckOut");
+        try{
+            $userName = $walkinSession->name;
+            $this->walkinSession->checkoutWalkinSession($walkinSession);
+            return redirect()->route('admin.walkin.index')->with('checkout', "$userName Successfully CheckOut");
+        }
+        catch (\Exception $e){
+            if ($e->getMessage() === 'already_checked_out'){
+                return redirect()->route('admin.walkin.index')->with('error', 'User Already Checked Out');
+            }
+            return redirect()->route('admin.walkin.index')->with('error', 'An error occurred during checkout');
+        }
+        
     }
     public function search(Request $request)
     {
@@ -53,4 +68,4 @@ class WalkinSessionController extends Controller
         return view('admin.walkin.walkinSession', ['walkinSessions' => $walkinSessions]);
     }
 }
-    
+        

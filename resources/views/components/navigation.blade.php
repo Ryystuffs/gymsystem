@@ -23,15 +23,17 @@
                 </svg>
             </button>
             <div class="p-1 text-center md:block">
-                <img src="{{ asset('images/gainlabWhite.png') }}" alt="" class="h-11">
+                <a href="{{ route('admin.dashboard') }}">
+                    <img src="{{ asset('images/gainlabWhite.png') }}" alt="" class="h-11">
+                </a>
             </div>
         </div>
     </header>
 
     <div class="flex min-h-screen pt-14 md:pt-0">
         <!-- Sidebar -->
-        <aside class="fixed inset-y-0 left-0 w-72 bg-black border-r border-gray-200 z-30 transform transition-transform duration-200 ease-in-out
-            md:translate-x-0 md:inset-0 flex flex-col justify-between"
+        <aside class="fixed inset-y-0 left-0 w-72 bg-black border-r border-gray-900 z-30 transform transition-transform duration-200 ease-in-out
+        md:translate-x-0 md:fixed md:inset-0 flex flex-col justify-between"
             :class="{ '-translate-x-full': !sidebarOpen, 'translate-x-0': sidebarOpen }">
 
             <div class="flex flex-col overflow-y-auto h-full pb-20">
@@ -46,7 +48,7 @@
                     <span class="text-xl font-semibold text-white">Menu</span>
                 </div>
 
-                <div class="p-1 pb-4 text-center hidden md:block">
+                <div class="p-1 pb-4 ml-5 mt-4 text-center hidden md:block">
                     <img src="{{ asset('images/gainlabWhite.png') }}" alt="gainlab logo" class="p-2 w-42">
                 </div>
 
