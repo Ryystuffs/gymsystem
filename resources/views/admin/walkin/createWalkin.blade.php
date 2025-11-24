@@ -55,7 +55,6 @@
                         const seconds = String(now.getSeconds()).padStart(2, '0');
 
                         const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-
                         dateTimeInput.value = formattedDate;
                     }, 1000); // Update every second
                 </script>

@@ -65,10 +65,10 @@
                                 <div class="flex justify-center items-center space-x-2 p-2">
                                     <button type="button"
                                         class="p-2.5 rounded-lg bg-[#c3a06a] hover:bg-[#e0a752] btn-secondary transition walkin-edit"
-                                        data-id="{{ $walkinSession->id }}" data-name="{{ $walkinSession->name }}"
-                                        data-price="{{ $walkinSession->check_in }}"
-                                        data-duration="{{ $walkinSession->check_out }}"
-                                        data-description="{{ $walkinSession->amount_paid }}">
+                                        data-id="{{ $walkinSession->id }}" 
+                                        data-name="{{ $walkinSession->name }}"
+                                        data-amount_paid="{{ $walkinSession->amount_paid }}"
+                                        data-payment_id="{{ $walkinSession->payment_id }}">
                                         <img src="{{ asset('/assets/edit.png') }}" alt="Edit"
                                             class="w-6 h-6 object-contain" />
                                     </button>
@@ -90,6 +90,7 @@
                                         @method('PUT')
                                         <input type="hidden" name="name">
                                         <input type="hidden" name="amount_paid">
+                                        <input type="hidden" name="payment_id">
                                     </form>
 
 
@@ -109,6 +110,7 @@
                     const id = this.dataset.id;
                     const currentName = this.dataset.name;
                     const currentAmountPaid = this.dataset.amount_paid;
+                    const currentPaymentId = this.dataset.payment_id;
 
                     Swal.fire({
                         title: `Edit ${currentName} Membership`,
@@ -118,12 +120,14 @@
                     <input id="swal-name" class="swal-input" value="${currentName}"><br>
 
                     <label for="swal-amount_paid" class="block mb-1 font-medium text-[#fdfdfd]">Amount Paid</label>
-                    <input id="swal-amount_paid" class="swal-input">${currentAmountPaid}</input>
+                    <input id="swal-amount_paid" class="swal-input" value="${currentAmountPaid}"></input>
+                    <input id="swal-payment_id" class="swal-input" value="${currentPaymentId}" hidden></input>
                 </div>
             `,
                         preConfirm: () => ({
                             name: document.getElementById('swal-name').value,
-                            description: document.getElementById('swal-amount_paid').value,
+                            amount_paid: document.getElementById('swal-amount_paid').value,
+                            payment_id: document.getElementById('swal-payment_id').value
                         }),
                         showCancelButton: true,
                         confirmButtonColor: '#4CAF50',
@@ -136,6 +140,7 @@
                             const form = document.getElementById(`edit-form-${id}`);
                             form.querySelector('input[name="name"]').value = result.value.name;
                             form.querySelector('input[name="amount_paid"]').value = result.value.amount_paid;
+                            form.querySelector('input[name="payment_id"]').value = result.value.payment_id;
                             form.submit();
                         }
                     });
@@ -216,6 +221,20 @@
                         icon: 'success',
                         confirmButtonText: 'OK',
                         confirmButtonColor: '#4CAF50'
+                    });
+                });
+            </script>
+        @endif
+
+        @if(session('error'))
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: "{{ session('error') }}",
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#d33'
                     });
                 });
             </script>
