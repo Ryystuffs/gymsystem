@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\DB;
                     'type' => 'Membership',
                     'created_at' => now(),
                     ]);
-                $userMemberships->update($data);    
+                $userMemberships->update([...$data, 'is_active' => true]);    
                 return $userMemberships;
             });
         }
