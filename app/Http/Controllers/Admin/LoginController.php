@@ -5,11 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class LoginController extends Controller
 {
     //  
     public function index(){
+        
+        $admins = User::where('role', 'admin')->count();
+        
+        if ($admins == 0) {
+            return redirect()->route('register.index');
+        }
         return view ('login');
     }
 

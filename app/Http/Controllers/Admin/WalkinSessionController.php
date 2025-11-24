@@ -68,4 +68,4 @@ class WalkinSessionController extends Controller
         return view('admin.walkin.walkinSession', ['walkinSessions' => $walkinSessions]);
     }
 }
-    
+        
