@@ -21,15 +21,15 @@
                     <input type="hidden" id="user_id" name="user_id">
 
                     <ul id="namelist"
-                        class="absolute z-10 w-full bg-white border border-gray-300 rounded-md mr-5 mt-1 max-h-40 overflow-y-auto hidden">
+                        class="absolute z-10 w-2xs bg-[#292626] text-[#fdfdfd] border border-gray-300 rounded-md mr-5 mt-1 max-h-40 overflow-y-auto hidden ">
                     </ul>
 
                     <div class="mb-4">
                         <label for="membershipPlan" class="label-design">Choose a Membership Plan</label>
-                        <select id="membershipPlan" name="membership_plan_id" class="input-design" required>
-                            <option value="" disabled selected>Select a Membership Plan</option>
+                        <select id="membershipPlan" name="membership_plan_id" class="input-design " required>
+                            <option class="bg-[#292626]" value="" disabled selected>Select a Membership Plan</option>
                             @foreach($membershipPlans as $membershipPlan)
-                                <option value="{{ $membershipPlan->id }}">{{ $membershipPlan->name }}</option>
+                                <option class="bg-[#292626]" value="{{ $membershipPlan->id }}">{{ $membershipPlan->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -43,8 +43,8 @@
                     <div class="mb-6">
                         <label for="payment_method" class="label-design">Payment Method</label>
                         <select id="payment_method" name="payment_method" class="input-design" required>
-                            <option value="Gcash">Gcash</option>
-                            <option value="Cash">Cash</option>
+                            <option class="bg-[#292626]" value="Gcash">Gcash</option>
+                            <option class="bg-[#292626]" value="Cash">Cash</option>
                         </select>
                     </div>
 
@@ -122,7 +122,7 @@
                                 filtered.forEach(user => {
                                     const li = document.createElement('li');
                                     li.textContent = user.name;
-                                    li.className = 'px-4 py-2 hover:bg-indigo-100 cursor-pointer';
+                                    li.className = 'px-4 py-2 hover:bg-[#403c3c] cursor-pointer';
                                     li.addEventListener('click', () => {
                                         input.value = user.name;
                                         userIdInput.value = user.id;
