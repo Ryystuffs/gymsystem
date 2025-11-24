@@ -148,13 +148,13 @@
             new Chart(sessionChart, {
                 type: 'line',
                 data: {
+                        labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
                     datasets: [{
                         type: 'line',
-                        labels: ['Member Sessions', 'Walk-in Sessions'],
-                        data: [20, 15, 25, 10, 30,],
+                        label:'Sessions',
+                        data: @json($totalSessions),
                         backgroundColor: '#696ed2'
                     }],
-                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
                 },
                 options: {
                     scales: {
