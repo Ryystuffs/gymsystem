@@ -54,10 +54,11 @@
                                 <div class="flex justify-center items-center space-x-2 p-2">
                                     <button type="button"
                                         class="p-2.5 rounded-lg bg-[#c3a06a] hover:bg-[#e0a752] btn-secondary transition walkin-edit"
-                                        data-id="{{ $walkinSession->id }}" data-name="{{ $walkinSession->name }}"
+                                        data-id="{{ $walkinSession->id }}" 
+                                        data-name="{{ $walkinSession->name }}"
                                         data-price="{{ $walkinSession->check_in }}"
                                         data-duration="{{ $walkinSession->check_out }}"
-                                        data-description="{{ $walkinSession->amount_paid }}">
+                                        data-amount_paid="{{ $walkinSession->amount_paid }}">
                                         <img src="{{ asset('/assets/edit.png') }}" alt="Edit"
                                             class="w-6 h-6 object-contain" />
                                     </button>
@@ -107,7 +108,7 @@
                     <input id="swal-name" class="swal-input" value="${currentName}"><br>
 
                     <label for="swal-amount_paid" class="block mb-1 font-medium text-[#fdfdfd]">Amount Paid</label>
-                    <input id="swal-amount_paid" class="swal-input">${currentAmountPaid}</input>
+                    <input id="swal-amount_paid" class="swal-input" value="${currentAmountPaid}"></input>
                 </div>
             `,
                         preConfirm: () => ({
