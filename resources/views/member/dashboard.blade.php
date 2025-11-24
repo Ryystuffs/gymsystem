@@ -27,7 +27,7 @@
                             </span>
                         </div>
 
-                        <div class="flex items-center gap-2">
+                        <div class="flex items-center gap-3">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-400" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -46,8 +46,8 @@
                             </svg>
 
                             <span class="text-gray-200 text-sm">
-                                <span>Check-Out:
-                                </span>{{ optional($session->check_out)->format('H:i:s') ?? 'Working out...' }}
+                                <span>Check-Out: </span> {{ optional($session->check_out)->format('H:i:s') ?? 'Working out...' }}
+                                </span>
                             </span>
                         </div>
                     </div>

@@ -55,7 +55,7 @@
 }
 
 .back-button{
-    @apply inline-block text-[#fdfdfd] bg-[#5d5a5a] hover:bg-[#e0a752] font-medium rounded-lg text-xl px-5 py-2.5 text-center
+    @apply inline-block text-[#fdfdfd] bg-[#5d5a5a] hover:bg-[#403c3c] font-medium rounded-lg text-xl px-5 py-2.5 text-center
 }
 
 .title-text{

@@ -12,55 +12,90 @@ use App\Models\WalkinSession;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-use function Symfony\Component\Clock\now;
-
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        // ------------------------------
+        // 1. Get membership plan stats
+        // ------------------------------
         $planLabels = MembershipPlan::pluck('name')->toArray();
         $plans = count($planLabels);
 
         $perPlan = UserMemberships::selectRaw('membership_plan_id, COUNT(*) as total')
             ->groupBy('membership_plan_id')
-            ->get()
             ->pluck('total', 'membership_plan_id')
             ->toArray();
 
-        $memberSession = MemberSessions::whereDate('check_in', now())->count();
-        $walkin = WalkinSession::whereDate('check_in', now())->count();
-
-        
-
+        // ------------------------------
+        // 2. Today's sessions (pie chart)
+        // ------------------------------
+        $memberSession = MemberSessions::whereDate('check_in', today())->count();
+        $walkin = WalkinSession::whereDate('check_in', today())->count();
         $sessions = [$memberSession, $walkin];
+
+        // ------------------------------
+        // 3. Basic metrics
+        // ------------------------------
         $members = UserMemberships::where('is_active', true)->count();
         $user = User::count();
+
+        // ------------------------------
+        // 4. Monthly Revenue
+        // ------------------------------
         $revenue = Payments::selectRaw('MONTH(created_at) as month, SUM(amount) as total')
             ->groupBy('month')
             ->orderBy('month')
-            ->get()
             ->pluck('total', 'month');
+
         $monthlyRevenue = [];
         $total = 0;
 
         for ($i = 1; $i <= 12; $i++) {
-            $monthlyRevenue[] = $revenue[$i] ?? 0;
-            $total = $total += $revenue[$i] ?? 0;
+            $value = $revenue[$i] ?? 0;
+            $monthlyRevenue[] = $value;
+            $total += $value;
         }
-        $perMember = MemberSessions::selectRaw('DAYOFWEEK(check_in) as day, COUNT(*) as total')
-            ->whereBetween('check_in', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+
+        // ---------------------------------------
+        // 5. DAILY SESSION REPORT (calendar-style)
+        // ---------------------------------------
+
+        // If user selected month, use it; otherwise current month
+        $selectedMonth = $request->input('month')
+            ? Carbon::parse($request->input('month'))
+            : Carbon::now();
+
+        $month = $selectedMonth->month;
+        $year = $selectedMonth->year;
+
+        // How many days are in the selected month?
+        $daysInMonth = $selectedMonth->daysInMonth;
+
+        // Fetch Member sessions grouped by DAY
+        $memberDaily = MemberSessions::selectRaw('DAY(check_in) as day, COUNT(*) as total')
+            ->whereMonth('check_in', $month)
+            ->whereYear('check_in', $year)
             ->groupBy('day')
-            ->get()
             ->pluck('total', 'day');
-        $perWalkin = WalkinSession::selectRaw('DAYOFWEEK(check_in) as day, COUNT(*) as total')
-            ->whereBetween('check_in', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+
+        // Fetch Walk-in sessions grouped by DAY
+        $walkinDaily = WalkinSession::selectRaw('DAY(check_in) as day, COUNT(*) as total')
+            ->whereMonth('check_in', $month)
+            ->whereYear('check_in', $year)
             ->groupBy('day')
-            ->get()
             ->pluck('total', 'day');
-        $totalSessions = [];
-        for ($i = 1; $i <= 7; $i++) {
-            $totalSessions[] = ($perMember[$i] ?? 0) + ($perWalkin[$i] ?? 0);
+
+        // Merge into total sessions per day
+        $dailySessions = [];
+        $labels = [];
+
+        for ($d = 1; $d <= $daysInMonth; $d++) {
+            $labels[] = $d;
+            $dailySessions[] = ($memberDaily[$d] ?? 0) + ($walkinDaily[$d] ?? 0);
         }
+
+        // Send all data to the view
         return view('admin.dashboard', [
             'monthlyRevenue' => $monthlyRevenue,
             'total' => $total,
@@ -70,7 +105,11 @@ class DashboardController extends Controller
             'sessions' => $sessions,
             'planLabels' => $planLabels,
             'perPlan' => $perPlan,
-            'totalSessions' => $totalSessions,
+
+            // NEW Daily Session Data
+            'labels' => $labels,
+            'dailySessions' => $dailySessions,
+            'selectedMonth' => $selectedMonth->format('Y-m'),
         ]);
     }
 }

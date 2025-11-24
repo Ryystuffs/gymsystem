@@ -5,25 +5,28 @@
                 <h1 class="title-text">Walk-In Sessions</h1>
             </div>
 
-            <div class="flex justify-between items-start mb-3 mt-7">
+            <div class="flex justify-between items-start mb-1 mt-9">
 
-                <div class="flex flex-row space-x-1">
+                <form method="GET" class="flex flex-row space-x-1 mb-3">
+                    <input type="text" name="name" value="{{ $filters['name'] ?? '' }}" placeholder="Search name..."
+                        class="h-auto w-42 px-3 py-2 rounded-lg bg-[#403c3c] text-white placeholder-gray-300 border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition">
 
-                    <input type="text" id="filter-name"
-                        class="h-auto w-full px-3 py-2 rounded-lg bg-[#403c3c] text-white placeholder-gray-300 border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition"
-                        placeholder="Search name...">
+                    <input type="date" name="start" value="{{ $filters['start'] ?? '' }}"
+                        class="h-auto w-37 px-3 py-2 rounded-lg bg-[#403c3c] text-white border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition">
 
-                    <input type="date" id="filter-start"
-                        class="h-auto w-full px-3 py-2 rounded-lg bg-[#403c3c] text-white border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition">
+                    <input type="date" name="end" value="{{ $filters['end'] ?? '' }}"
+                        class="h-auto w-37 px-3 py-2 rounded-lg bg-[#403c3c] text-white border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition">
 
-                    <input type="date" id="filter-end"
-                        class="h-auto w-full px-3 py-2 rounded-lg bg-[#403c3c] text-white border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition">
-
-                    <button id="clearFilters"
-                        class="w-sm px-6 py-2 bg-[#403c3c] hover:bg-[#5d5a5a] text-white border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition rounded-lg">
-                        Clear Filters
+                    <button type="submit"
+                        class="w-30  bg-[#403c3c] hover:bg-[#5d5a5a] text-white border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition rounded-lg">
+                        Filter
                     </button>
-                </div>
+
+                    <a href="{{ route('admin.walkin.index') }}"
+                        class="w-27 px-7 py-2 bg-[#403c3c] hover:bg-[#5d5a5a] text-white border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition rounded-lg">
+                        Clear
+                    </a>
+                </form>
 
                 <div>
                     <a href="{{ route('admin.walkin.create') }}" class="back-button">
@@ -65,8 +68,7 @@
                                 <div class="flex justify-center items-center space-x-2 p-2">
                                     <button type="button"
                                         class="p-2.5 rounded-lg bg-[#c3a06a] hover:bg-[#e0a752] btn-secondary transition walkin-edit"
-                                        data-id="{{ $walkinSession->id }}" 
-                                        data-name="{{ $walkinSession->name }}"
+                                        data-id="{{ $walkinSession->id }}" data-name="{{ $walkinSession->name }}"
                                         data-amount_paid="{{ $walkinSession->amount_paid }}"
                                         data-payment_id="{{ $walkinSession->payment_id }}">
                                         <img src="{{ asset('/assets/edit.png') }}" alt="Edit"
