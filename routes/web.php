@@ -12,11 +12,13 @@ use App\Http\Controllers\Admin\WalkinSessionController;
 use App\Http\Controllers\Admin\SessionsController;
 use App\Http\Controllers\Admin\QrScanController;
 use App\Http\Controllers\Admin\ResetPasswordController;
-use Phiki\Phast\Root;
-
+use App\Http\Controllers\Admin\RegisterController;
 Route::get('/', function () {
     return view('landingPage');
 });
+
+Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'attempt'])->name('attempt');

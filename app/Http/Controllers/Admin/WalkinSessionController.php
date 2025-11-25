@@ -17,6 +17,7 @@ class WalkinSessionController extends Controller
         $this->walkinSession = $walkinService;
     }
     //
+    
     public function index(Request $request)
     {
         $query = WalkinSession::query();
@@ -71,7 +72,7 @@ class WalkinSessionController extends Controller
             return redirect()->route('admin.walkin.index')->with('checkout', "$userName Successfully CheckOut");
         } catch (\Exception $e) {
             if ($e->getMessage() === 'already_checked_out') {
-                return redirect()->route('admin.walkin.index')->with('error', 'User Already Checked Out');
+                return redirect()->route('admin.walkin.index')->with('error', "$userName Already Checked Out");
             }
             return redirect()->route('admin.walkin.index')->with('error', 'An error occurred during checkout');
         }
@@ -92,3 +93,4 @@ class WalkinSessionController extends Controller
         return view('admin.walkin.walkinSession', ['walkinSessions' => $walkinSessions]);
     }
 }
+    
