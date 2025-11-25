@@ -106,8 +106,9 @@ class MembersController extends Controller
     public function update(UpdateUserMembershipRequest $request, UserMemberships $userMemberships)
     {
         //
+        $userName = $userMemberships->user->name;
         $this->membershipService->updateUserMemberships($userMemberships, $request->validated());
-        return redirect()->route('admin.members.index')->with('success', 'Member membership has been updated successfully.');
+        return redirect()->route('admin.members.index')->with('success', "$userName membership has been updated successfully.");
     }
 
     /**

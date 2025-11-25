@@ -35,7 +35,9 @@
                                     text: "{{ session('status') }}",
                                     icon: 'success',
                                     confirmButtonText: 'OK',
-                                    confirmButtonColor: '#4CAF50'
+                                    confirmButtonColor: '#4CAF50',
+                                    background: '#292626',
+                                    color: '#fdfdfd',
                                 });
                             });
                         </script>
@@ -49,7 +51,9 @@
                                     text: "{{ $message }}",
                                     icon: 'error',
                                     confirmButtonText: 'OK',
-                                    confirmButtonColor: '#d33'
+                                    confirmButtonColor: '#d33',
+                                    background: '#292626',
+                                    color: '#fdfdfd',
                                 });
                             });
                         </script>

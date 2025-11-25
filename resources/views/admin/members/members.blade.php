@@ -11,32 +11,45 @@
 
                 <div class="flex flex-wrap items-center gap-2">
 
-                    <form method="GET" class="flex flex-row space-x-1 mb-0">
-                        <input type="text" name="name" value="{{ $filters['user'] ?? '' }}" placeholder="Search name..."
-                            class="h-auto w-42 px-3 py-2 rounded-lg bg-[#403c3c] text-white placeholder-gray-300 border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition">
+                    <form method="GET" class="flex flex-col space-x-1 mb-0">
 
-                        <input type="date" name="start" value="{{ $filters['start'] ?? '' }}"
-                            class="h-auto w-37 px-3 py-2 rounded-lg bg-[#403c3c] text-white border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition">
+                        <div class="mb-3">
+                            <span class="text-white">Filter By: </span>
+                            <input type="text" name="name" value="{{ $filters['user'] ?? '' }}"
+                                placeholder="Search name..."
+                                class="ml-3 h-8 w-52 px-3 py-2 rounded-lg bg-[#403c3c] text-white placeholder-gray-300 border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition">
+                        </div>
 
-                        <input type="date" name="end" value="{{ $filters['end'] ?? '' }}"
-                            class="h-auto w-37 px-3 py-2 rounded-lg bg-[#403c3c] text-white border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition">
+                        <div class="flex flex-row space-x-1 mb-0">
+                            <span class="text-white">Start Date:</span>
+                            <input type="date" name="start" value="{{ $filters['start'] ?? '' }}"
+                                class="h-8 w-37 px-3 py-2 rounded-lg bg-[#403c3c] text-white border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition">
 
-                        <button type="submit"
-                            class="w-30  bg-[#403c3c] hover:bg-[#5d5a5a] text-white border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition rounded-lg">
-                            Filter
-                        </button>
+                            <span class="text-white ml-3">End Date:</span>
+                            <input type="date" name="end" value="{{ $filters['end'] ?? '' }}"
+                                class="h-8 w-37 px-3 py-2 rounded-lg bg-[#403c3c] text-white border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition">
 
-                        <a href="{{ route('admin.walkin.index') }}"
-                            class="w-27 px-7 py-2 bg-[#403c3c] hover:bg-[#5d5a5a] text-white border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition rounded-lg">
-                            Clear
-                        </a>
+                            <button type="submit"
+                                class="h-8 w-20  bg-[#403c3c] hover:bg-[#5d5a5a] text-white border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition rounded-lg">
+                                Filter
+                            </button>
+
+                            <button
+                                class="h-8 w-20 bg-[#292626] hover:bg-[#5d5a5a] text-white border border-[#393535] focus:border-[#7a7adb] focus:outline-none transition rounded-lg">
+                                <a href="{{ route('admin.members.index') }}">
+                                    Reset
+                                </a>
+                            </button>
+                        </div>
                     </form>
                 </div>
 
-                <a href="{{ route('admin.members.create') }}"
+                <button
                     class="back-button px-5 py-2 bg-[#676fd4] hover:bg-[#7d85ff] text-white font-semibold rounded-lg transition">
-                    <span class="text-sm">Add New Member</span>
-                </a>
+                    <a href=" {{ route('admin.members.create') }}">
+                        <span class="text-sm">Add New Member</span>
+                    </a>
+                </button>
 
             </div>
 
@@ -260,10 +273,20 @@
 
                             if (!plan || !expired || !document.getElementById('swal-payment').value) {
                                 Swal.showValidationMessage('All fields are required.');
+                                
+                                const validationMsg = document.querySelector('.swal2-validation-message');
+                                if (validationMsg) {
+                                    validationMsg.style.backgroundColor = '#292626'; // red background
+                                    validationMsg.style.color = '#fdfdfd'; // white text
+                                    validationMsg.style.padding = '5px 10px';
+                                    validationMsg.style.borderRadius = '5px';
+                                    validationMsg.style.textAlign = 'center';
+                                }
                                 return false;
                             }
 
                             return { plan, expired };
+
                         },
                         didOpen: () => {
                             //changing the swal-expired according to the selected plan

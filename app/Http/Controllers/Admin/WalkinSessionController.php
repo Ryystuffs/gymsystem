@@ -53,7 +53,7 @@ class WalkinSessionController extends Controller
     {
         $data = $request->validated();
         $this->walkinSession->updateWalkinSession($walkinSession, $data);
-        return redirect()->route('admin.walkin.index')->with('success', 'Walk-In Session Plan Updated');
+        return redirect()->route('admin.walkin.index')->with('success', 'Edited Successfully');
     }
 
     public function store(StoreWalkinRequest $request)

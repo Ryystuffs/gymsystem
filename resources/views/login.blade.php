@@ -66,11 +66,13 @@
         document.addEventListener('DOMContentLoaded', function() {
             @if(session('error'))
             Swal.fire({
-                title: 'Error!'
-                , text: "{{ session('error') }}"
-                , icon: 'error'
-                , confirmButtonText: 'OK'
-                , confirmButtonColor: '#f44336'
+                title: 'Error!',
+                text: "{{ session('error') }}", 
+                icon: 'error', 
+                confirmButtonText: 'OK', 
+                confirmButtonColor: '#f44336',
+                background: '#292626',
+                color: '#fdfdfd',
             });
             @endif
         });
