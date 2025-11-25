@@ -26,8 +26,9 @@
                     <div class="mb-4">
                         <label for="payment_method" class="label-design">Payment Method</label>
                         <select name="payment_method" id="payment_method" class="input-design" required>
-                            <option value="Gcash">Gcash</option>
-                            <option value="Cash">Cash</option>
+                            <option class="bg-[#292626]" disabled selected value="Payment Method" >Payment Method</option>
+                            <option class="bg-[#292626]" value="Gcash">Gcash</option>
+                            <option class="bg-[#292626]" value="Cash">Cash</option>
                         </select>
                     </div>
 

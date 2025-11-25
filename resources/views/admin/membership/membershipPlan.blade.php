@@ -12,7 +12,39 @@
                         text: "{{ session('success') }}",
                         icon: 'success',
                         confirmButtonText: 'OK',
-                        confirmButtonColor: '#4CAF50'
+                        confirmButtonColor: '#4CAF50',
+                        background: '#292626',
+                        color: '#fdfdfd',
+                    });
+                });
+            </script>
+        @endif
+        @if(session('updated'))
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: "{{ session('success') }}",
+                        icon: 'success',
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#4CAF50',
+                        background: '#292626',
+                        color: '#fdfdfd',
+                    });
+                });
+            </script>
+        @endif
+        @if(session('deleted'))
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: "{{ session('deleted') }}",
+                        icon: 'success',
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#4CAF50',
+                        background: '#292626',
+                        color: '#fdfdfd',
                     });
                 });
             </script>

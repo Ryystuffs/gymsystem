@@ -150,7 +150,9 @@
                                         html: messages.join('<br>'),
                                         icon: 'error',
                                         confirmButtonText: 'OK',
-                                        confirmButtonColor: '#e3342f'
+                                        confirmButtonColor: '#e3342f',
+                                        background: '#292626',
+                                        color: '#fdfdfd',
                                     });
                                 }
                             }
