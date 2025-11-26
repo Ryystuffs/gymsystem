@@ -1,6 +1,6 @@
 <body class="bg-[#151f2f]">
     <x-membernav>
-        <div class="mt-8 flex flex-col min-h-screen items-center justify-center px-4 py-2 bg-[#151f2f]">
+        <div class="mt-20 flex flex-col min-h-auto items-center justify-center px-4 bg-[#151f2f]">
             <div
                 class="bg-[#f3f3f3] border-2 border-gray-600 rounded-3xl shadow-md w-auto max-w-md flex flex-col items-center text-center p-4">
                 <img src="{{ asset('storage/' . $user->qrcode) }}" alt="QR Code"
