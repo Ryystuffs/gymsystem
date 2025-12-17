@@ -103,7 +103,7 @@
                                     <!-- Hidden form for edit -->
                                     <form method="POST" action="{{ route('admin.walkin.update', $walkinSession->id)}}"
                                         class=" edit-form bg-[#292626] hidden" id="edit-form-{{ $walkinSession->id }}">
-                                        @csrf
+                                        @csrf   
                                         @method('PUT')
                                         <input type="hidden" name="name">
                                         <input type="hidden" name="amount_paid">

@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 use App\Http\Controllers\Admin\createAccountController;
 use Illuminate\Support\Facades\Route;
