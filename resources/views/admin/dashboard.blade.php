@@ -83,7 +83,7 @@
 
                     <form method="GET" class="mb-4">
                         <input type="month" name="month" value="{{ $selectedMonth }}"
-                            class="border border-gray-500 text-white rounded rounded-xl p-1">
+                            class="border border-gray-500 text-white rounded-xl p-1">
                         <button class="px-3 py-1 bg-blue-500 text-white rounded">View</button>
                     </form>
                 </div>
