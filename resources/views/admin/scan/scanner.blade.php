@@ -25,16 +25,18 @@
         <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 
         <script>
+            let errorMessage;
             function onScanSuccess(decodedText, decodedResult) {
                 const resultElement = document.getElementById("result");
                 console.log(decodedText);
-
+                
 
                 fetch(decodedText)
                     .then(res => res.json())
                     .then(data => {
                         console.log(data.message)
                         resultElement.innerText = data.message;
+                        errorMessage = data.message;
                     })
                     .catch(err => console.error(err));
 
@@ -58,17 +60,27 @@
 
             let html5QrcodeScanner = new Html5QrcodeScanner(
                 "qr-reader", {
-                fps: 10
-                , qrbox: {
-                    width: 250
-                    , height: 250
-                }
-                ,
-            }
+                    fps: 10
+                    , qrbox: {
+                        width: 250
+                        , height: 250
+                    }
+                , }
                 , false
             );
 
             html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: 'Error!'
+                    , text: "" + errorMessage + ""
+                    , icon: 'error'
+                    , confirmButtonText: 'OK'
+                    , confirmButtonColor: '#d33'
+                    , background: '#292626'
+                    , color: '#fdfdfd'
+                , });
+            });
 
         </script>
     </x-navigation>

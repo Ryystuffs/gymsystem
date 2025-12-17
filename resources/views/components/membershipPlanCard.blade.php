@@ -132,6 +132,8 @@ document.querySelectorAll('.btn-delete').forEach(button => {
             confirmButtonColor: '#e3342f',
             cancelButtonColor: '#6c757d',
             confirmButtonText: 'Yes, delete it!',
+            background: '#292626',
+            color: '#fdfdfd',
         }).then(result => {
             if (result.isConfirmed) {
                 form.submit();

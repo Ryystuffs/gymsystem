@@ -11,10 +11,32 @@ class SessionsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $memberSessions = MemberSessions::orderBy('check_in','desc')->paginate(10);
-        return view('admin.sessions.memberSessions', [ 'memberSessions' => $memberSessions ]);
+    public function index(Request $request)
+    {   
+        $query = memberSessions::query();
+
+        // Filter by name
+        if ($request->filled('name')) {
+            $query->whereHas('user', function ($q) use ($request) {
+                $q->where('name', 'LIKE', "%{$request->name}%");
+            });
+        }
+
+        // Filter by start date
+        if ($request->filled('start')) {
+            $query->whereDate('check_in', '>=', $request->start);
+        }
+
+        // Filter by end date
+        if ($request->filled('end')) {
+            $query->whereDate('check_out', '<=', $request->end);
+        }
+
+        $memberSessions = $query->orderBy('check_in','desc')->paginate(10)->appends($request->all());
+        return view('admin.sessions.memberSessions', [ 
+            'memberSessions' => $memberSessions,
+            'filters' => $request->only(['name', 'start', 'end']), // optional, for pre-filling inputs
+         ]);
     }
 
     /**

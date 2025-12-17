@@ -5,31 +5,49 @@
                 <h1 class="title-text">Walk-In Sessions</h1>
             </div>
 
-            <div class="flex justify-between items-start mb-3 mt-7">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-end mb-5 mt-7 space-y-4 md:space-y-0">
 
-                <div class="flex flex-row space-x-1">
+                <div class="flex flex-wrap items-center gap-2">
 
-                    <input type="text" id="filter-name"
-                        class="h-auto w-full px-3 py-2 rounded-lg bg-[#403c3c] text-white placeholder-gray-300 border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition"
-                        placeholder="Search name...">
+                    <form method="GET" class="flex flex-col space-x-1 mb-0">
 
-                    <input type="date" id="filter-start"
-                        class="h-auto w-full px-3 py-2 rounded-lg bg-[#403c3c] text-white border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition">
+                        <div class="mb-3">
+                            <span class="text-white">Filter By: </span>
+                            <input type="text" name="name" value="{{ $filters['name'] ?? '' }}"
+                                placeholder="Search name..."
+                                class="ml-3 h-8 w-52 px-3 py-2 rounded-lg bg-[#403c3c] text-white placeholder-gray-300 border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition">
+                        </div>
 
-                    <input type="date" id="filter-end"
-                        class="h-auto w-full px-3 py-2 rounded-lg bg-[#403c3c] text-white border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition">
+                        <div class="flex flex-row space-x-1 mb-0">
+                            <span class="text-white">Start Date:</span>
+                            <input type="date" name="start" value="{{ $filters['start'] ?? '' }}"
+                                class="h-8 w-37 px-3 py-2 rounded-lg bg-[#403c3c] text-white border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition">
 
-                    <button id="clearFilters"
-                        class="w-sm px-6 py-2 bg-[#403c3c] hover:bg-[#5d5a5a] text-white border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition rounded-lg">
-                        Clear Filters
-                    </button>
+                            <span class="text-white ml-3">End Date:</span>
+                            <input type="date" name="end" value="{{ $filters['end'] ?? '' }}"
+                                class="h-8 w-37 px-3 py-2 rounded-lg bg-[#403c3c] text-white border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition">
+
+                            <button type="submit"
+                                class="h-8 w-20  bg-[#403c3c] hover:bg-[#5d5a5a] text-white border border-[#505050] focus:border-[#7a7adb] focus:outline-none transition rounded-lg">
+                                Filter
+                            </button>
+
+                            <button class="h-8 w-20 bg-[#292626] hover:bg-[#5d5a5a] text-white border border-[#393535] focus:border-[#7a7adb] focus:outline-none transition rounded-lg">
+                                <a href="{{ route('admin.walkin.index') }}"
+                                    class="">
+                                    Reset
+                                </a>
+                            </button>
+                        </div>
+                    </form>
                 </div>
 
-                <div>
-                    <a href="{{ route('admin.walkin.create') }}" class="back-button">
-                        <h1 class="font-bold text-[18px]">Add Walk-In Guest</h1>
+                <button
+                    class="back-button px-5 py-2 bg-[#676fd4] hover:bg-[#7d85ff] text-white font-semibold rounded-lg transition">
+                    <a href="{{ route('admin.walkin.create') }}">
+                        <span class="text-sm">Add Walk-In Guest</span>
                     </a>
-                </div>
+                </button>
 
             </div>
 
@@ -65,8 +83,7 @@
                                 <div class="flex justify-center items-center space-x-2 p-2">
                                     <button type="button"
                                         class="p-2.5 rounded-lg bg-[#c3a06a] hover:bg-[#e0a752] btn-secondary transition walkin-edit"
-                                        data-id="{{ $walkinSession->id }}" 
-                                        data-name="{{ $walkinSession->name }}"
+                                        data-id="{{ $walkinSession->id }}" data-name="{{ $walkinSession->name }}"
                                         data-amount_paid="{{ $walkinSession->amount_paid }}"
                                         data-payment_id="{{ $walkinSession->payment_id }}">
                                         <img src="{{ asset('/assets/edit.png') }}" alt="Edit"
@@ -86,7 +103,7 @@
                                     <!-- Hidden form for edit -->
                                     <form method="POST" action="{{ route('admin.walkin.update', $walkinSession->id)}}"
                                         class=" edit-form bg-[#292626] hidden" id="edit-form-{{ $walkinSession->id }}">
-                                        @csrf
+                                        @csrf   
                                         @method('PUT')
                                         <input type="hidden" name="name">
                                         <input type="hidden" name="amount_paid">
@@ -146,55 +163,6 @@
                     });
                 });
             });
-
-            document.addEventListener("DOMContentLoaded", function () {
-                const nameInput = document.getElementById("filter-name");
-                const startDateInput = document.getElementById("filter-start");
-                const endDateInput = document.getElementById("filter-end");
-
-                const tableRows = document.querySelectorAll("tbody tr");
-
-                function filterTable() {
-                    const nameVal = nameInput.value.toLowerCase();
-                    const startVal = startDateInput.value;
-                    const endVal = endDateInput.value;
-
-                    tableRows.forEach(row => {
-                        const paymentID = row.children[0].textContent.toLowerCase();
-                        const name = row.children[1].textContent.toLowerCase();
-                        const checkIn = row.children[3].textContent;
-
-                        let show = true;
-
-                        if (nameVal && !name.includes(nameVal)) show = false;
-
-                        const rowDate = new Date(checkIn);
-
-                        if (startVal) {
-                            const startDate = new Date(startVal);
-                            if (rowDate < startDate) show = false;
-                        }
-
-                        if (endVal) {
-                            const endDate = new Date(endVal);
-                            if (rowDate > endDate) show = false;
-                        }
-
-                        row.style.display = show ? "" : "none";
-                    });
-                }
-
-                nameInput.addEventListener("keyup", filterTable);
-                startDateInput.addEventListener("change", filterTable);
-                endDateInput.addEventListener("change", filterTable);
-
-                document.getElementById("clearFilters").addEventListener("click", function () {
-                    nameInput.value = "";
-                    startDateInput.value = "";
-                    endDateInput.value = "";
-                    filterTable();
-                });
-            }); 
         </script>
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -206,7 +174,9 @@
                         text: "{{ session('success') }}",
                         icon: 'success',
                         confirmButtonText: 'OK',
-                        confirmButtonColor: '#4CAF50'
+                        confirmButtonColor: '#4CAF50',
+                        background: '#292626',
+                        color: '#fdfdfd',
                     });
                 });
             </script>
@@ -220,7 +190,9 @@
                         text: "{{ session('checkout') }}",
                         icon: 'success',
                         confirmButtonText: 'OK',
-                        confirmButtonColor: '#4CAF50'
+                        confirmButtonColor: '#4CAF50',
+                        background: '#292626',
+                        color: '#fdfdfd',
                     });
                 });
             </script>
@@ -234,7 +206,9 @@
                         text: "{{ session('error') }}",
                         icon: 'error',
                         confirmButtonText: 'OK',
-                        confirmButtonColor: '#d33'
+                        confirmButtonColor: '#d33',
+                        background: '#292626',
+                        color: '#fdfdfd',
                     });
                 });
             </script>

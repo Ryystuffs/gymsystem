@@ -78,9 +78,18 @@
             </div>
 
             <div class="flex-1 bg-[#292626] p-6 rounded-xl shadow-sm">
-                <h2 class="text-2xl font-semibold text-[#fdfdfd]">Session Reports</h2>
+                <div class="flex flex-row justify-between">
+                    <h2 class="text-2xl font-semibold text-[#fdfdfd]">Session Reports (Daily)</h2>
+
+                    <form method="GET" class="mb-4">
+                        <input type="month" name="month" value="{{ $selectedMonth }}"
+                            class="border border-gray-500 text-white rounded-xl p-1">
+                        <button class="px-3 py-1 bg-blue-500 text-white rounded">View</button>
+                    </form>
+                </div>
+
                 <div class="flex justify-center">
-                    <canvas id="sessionChart" class="h-[30px] w-20 text-[#fdfdfd]"></canvas>
+                    <canvas id="sessionChart" class="h-[300px] w-full"></canvas>
                 </div>
             </div>
 
@@ -101,6 +110,9 @@
             const pie = document.getElementById('PieChart').getContext('2d');
             const pie2nd = document.getElementById('pie2nd').getContext('2d');
             const sessionChart = document.getElementById('sessionChart').getContext('2d');
+            const gradient = sessionChart.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, "rgba(105,110,210,0.45)");
+            gradient.addColorStop(1, "rgba(105,110,210,0.05)");
 
             new Chart(bar, {
                 type: 'bar',
@@ -108,20 +120,64 @@
                     datasets: [{
                         type: 'bar',
                         label: 'Monthly Revenue',
-                        data: @json($monthlyRevenue), 
-                        backgroundColor: '#696ed2'
+                        data: @json($monthlyRevenue),
+                        backgroundColor: '#696ed2',
                     }],
-                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+                    labels: [
+                        'January', 'February', 'March', 'April', 'May', 'June',
+                        'July', 'August', 'September', 'October', 'November', 'December'
+                    ]
                 },
+
                 options: {
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: "#ffffff",
+                                font: { size: 14 }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: "#1f1f1f",
+                            titleColor: "#fff",
+                            bodyColor: "#ccc",
+                            borderColor: "#898df5",
+                            borderWidth: 1,
+                            padding: 10,
+                            callbacks: {
+                                label: function (context) {
+                                    return " Revenue: ₱ " + context.raw;
+                                }
+                            }
+                        }
+                    },
+                    responsive: true,
+
                     scales: {
+                        x: {
+                            ticks: {
+                                color: "#ffffff",
+                                font: { size: 13 }
+                            },
+                            grid: {
+                                color: "rgba(255,255,255,0.08)"
+                            }
+                        },
+
                         y: {
-                            suggestedMin: 5000,
-                            suggestedMax: 20000
+                            beginAtZero: true,
+                            ticks: {
+                                color: "#ffffff",
+                                font: { size: 13 }
+                            },
+                            grid: {
+                                color: "rgba(255,255,255,0.08)"
+                            }
                         }
                     }
-                },
+                }
             });
+
 
             new Chart(pie, {
                 type: 'pie',
@@ -132,6 +188,21 @@
                         borderWidth: 1
                     }]
                 },
+                options: {
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: "#ffffff",
+                                font: { size: 14 }
+                            }
+                        },
+                        tooltip: {
+                            titleColor: "#ffffff",
+                            bodyColor: "#ffffff", 
+                            backgroundColor: "#1f1f1f",
+                        }
+                    }
+                }
             });
 
             new Chart(pie2nd, {
@@ -143,27 +214,98 @@
                         borderWidth: 1
                     }]
                 },
+                options: {
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: "#ffffff",
+                                font: { size: 14 }
+                            }
+                        },
+                        tooltip: {
+                            titleColor: "#ffffff",
+                            bodyColor: "#ffffff", 
+                            backgroundColor: "#1f1f1f",
+                        }
+                    }
+                }
             });
 
             new Chart(sessionChart, {
                 type: 'line',
                 data: {
-                        labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                    labels: @json($labels),
                     datasets: [{
-                        type: 'line',
-                        label:'Sessions',
-                        data: @json($totalSessions),
-                        backgroundColor: '#696ed2'
+                        label: 'Daily Sessions',
+                        data: @json($dailySessions),
+
+                        borderColor: '#898df5',
+                        backgroundColor: gradient,
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+
+                        shadowColor: '#898df5',
+                        shadowBlur: 15,
+
+                        pointBackgroundColor: '#ffffff',
+                        pointBorderColor: '#898df5',
+                        pointRadius: 5,
+                        pointHoverRadius: 7,
+                        pointBorderWidth: 2,
                     }],
                 },
-                options: {
-                    scales: {
-                        y: {
 
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: "#ffffff",
+                                font: { size: 14 }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: "#1f1f1f",
+                            titleColor: "#fff",
+                            bodyColor: "#ccc",
+                            borderColor: "#898df5",
+                            borderWidth: 1,
+                            padding: 10,
+                            callbacks: {
+                                label: function (context) {
+                                    return " Sessions: " + context.raw;
+                                }
+                            }
+                        }
+                    },
+
+                    scales: {
+                        x: {
+                            grid: {
+                                color: "rgba(255,255,255,0.08)"
+                            },
+                            ticks: {
+                                color: "#e0e0e0",
+                                font: { size: 13 }
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: "rgba(255,255,255,0.08)"
+                            },
+                            ticks: {
+                                color: "#e0e0e0",
+                                font: { size: 13 }
+                            }
                         }
                     }
-                },
+                }
             });
+
 
         </script>
 

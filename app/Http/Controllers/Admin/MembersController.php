@@ -24,15 +24,45 @@ class MembersController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $userMemberships = UserMemberships::with(['user', 'membershipPlan'])->orderBy('created_at', 'desc')->paginate(10);
-        $membershipPlans = MembershipPlan::all();
+        $query = userMemberships::query();
+
+        // Filter by name
+        if ($request->filled('name')) {
+            $query->whereHas('user', function ($q) use ($request) {
+                $q->where('name', 'LIKE', "%{$request->name}%");
+            });
+        }
+
+        // Filter by start date
+        if ($request->filled('start')) {
+            $query->whereDate('created_at', '>=', $request->start);
+        }
+
+        // Filter by end date
+        if ($request->filled('end')) {
+            $query->whereDate('expired_at', '<=', $request->end);
+        }
         $payments = Payments::with('user')->get();
-        return view('admin.members.members', ['userMemberships' => $userMemberships, 'membershipPlans' => $membershipPlans , 'payments' => $payments]);
+        $membershipPlans = MembershipPlan::all();
+        // Order and paginate
+        $userMemberships = $query->orderBy('created_at', 'desc')->paginate(10)->appends($request->all());
+
+        return view('admin.members.members', [
+            'userMemberships' => $userMemberships,
+            'filters' => $request->only(['name', 'start', 'end']),
+            'membershipPlans' => $membershipPlans, 
+            'payments' => $payments // optional, for pre-filling inputs
+        ]);
+
+        //$userMemberships = UserMemberships::with(['user', 'membershipPlan'])->orderBy('created_at', 'desc')->paginate(10);
+        //$membershipPlans = MembershipPlan::all();
+        //$payments = Payments::with('user')->get();
+        //return view('admin.members.members', ['userMemberships' => $userMemberships, 'membershipPlans' => $membershipPlans, 'payments' => $payments]);
     }
 
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -51,7 +81,7 @@ class MembersController extends Controller
     public function store(StoreUserMembershipRequest $request)
     {
         $this->membershipService->createUserMemberships($request->validated());
-        return redirect()->route('admin.members.index')->with('success','New member has been created successfully.');
+        return redirect()->route('admin.members.index')->with('success', 'New member has been created successfully.');
     }
 
     /**
@@ -76,8 +106,9 @@ class MembersController extends Controller
     public function update(UpdateUserMembershipRequest $request, UserMemberships $userMemberships)
     {
         //
+        $userName = $userMemberships->user->name;
         $this->membershipService->updateUserMemberships($userMemberships, $request->validated());
-        return redirect()->route('admin.members.index')->with('success', 'Member membership has been updated successfully.');
+        return redirect()->route('admin.members.index')->with('success', "$userName membership has been updated successfully.");
     }
 
     /**
@@ -92,6 +123,4 @@ class MembersController extends Controller
             ->route('admin.members.index')
             ->with('deleted', "$userName membership successfully deleted!");
     }
-    
-
 }

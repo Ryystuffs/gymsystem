@@ -7,10 +7,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
 </head>
-<body>
+<body class="flex items-center justify-center min-w-screen min-h-screen bg-[#1E1E1E] text-white">
     <div class="p-5">
         <div class="flex justify-between px-2 mt-5 mb-5 ">
-            <h1 class="title-text"> New Account</h1>
+            <h1 class="title-text"> Create an Admin Account</h1>
         </div>
         <div class="bg-[#292626] p-8 rounded-lg shadow-md">
 
@@ -47,8 +47,8 @@
                     <input type="password" id="confirm_password" name="password_confirmation" placeholder="Confirm Password" class="input-design" required>
                 </div>  
 
-                <button type="submit" class="submit-design"> Create Account </button>
+                <button type="submit" class="submit-design mt-5"> Create Account </button>
             </form>
-        </div>
+    </div>
 </body>
 </html>

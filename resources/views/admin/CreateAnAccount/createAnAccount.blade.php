@@ -6,14 +6,8 @@
             </div>
             <div class="bg-[#292626] p-8 rounded-lg shadow-md">
 
-                @if ($errors->any())
-                    <div id="validation-errors" class="hidden">
-                        @foreach ($errors->all() as $error)
-                            <p>{{ $error }}</p>
-                        @endforeach
-                    </div>
-                @endif
-                
+
+
                 <form id="createForm" method="POST" action="{{ route('admin.createAnAccount.store') }}">
                     @csrf
 
@@ -53,7 +47,22 @@
             </div>
         </div>
 
-
+        @if ($errors->any())
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const messages = @json($errors->all());
+                    Swal.fire({
+                        title: 'Validation Error',
+                        html: messages.join('<br>'),
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#e3342f',
+                        background: '#292626',
+                        color: '#fdfdfd',
+                    });
+                });
+            </script>
+        @endif
 
     </x-navigation>
 
@@ -85,7 +94,7 @@
                         confirmButtonText: 'OK',
                         confirmButtonColor: '#e3342f',
                         background: '#292626',
-                        color: '#fdfdfd'
+                        color: '#fdfdfd',
                     });
                     return;
                 }

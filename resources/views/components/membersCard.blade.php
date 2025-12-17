@@ -165,6 +165,8 @@
                     cancelButtonColor: '#6c757d',
                     confirmButtonText: 'Yes, delete it!',
                     reverseButtons: true,
+                    background: '#292626',
+                    color: '#fdfdfd',
                 }).then((result) => {
                     if (result.isConfirmed) {
                         form.submit();

@@ -22,7 +22,6 @@ class QrScanController extends Controller
     {
         // Find the user's active membership
         $now = Carbon::now();
-
         $membership = UserMemberships::where('user_id', $user->id)
             ->where('is_active', true)
             ->first();
