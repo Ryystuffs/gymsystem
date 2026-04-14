@@ -17,6 +17,7 @@
         "vite": "^7.0.4"
     },
     "dependencies": {
-        "@zxing/browser": "^0.1.5"
+        "@zxing/browser": "^0.1.5",
+        "alpinejs": "^3.15.11"
     }
 }
