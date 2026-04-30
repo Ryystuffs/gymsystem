@@ -1,10 +1,10 @@
-@section('pageTitle', 'User')
+@section('pageTitle', 'Member Sessions')
 @section('title', 'GainLab')
 <div>
     <div class="mb-5 mt-5 flex flex-col md:flex-row md:items-center md:justify-between bg-none text-[#fdfdfd]">
-        <h1 class="text-3xl font-bold mb-3 md:mb-0">Accounts</h1>
+        <h1 class="text-3xl font-bold mb-3 md:mb-0">Member Sessions</h1>
     </div>
-
+    
     <div
         class="flex flex-col md:flex-row justify-between items-center md:items-end mb-5 mt-7 space-y-4 md:space-y-0">
 
@@ -34,7 +34,7 @@
 
                     <button
                         class="h-8 w-20 bg-[#292626] hover:bg-[#5d5a5a] text-white border border-[#393535] focus:border-[#7a7adb] focus:outline-none transition rounded-lg">
-                        <a href="{{ route('admin.createAnAccount.index') }}">
+                        <a href="{{ route('admin.sessions.index') }}">
                             Reset
                         </a>
                     </button>
@@ -48,44 +48,27 @@
         <thead class="bg-[#403c3c] font-bold text-white h-14">
             <tr class="text-center">
                 <th>Name</th>
-                <th>Email</th>
-                <th>Created At</th>
+                <th>Check In</th>
+                <th>Check Out</th>
             </tr>
         </thead>
+
         <tbody>
-            @foreach($users as $user)
+            @foreach($memberSessions as $memberSession)
                 <tr class="text-center border-t border-gray-600">
                     <td class="text-[#fdfdfd] font-bold p-4">
-                        {{ $user->name }}
+                        {{ $memberSession->userMembership->user->name ?? 'N/A' }}
                     </td>
-                    <td class="text-[#fdfdfd]">{{ $user->email }}</td>
-                    <td class="text-[#fdfdfd]">{{ $user->created_at }}</td>
+                    <td class="text-[#fdfdfd]">
+                        {{ $memberSession->check_in }}
+                    </td>
+                    <td class="text-[#fdfdfd]">{{ $memberSession->check_out }}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 
     <div class="mt-5">
-        {{ $users->links() }}
+        {{ $memberSessions->links() }}
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    @if (session('success'))
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                Swal.fire({
-                    title: 'Success!',
-                    text: "{{ session('success') }}",
-                    icon: 'success',
-                    confirmButtonText: 'OK',
-                    confirmButtonColor: '#4CAF50',
-                    background: '#292626',
-                    color: '#fdfdfd',
-                });
-            });
-
-
-        </script>
-
-    @endif
 </div>

@@ -19,32 +19,9 @@ class createAccountController extends Controller
     /**
      * Display a listing of the resource.
      */
-
-    public function index(Request $request)
+    public function index()
     {
-
-        $query = User::query();
-
-        // Filter by name
-        if ($request->filled('name')) {
-            $query->where('name', 'LIKE', "%{$request->name}%");
-        }
-
-        // Filter by start date
-        if ($request->filled('start')) {
-            $query->whereDate('created_at', '>=', $request->start);
-        }
-
-        // Filter by end date
-        if ($request->filled('end')) {
-            $query->whereDate('created_at', '<=', $request->end);
-        }
-
-        $users = $query->orderBy('created_at', 'desc')->paginate(10)->appends($request->all());
-        return view('admin.createAnAccount.accounts', [
-            'users' => $users,
-            'filters' => $request->only(['name', 'start', 'end']), // optional, for pre-filling inputs
-        ]);
+        return view('users');
     }
 
     public function create()

@@ -139,11 +139,11 @@
                             <span x-show="!sideBarCollapsed || sideBarOpen" class="font-medium nav-title truncate">Member Sessions</span>
                         </a>
 
-                        <a href="{{ route('admin.createAnAccount.index') }}" class="flex items-center gap-3 px-3 py-3 rounded-xl transition-all group/item {{ request()->routeIs('admin.createAnAccount.index')
+                        <a href="{{ route('users.list') }}" class="flex items-center gap-3 px-3 py-3 rounded-xl transition-all group/item {{ request()->routeIs('users.list')
                             ? ' bg-white/10 text-white  border border-white/10  hover:bg-white/20 ' 
                             : 'text-red-100/70 hover:text-white hover:bg-white/5' }}" >
                             <div class="shrink-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 {{ request()->routeIs('admin.createAnAccount.index') ? 'nav-active' : 'nav' }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 {{ request()->routeIs('users.list') ? 'nav-active' : 'nav' }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
                                     <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                                 </svg>

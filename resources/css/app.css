@@ -19,6 +19,7 @@
 
     html{
         @apply bg-[#010001];
+        @apply scroll-smooth;
     }
     .login-page{
         @apply  dark:bg-gray-950 flex flex-col items-center font-sans   ;

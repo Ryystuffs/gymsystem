@@ -76,17 +76,18 @@
 
                 Route::prefix('createAnAccount')->name('createAnAccount.')->group(function () {
                     Route::get('/createAnAccount', [createAccountController::class, 'create'])->name('create');
-                    Route::get('/accounts', [createAccountController::class, 'index'])->name('index');
                     Route::post('/accounts', [createAccountController::class, 'store'])->name('store');
                 });
-
-
 
                 Route::prefix('scan')->name('scan.')->group(function () {
                     Route::get('/scanner', [QrScanController::class, 'scanner'])->name('scanner');
                     Route::get('/{user}', [QrScanController::class, 'handle'])->name('qrScan');
                 });
             });
+
+            Route::prefix('users')->name('users.')->group(function () {
+                Route::livewire('/list', 'pages::admin.users.list')->name('list');
+            });            
         });
 
 
