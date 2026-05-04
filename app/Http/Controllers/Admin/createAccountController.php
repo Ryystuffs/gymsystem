@@ -11,7 +11,7 @@ use App\Services\AccountService;
 class createAccountController extends Controller
 {
 
-    protected $accountService;
+    protected AccountService $accountService;
     public function __construct(AccountService $accountService)
     {
         $this->accountService = $accountService;

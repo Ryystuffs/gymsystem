@@ -1,7 +1,6 @@
 <?php
 
-use App\Services\AccountService;
-use Illuminate\Pagination\LengthAwarePaginator;
+use App\Http\Filter\UserFilter;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -10,39 +9,28 @@ new class extends Component
 {
     use WithPagination;
 
-    public $searchName;
-    public $startDate;
-    public $endDate;
-
-    protected AccountService $accountService;
-
-    public function boot(AccountService $accountService)
-    {
-        $this->accountService = $accountService;
-    }
+    public $searchName = '';
+    public $startDate = '';
+    public $endDate = '';
 
     #[Computed()]
-    public function users(): LengthAwarePaginator
+    public function users()
     {
-        dump($this->searchName, $this->startDate, $this->endDate);
-        return $this->accountService->getAccounts(
+        return app(UserFilter::class)->getAccounts(
             $this->searchName,
             $this->startDate,
-            $this->endDate   
+            $this->endDate
         );
+    }
 
-        
+    public function applyFilter()
+    {
+        $this->resetPage();
     }
 
     public function resetFilter()
     {
-        $this->searchName = '';
-        $this->startDate = '';
-        $this->endDate = '';
-    }
-
-    public function tableFilter()
-    {
+        $this->reset(['searchName', 'startDate', 'endDate']);
         $this->resetPage();
     }
 };

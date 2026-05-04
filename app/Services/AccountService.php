@@ -9,25 +9,6 @@ use Illuminate\Support\Facades\URL;
     class AccountService {
         // Account related service methods can be added here in the future
 
-        public function getAccounts(
-            ?string $searchName = '',
-            ?string $startDate = '',
-            ?string $endDate = ''
-        )
-        {
-            return User::when($searchName, function ($q) use ($searchName) {
-                $q->where('name', 'LIKE', "%{$searchName}%");
-            })
-                ->when($startDate, function ($q) use ($startDate) {
-                    $q->whereDate('created_at', '>=', $startDate);
-                })
-                ->when($endDate, function ($q) use ($endDate) {
-                    $q->whereDate('created_at', '<=', $endDate);
-                })
-                ->orderBy('created_at', 'desc')
-                ->paginate(10);
-        }
-
         public function createAccount(array $data){
             $user = User::create([
                 'name' => $data['name'],
